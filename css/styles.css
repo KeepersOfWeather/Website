@@ -1,0 +1,12 @@
+body {
+    background-color: #1e272e;
+}
+
+:root {
+    --font-body: "sofia-pro",sans-serif;
+}
+
+p {
+    font-family: var(--font-body);
+    color: white;
+}
