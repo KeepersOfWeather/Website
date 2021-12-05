@@ -32,8 +32,8 @@ async function listDevices() {
     return await fetchFromApi("devices");
 }
 
-// We need to call an await function, but we're not calling it
-// From an async function, so we do this:
+// We need to call an async function, but we're not calling it
+// From inside of an async function, so we do this hack:
 // https://stackoverflow.com/questions/39679505/using-await-outside-of-an-async-function
 
 (async () => {
