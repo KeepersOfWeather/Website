@@ -1,7 +1,9 @@
+'use strict';
+
 async function fetchFromApi(endpoint, parameters) {
 
     // This is our base URL to the API
-    url = 'https://keepersofweather.nl/api/';
+    let url = 'https://keepersofweather.nl/api/';
 
     // We can add endpoints to our base URL
     if (endpoint) {
@@ -37,8 +39,9 @@ async function listDevices() {
 
     let devices = await listDevices();
 
-    for (const [deviceID, deviceName] in devices) {
-        tabsClass = document.getElementsByClassName("tabs");
+    // https://stackoverflow.com/questions/34913675/how-to-iterate-keys-values-in-javascript
+    for (const [deviceID, deviceName] of Object.entries(devices)) {
+        let tabsClass = document.getElementsByClassName("tabs");
 
         if (tabsClass !== null) {
             tabsClass = tabsClass[0];
@@ -51,8 +54,8 @@ async function listDevices() {
         let newDeviceTab = document.createElement("button");
         let newDeviceTabButton = newDeviceTab.childNodes[0]; // This object has one child
         newDeviceTab.class = "tablinks";
-        newDeviceTab.onclick = fetchFromApi("from-device", {"deviceID" : deviceID});
-        newDeviceTab.value = deviceName;
+        // newDeviceTab.onclick = fetchFromApi("from-device", {"deviceID" : deviceID});
+        newDeviceTab.innerHTML = deviceName;
 
         tabsClass.appendChild(newDeviceTab);
     }
