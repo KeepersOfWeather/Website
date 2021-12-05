@@ -16,6 +16,9 @@ async function fetchFromApi(endpoint, parameters) {
             // https://stackoverflow.com/questions/14525178/is-there-any-native-function-to-convert-json-to-url-parameters
             url += '?';
             url += new URLSearchParams(parameters).toString();
+
+            console.log("Oh crap it's funky parameter time, url is:")
+            console.log(url)
         }
     }
 
@@ -36,6 +39,7 @@ async function listDevices() {
 (async () => {
 
     // Generate tabs based on devices from API
+    // Info here: https://www.w3schools.com/howto/howto_js_tabs.asp
 
     let devices = await listDevices();
 
@@ -49,12 +53,14 @@ async function listDevices() {
             console.log("Something is broken when finding tabs div...")
             return;
         }
+    
 
         // https://www.w3schools.com/jsref/met_node_appendchild.asp
         let newDeviceTab = document.createElement("button");
         let newDeviceTabButton = newDeviceTab.childNodes[0]; // This object has one child
-        newDeviceTab.class = "tablinks";
-        // newDeviceTab.onclick = fetchFromApi("from-device", {"deviceID" : deviceID});
+        newDeviceTab.classList.add("tablinks");
+        newDeviceTab.id = deviceName;
+        newDeviceTab.onclick = async function () { fetchFromApi("from-device", {"deviceID" : deviceID}) };
         newDeviceTab.innerHTML = deviceName;
 
         tabsClass.appendChild(newDeviceTab);
