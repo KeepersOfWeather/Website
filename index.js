@@ -47,7 +47,7 @@ async function listDevices() {
     for (const [deviceID, deviceName] of Object.entries(devices)) {
         let tabsClass = document.getElementsByClassName("tabs");
 
-        if (tabsClass !== null) {
+        if (document.getElementsByClassName("tab").length !== 0) {
             tabsClass = tabsClass[0];
         } else {
             console.log("Something is broken when finding tabs div...")
