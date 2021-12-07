@@ -47,7 +47,7 @@ async function listDevices() {
     for (const [deviceID, deviceName] of Object.entries(devices)) {
         let tabsClass = document.getElementsByClassName("tabs");
 
-        if (document.getElementsByClassName("tab").length !== 0) {
+        if (document.getElementsByClassName("tabs").length !== 0) {
             tabsClass = tabsClass[0];
         } else {
             console.log("Something is broken when finding tabs div...")
@@ -60,7 +60,7 @@ async function listDevices() {
         let newDeviceTabButton = newDeviceTab.childNodes[0]; // This object has one child
         newDeviceTab.classList.add("tablinks");
         newDeviceTab.id = deviceName;
-        newDeviceTab.onclick = async function () { fetchFromApi("from-device", {"deviceID" : deviceID}) };
+        newDeviceTab.onclick = async function () { console.log(fetchFromApi("from-device", {"deviceID" : deviceID})) };
         newDeviceTab.innerHTML = deviceName;
 
         tabsClass.appendChild(newDeviceTab);
