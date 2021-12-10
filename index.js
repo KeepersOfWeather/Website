@@ -32,6 +32,10 @@ async function listDevices() {
     return await fetchFromApi("devices");
 }
 
+async function fromDevice(deviceID) {
+    return await fetchFromApi(`device/${deviceID}`);
+}
+
 // We need to call an async function, but we're not calling it
 // From inside of an async function, so we do this hack:
 // https://stackoverflow.com/questions/39679505/using-await-outside-of-an-async-function
@@ -47,7 +51,7 @@ async function listDevices() {
     for (const [deviceID, deviceName] of Object.entries(devices)) {
         let tabsClass = document.getElementsByClassName("tabs");
 
-        if (document.getElementsByClassName("tabs").length !== 0) {
+        if (tabsClass.length !== 0) {
             tabsClass = tabsClass[0];
         } else {
             console.log("Something is broken when finding tabs div...")
@@ -57,10 +61,10 @@ async function listDevices() {
 
         // https://www.w3schools.com/jsref/met_node_appendchild.asp
         let newDeviceTab = document.createElement("button");
-        let newDeviceTabButton = newDeviceTab.childNodes[0]; // This object has one child
+        // let newDeviceTabButton = newDeviceTab.childNodes[0]; // This object has one child
         newDeviceTab.classList.add("tablinks");
         newDeviceTab.id = deviceName;
-        newDeviceTab.onclick = async function () { console.log(fetchFromApi("from-device", {"deviceID" : deviceID})) };
+        newDeviceTab.onclick = async function () { console.log(fromDevicedeviceID) };
         newDeviceTab.innerHTML = deviceName;
 
         tabsClass.appendChild(newDeviceTab);
