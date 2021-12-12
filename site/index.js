@@ -64,7 +64,7 @@ async function showDevices(devicesCollection) {
             newDeviceCheckBox.name = deviceName
 
             let newDeviceLabel = document.createElement("label");
-            newDeviceLabel.for = "checkbox"
+            newDeviceLabel.htmlFor = "checkbox"
 
         newDeviceEntry.appendChild(newDeviceCheckBox);
         newDeviceEntry.appendChild(newDeviceLabel);
