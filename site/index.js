@@ -42,6 +42,9 @@ async function getLocations() {
 }
 
 async function showDevices(devicesCollection) {
+    // This function will fill up the devices list with devices passed
+    // as id: device in deviceCollection
+    /// param deviceCollection: dictionary
     let devicesList = document.getElementsByClassName("devices");
 
     if (devicesList.length !== 0) {
@@ -54,8 +57,10 @@ async function showDevices(devicesCollection) {
     // Clear list of devices
     devicesList.innerHTML = ""
 
+    // Go over each id and name in the passed dictionary
     for (const [deviceId, deviceName] of Object.entries(devicesCollection)) {
 
+        // Create a div with a check box and a label
         let newDeviceEntry = document.createElement("div");
 
             let newDeviceCheckBox = document.createElement("input");
@@ -67,9 +72,12 @@ async function showDevices(devicesCollection) {
             newDeviceLabel.htmlFor = deviceName;
             newDeviceLabel.innerHTML = deviceName;
 
+        // Add the checkbox and label for the checkbox
+        // To the div for the new entry
         newDeviceEntry.appendChild(newDeviceCheckBox);
         newDeviceEntry.appendChild(newDeviceLabel);
 
+        // Add the new entry to our list of devices
         devicesList.appendChild(newDeviceEntry);
     }
 }
