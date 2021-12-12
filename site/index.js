@@ -58,6 +58,7 @@ async function listDevices(devicesCollection) {
 
         let newDeviceEntry = document.createElement("li");
         newDeviceEntry.innerHTML = deviceName;
+        newDeviceEntry.
 
         devicesList.appendChild(newDeviceEntry);
     }
@@ -96,4 +97,14 @@ async function listDevices(devicesCollection) {
 
         citiesClass.appendChild(newCityTab);
     }
+
+    let allButton = document.createElement("button");
+        
+    allButton.classList.add("city");
+    allButton.id = city;
+
+    allButton.onclick = async function () { listDevices(listDevices) };
+    allButton.innerHTML = city; // Change the name to be the city name
+
+    citiesClass.appendChild(allButton);
 })();
