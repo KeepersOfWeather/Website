@@ -37,8 +37,8 @@ async function fromDevice(deviceID) {
     return await fetchFromApi(`device/${deviceID}`);
 }
 
-async function fromDevice(deviceID) {
-    return await fetchFromApi(`device/${deviceID}`);
+async function getLocations() {
+    return await fetchFromApi("locations")
 }
 
 // We need to call an async function, but we're not calling it
@@ -62,7 +62,6 @@ async function fromDevice(deviceID) {
             console.log("Something is broken when finding tabs div...")
             return;
         }
-    
 
         // https://www.w3schools.com/jsref/met_node_appendchild.asp
         let newDeviceTab = document.createElement("button");
@@ -74,5 +73,4 @@ async function fromDevice(deviceID) {
 
         tabsClass.appendChild(newDeviceTab);
     }
-
 })();
