@@ -58,7 +58,6 @@ async function listDevicesForCity(devicesCollection) {
 
         let newDeviceEntry = document.createElement("li");
         newDeviceEntry.innerHTML = deviceName;
-        newDeviceEntry.
 
         devicesList.appendChild(newDeviceEntry);
     }
