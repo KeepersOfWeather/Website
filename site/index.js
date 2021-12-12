@@ -41,7 +41,7 @@ async function getLocations() {
     return await fetchFromApi("locations")
 }
 
-async function listDevicesForCity(devicesCollection) {
+async function showDevices(devicesCollection) {
     let devicesList = document.getElementsByClassName("devices");
 
     if (devicesList.length !== 0) {
@@ -92,7 +92,7 @@ async function listDevicesForCity(devicesCollection) {
         newCityTab.classList.add("city");
         newCityTab.id = city;
 
-        newCityTab.onclick = async function () { listDevicesForCity(deviceCollection) };
+        newCityTab.onclick = async function () { showDevices(deviceCollection) };
         newCityTab.innerHTML = city; // Change the name to be the city name
 
         citiesClass.appendChild(newCityTab);
@@ -103,7 +103,9 @@ async function listDevicesForCity(devicesCollection) {
     allButton.classList.add("all");
     allButton.id = "all";
 
-    allButton.onclick = async function () { listDevicesForCity(getDevices()) };
+    let allDevices = await getDevices();
+
+    allButton.onclick = async function () { showDevices(allDevices) };
     allButton.innerHTML = "All"; // Change the name to be the city name
 
     citiesClass.appendChild(allButton);
