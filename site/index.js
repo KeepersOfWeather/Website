@@ -103,7 +103,7 @@ async function listDevicesForCity(devicesCollection) {
     allButton.classList.add("all");
     allButton.id = "all";
 
-    allButton.onclick = async function () { listDevicesForCity(listDevices) };
+    allButton.onclick = async function () { listDevicesForCity(getDevices()) };
     allButton.innerHTML = "All"; // Change the name to be the city name
 
     citiesClass.appendChild(allButton);
