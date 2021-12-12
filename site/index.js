@@ -41,6 +41,24 @@ async function getLocations() {
     return await fetchFromApi("locations")
 }
 
+async function listDevices(devicesCollection) {
+    for (const [deviceId, deviceName] of Object.entries(devicesCollection)) {
+        let devicesList = document.getElementsByClassName("devices");
+
+        if (devicesList.length !== 0) {
+            devicesList = devicesList[0];
+        } else {
+            console.log("Something is broken when finding devices ul...")
+            return;
+        }
+
+        let newDeviceEntry = document.createElement("li");
+        newDeviceEntry.innerHTML = deviceName;
+
+        devicesList.appendChild(newDeviceEntry);
+    }
+}
+
 // We need to call an async function, but we're not calling it
 // From inside of an async function, so we do this hack:
 // https://stackoverflow.com/questions/39679505/using-await-outside-of-an-async-function
@@ -69,7 +87,7 @@ async function getLocations() {
         newCityTab.classList.add("city");
         newCityTab.id = city;
 
-        newCityTab.onclick = async function () { console.log(deviceCollection) };
+        newCityTab.onclick = async function () { listDevices(deviceCollection) };
         newCityTab.innerHTML = city; // Change the name to be the city name
 
         citiesClass.appendChild(newCityTab);
