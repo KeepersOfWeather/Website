@@ -67,7 +67,7 @@ async function getLocations() {
         let newCityTab = document.createElement("button");
         // let newDeviceTabButton = newDeviceTab.childNodes[0]; // This object has one child
         newCityTab.classList.add("city");
-        newCityTab.id = deviceName;
+        newCityTab.id = city;
         newCityTab.onclick = async function () { console.log() };
         newCityTab.innerHTML = city;
 
