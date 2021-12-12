@@ -33,6 +33,11 @@ async function listDevices() {
 }
 
 async function fromDevice(deviceID) {
+    // This returns devices from https://keepersofweather.nl/api/devices
+    return await fetchFromApi(`device/${deviceID}`);
+}
+
+async function fromDevice(deviceID) {
     return await fetchFromApi(`device/${deviceID}`);
 }
 
