@@ -75,17 +75,18 @@ async function listDevicesForCity(devicesCollection) {
 
     let cities = await getLocations();
 
+    let citiesClass = document.getElementsByClassName("cities");
+
+    if (citiesClass.length !== 0) {
+        citiesClass = citiesClass[0];
+    } else {
+        console.log("Something is broken when finding tabs div...")
+        return;
+    }
+
     // https://stackoverflow.com/questions/34913675/how-to-iterate-keys-values-in-javascript
     for (const [city, deviceCollection] of Object.entries(cities)) {
-        let citiesClass = document.getElementsByClassName("cities");
-
-        if (citiesClass.length !== 0) {
-            citiesClass = citiesClass[0];
-        } else {
-            console.log("Something is broken when finding tabs div...")
-            return;
-        }
-
+        
         // https://www.w3schools.com/jsref/met_node_appendchild.asp
         let newCityTab = document.createElement("button");
         
