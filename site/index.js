@@ -50,27 +50,27 @@ async function getLocations() {
     // Generate tabs based on devices from API
     // Info here: https://www.w3schools.com/howto/howto_js_tabs.asp
 
-    let devices = await listDevices();
+    let cities = await getLocations();
 
     // https://stackoverflow.com/questions/34913675/how-to-iterate-keys-values-in-javascript
-    for (const [deviceID, deviceName] of Object.entries(devices)) {
-        let tabsClass = document.getElementsByClassName("tabs");
+    for (const [city, deviceCollection] of Object.entries(cities)) {
+        let citiesClass = document.getElementsByClassName("cities");
 
-        if (tabsClass.length !== 0) {
-            tabsClass = tabsClass[0];
+        if (citiesClass.length !== 0) {
+            citiesClass = citiesClass[0];
         } else {
             console.log("Something is broken when finding tabs div...")
             return;
         }
 
         // https://www.w3schools.com/jsref/met_node_appendchild.asp
-        let newDeviceTab = document.createElement("button");
+        let newCityTab = document.createElement("button");
         // let newDeviceTabButton = newDeviceTab.childNodes[0]; // This object has one child
-        newDeviceTab.classList.add("tablinks");
-        newDeviceTab.id = deviceName;
-        newDeviceTab.onclick = async function () { console.log(fromDevice(deviceID)) };
-        newDeviceTab.innerHTML = deviceName;
+        newCityTab.classList.add("city");
+        newCityTab.id = deviceName;
+        newCityTab.onclick = async function () { console.log() };
+        newCityTab.innerHTML = city;
 
-        tabsClass.appendChild(newDeviceTab);
+        citiesClass.appendChild(newCityTab);
     }
 })();
