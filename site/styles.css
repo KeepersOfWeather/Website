@@ -10,3 +10,9 @@ p {
     font-family: var(--font-body);
     color: white;
 }
+
+.tablinks 
+{
+    background-color: blue;
+    color: burlywood;
+}
