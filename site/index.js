@@ -73,7 +73,7 @@ async function listDevicesForCity(devicesCollection) {
     // Generate tabs based on devices from API
     // Info here: https://www.w3schools.com/howto/howto_js_tabs.asp
 
-    let cities = await getDevices();
+    let cities = await getLocations();
 
     // https://stackoverflow.com/questions/34913675/how-to-iterate-keys-values-in-javascript
     for (const [city, deviceCollection] of Object.entries(cities)) {
