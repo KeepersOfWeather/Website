@@ -42,15 +42,19 @@ async function getLocations() {
 }
 
 async function listDevices(devicesCollection) {
-    for (const [deviceId, deviceName] of Object.entries(devicesCollection)) {
-        let devicesList = document.getElementsByClassName("devices");
+    let devicesList = document.getElementsByClassName("devices");
 
-        if (devicesList.length !== 0) {
-            devicesList = devicesList[0];
-        } else {
-            console.log("Something is broken when finding devices ul...")
-            return;
-        }
+    if (devicesList.length !== 0) {
+        devicesList = devicesList[0];
+    } else {
+        console.log("Something is broken when finding devices ul...")
+        return;
+    }
+
+    // Clear list of devices
+    devicesList.innerHTML = ""
+
+    for (const [deviceId, deviceName] of Object.entries(devicesCollection)) {
 
         let newDeviceEntry = document.createElement("li");
         newDeviceEntry.innerHTML = deviceName;
