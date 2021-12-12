@@ -27,7 +27,7 @@ async function fetchFromApi(endpoint, parameters) {
     return await response.json(); // And return it as a JSON object
 }
 
-async function listDevices() {
+async function getDevices() {
     // This returns devices from https://keepersofweather.nl/api/devices
     return await fetchFromApi("devices");
 }
@@ -41,7 +41,7 @@ async function getLocations() {
     return await fetchFromApi("locations")
 }
 
-async function listDevices(devicesCollection) {
+async function listDevicesForCity(devicesCollection) {
     let devicesList = document.getElementsByClassName("devices");
 
     if (devicesList.length !== 0) {
@@ -73,7 +73,7 @@ async function listDevices(devicesCollection) {
     // Generate tabs based on devices from API
     // Info here: https://www.w3schools.com/howto/howto_js_tabs.asp
 
-    let cities = await getLocations();
+    let cities = await getDevices();
 
     // https://stackoverflow.com/questions/34913675/how-to-iterate-keys-values-in-javascript
     for (const [city, deviceCollection] of Object.entries(cities)) {
@@ -92,7 +92,7 @@ async function listDevices(devicesCollection) {
         newCityTab.classList.add("city");
         newCityTab.id = city;
 
-        newCityTab.onclick = async function () { listDevices(deviceCollection) };
+        newCityTab.onclick = async function () { listDevicesForCity(deviceCollection) };
         newCityTab.innerHTML = city; // Change the name to be the city name
 
         citiesClass.appendChild(newCityTab);
@@ -100,11 +100,11 @@ async function listDevices(devicesCollection) {
 
     let allButton = document.createElement("button");
         
-    allButton.classList.add("city");
-    allButton.id = city;
+    allButton.classList.add("all");
+    allButton.id = "all";
 
-    allButton.onclick = async function () { listDevices(listDevices) };
-    allButton.innerHTML = city; // Change the name to be the city name
+    allButton.onclick = async function () { listDevicesForCity(listDevices) };
+    allButton.innerHTML = "All"; // Change the name to be the city name
 
     citiesClass.appendChild(allButton);
 })();
