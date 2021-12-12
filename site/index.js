@@ -59,12 +59,13 @@ async function showDevices(devicesCollection) {
         let newDeviceEntry = document.createElement("div");
 
             let newDeviceCheckBox = document.createElement("input");
-            newDeviceCheckBox.type = "checkbox"
-            newDeviceCheckBox.id = deviceName
-            newDeviceCheckBox.name = deviceName
+            newDeviceCheckBox.type = "checkbox";
+            newDeviceCheckBox.id = deviceName;
+            newDeviceCheckBox.name = deviceName;
 
             let newDeviceLabel = document.createElement("label");
-            newDeviceLabel.htmlFor = deviceName
+            newDeviceLabel.htmlFor = deviceName;
+            newDeviceLabel.innerHTML = deviceName;
 
         newDeviceEntry.appendChild(newDeviceCheckBox);
         newDeviceEntry.appendChild(newDeviceLabel);
