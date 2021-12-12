@@ -65,11 +65,12 @@ async function getLocations() {
 
         // https://www.w3schools.com/jsref/met_node_appendchild.asp
         let newCityTab = document.createElement("button");
-        // let newDeviceTabButton = newDeviceTab.childNodes[0]; // This object has one child
+        
         newCityTab.classList.add("city");
         newCityTab.id = city;
-        newCityTab.onclick = async function () { console.log() };
-        newCityTab.innerHTML = city;
+
+        newCityTab.onclick = async function () { console.log(deviceCollection) };
+        newCityTab.innerHTML = city; // Change the name to be the city name
 
         citiesClass.appendChild(newCityTab);
     }
