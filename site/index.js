@@ -64,7 +64,7 @@ async function fromDevice(deviceID) {
         // let newDeviceTabButton = newDeviceTab.childNodes[0]; // This object has one child
         newDeviceTab.classList.add("tablinks");
         newDeviceTab.id = deviceName;
-        newDeviceTab.onclick = async function () { console.log(fromDevicedeviceID) };
+        newDeviceTab.onclick = async function () { console.log(fromDevice(deviceID)) };
         newDeviceTab.innerHTML = deviceName;
 
         tabsClass.appendChild(newDeviceTab);
