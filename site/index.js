@@ -195,7 +195,6 @@ async function getLatestForLocation(location) {
                 var latestDate = new Date('1970-01-01T00:00:00');
 
                 if (newestData.metadata !== undefined) {
-                    console.log(newestData);
                     latestDate = new Date(newestData.metadata.utcTimeStamp);
                 } 
                 
@@ -252,7 +251,9 @@ async function getLatestForLocation(location) {
         if (city === "Wierden") {
             removeActiveFromButtons();
             newCityButton.classList.add("active");
-            showDevices(deviceCollection)
+            showDevices(deviceCollection);
+            let latestDataFromWierden = await getLatestForLocation(city);
+            await updateLatestWeatherDiv(latestDataFromWierden.fromDeviceId);
         }
     }
 
@@ -274,6 +275,4 @@ async function getLatestForLocation(location) {
 
     citiesClass.appendChild(allButton);
 
-    // Update latest weather stuff
-    // await updateLatestWeatherDiv();
 })();
