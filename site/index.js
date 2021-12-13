@@ -178,7 +178,7 @@ async function updateLatestWeatherDiv(forDeviceID) {
 async function getLatestForLocation(location) {
     let cities = await getLocations();
 
-    var latestData = {};
+    var newestData = {};
     var fromDeviceId = undefined;
 
     // https://stackoverflow.com/questions/34913675/how-to-iterate-keys-values-in-javascript
@@ -194,19 +194,19 @@ async function getLatestForLocation(location) {
 
                 var latestDate = new Date('1970-01-01T00:00:00');
 
-                // if (latestFromDevice) {
-                //     latestDate = new Date(latestFromDevice.metadata.utcTimeStamp);
-                // } 
+                if (newestData) {
+                    latestDate = new Date(newestData.metadata.utcTimeStamp);
+                } 
                 
                 if (timestampDate > latestDate) {
-                    latestData = latestFromDevice;
+                    newestData = latestFromDevice;
                     fromDeviceId = id;
                 }
             }
         }
     }
 
-    return latestData;
+    return newestData;
 }
 
 // We need to call an async function, but we're not calling it
