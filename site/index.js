@@ -178,7 +178,7 @@ function removeActiveFromButtons() {
 
         let timestampP = document.createElement("p");
 
-        timestampP.innerHTML = latestData[0].metadata.utcTimeStamp;
+        timestampP.innerHTML = latestData[0].metadata.utcTimeStamp + " UTC";
 
         latestDataDiv.appendChild(timestampP);
     }
