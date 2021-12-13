@@ -191,11 +191,12 @@ async function getLatestForLocation(location) {
                 latestFromDevice = latestFromDevice[0];
 
                 let timestampDate = new Date(latestFromDevice.metadata.utcTimeStamp);
-                if (latestData) {
-                    let latestDate = new Date(latestData.metadata.utcTimeStamp);
-                } else {
-                    let latestDate = new Date('1970-01-01T00:00:00');
-                }
+
+                var latestDate = new Date('1970-01-01T00:00:00');
+
+                if (latestFromDevice) {
+                    latestDate = new Date(latestFromDevice.metadata.utcTimeStamp);
+                } 
                 
                 if (timestampDate > latestDate) {
                     latestData = latestFromDevice;
