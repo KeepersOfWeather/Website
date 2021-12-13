@@ -119,43 +119,53 @@ async function updateLatestWeatherDiv() {
 
     if (!latestData) {
         console.log("Can't reach API!");
-    } else {
+        return;
+    }
 
-        let timestampP = document.createElement("p");
-        timestampP.innerHTML = "Timestamp: " + latestData[0].metadata.utcTimeStamp.replace("T", " ") + " UTC";
-        
-        latestDataDiv.appendChild(timestampP);
+    // Add from device
 
+    let fromDeviceP = document.createElement("p");
+    fromDeviceP.innerHTML = "From device: " + latestData[0].metadata.deviceID;
+    
+    latestDataDiv.appendChild(fromDeviceP);
+
+    // Add latest timestamp
+
+    let timestampP = document.createElement("p");
+    timestampP.innerHTML = "Timestamp: " + latestData[0].metadata.utcTimeStamp.replace("T", " ") + " UTC";
+    
+    latestDataDiv.appendChild(timestampP);
+
+    let temperateP = document.createElement("p");
+    temperateP.innerHTML = "Temperature: " + latestData[0].sensorData.temperature + "°C";
+
+    latestDataDiv.appendChild(temperateP);
+
+    if (latestData[0].sensorData.humidity !== null) {
         let temperateP = document.createElement("p");
-        temperateP.innerHTML = "Temperature: " + latestData[0].sensorData.temperature + "°C";
+        temperateP.innerHTML = "Humidity: " + latestData[0].sensorData.humidity + "%";
 
         latestDataDiv.appendChild(temperateP);
+    } else {
+        let temperateP = document.createElement("p");
+        temperateP.innerHTML = "Pressure: " + latestData[0].sensorData.pressure + " mBar";
 
-        if (latestData[0].sensorData.humidity !== null) {
-            let temperateP = document.createElement("p");
-            temperateP.innerHTML = "Humidity: " + latestData[0].sensorData.humidity + "%";
-
-            latestDataDiv.appendChild(temperateP);
-        } else {
-            let temperateP = document.createElement("p");
-            temperateP.innerHTML = "Pressure: " + latestData[0].sensorData.pressure + " mBar";
-
-            latestDataDiv.appendChild(temperateP);
-        }
-
-        if (latestData[0].sensorData.lightLogscale === null) {
-            // We have no lightLogscale, use the lightLux parameter instead
-            let lightP = document.createElement("p");
-            lightP.innerHTML = "Light: " + latestData[0].sensorData.lightLux + " Lux";
-
-            latestDataDiv.appendChild(lightP);
-        } else {
-            let temperateP = document.createElement("p");
-            temperateP.innerHTML = "Light: " + latestData[0].sensorData.lightLogscale + " log";
-
-            latestDataDiv.appendChild(temperateP);
-        }
+        latestDataDiv.appendChild(temperateP);
     }
+
+    if (latestData[0].sensorData.lightLogscale === null) {
+        // We have no lightLogscale, use the lightLux parameter instead
+        let lightP = document.createElement("p");
+        lightP.innerHTML = "Light: " + latestData[0].sensorData.lightLux + " Lux";
+
+        latestDataDiv.appendChild(lightP);
+    } else {
+        let temperateP = document.createElement("p");
+        temperateP.innerHTML = "Light: " + latestData[0].sensorData.lightLogscale + " log";
+
+        latestDataDiv.appendChild(temperateP);
+    }
+
 }
 
 // We need to call an async function, but we're not calling it
