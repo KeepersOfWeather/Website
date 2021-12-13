@@ -101,6 +101,52 @@ function removeActiveFromButtons() {
     }
 }
 
+async function updateLatestWeatherDiv() {
+    // Get latest data from API
+
+    let latestData = await getLatest();
+
+    if (!latestData) {
+        console.log("Can't reach API!");
+    } else {
+
+        let timestampP = document.createElement("p");
+        timestampP.innerHTML = "Timestamp: " + latestData[0].metadata.utcTimeStamp.replace("T", " ") + " UTC";
+        
+        latestDataDiv.appendChild(timestampP);
+
+        let temperateP = document.createElement("p");
+        temperateP.innerHTML = "Temperature: " + latestData[0].sensorData.temperature + "°C";
+
+        latestDataDiv.appendChild(temperateP);
+
+        if (latestData[0].sensorData.humidity !== null) {
+            let temperateP = document.createElement("p");
+            temperateP.innerHTML = "Humidity: " + latestData[0].sensorData.humidity + "%";
+
+            latestDataDiv.appendChild(temperateP);
+        } else {
+            let temperateP = document.createElement("p");
+            temperateP.innerHTML = "Pressure: " + latestData[0].sensorData.pressure + " mBar";
+
+            latestDataDiv.appendChild(temperateP);
+        }
+
+        if (latestData[0].sensorData.lightLogscale === null) {
+            // We have no lightLogscale, use the lightLux parameter instead
+            let lightP = document.createElement("p");
+            lightP.innerHTML = "Light: " + latestData[0].sensorData.lightLux + " Lux";
+
+            latestDataDiv.appendChild(lightP);
+        } else {
+            let temperateP = document.createElement("p");
+            temperateP.innerHTML = "Light: " + latestData[0].sensorData.lightLogscale + " log";
+
+            latestDataDiv.appendChild(temperateP);
+        }
+    }
+}
+
 // We need to call an async function, but we're not calling it
 // From inside of an async function, so we do this hack:
 // https://stackoverflow.com/questions/39679505/using-await-outside-of-an-async-function
@@ -175,47 +221,6 @@ function removeActiveFromButtons() {
         return;
     }
 
-    // Get latest data from API
-
-    let latestData = await getLatest();
-
-    if (!latestData) {
-        console.log("Can't reach API!");
-    } else {
-
-        let timestampP = document.createElement("p");
-        timestampP.innerHTML = "Timestamp: " + latestData[0].metadata.utcTimeStamp.replace("T", " ") + " UTC";
-        
-        latestDataDiv.appendChild(timestampP);
-
-        let temperateP = document.createElement("p");
-        temperateP.innerHTML = "Temperature: " + latestData[0].sensorData.temperature + "°C";
-
-        latestDataDiv.appendChild(temperateP);
-
-        if (latestData[0].sensorData.humidity !== null) {
-            let temperateP = document.createElement("p");
-            temperateP.innerHTML = "Humidity: " + latestData[0].sensorData.humidity + "%";
-
-            latestDataDiv.appendChild(temperateP);
-        } else {
-            let temperateP = document.createElement("p");
-            temperateP.innerHTML = "Pressure: " + latestData[0].sensorData.pressure + " mBar";
-
-            latestDataDiv.appendChild(temperateP);
-        }
-
-        if (latestData[0].sensorData.lightLogscale === null) {
-            // We have no lightLogscale, use the lightLux parameter instead
-            let lightP = document.createElement("p");
-            lightP.innerHTML = "Light: " + latestData[0].sensorData.lightLux + " Lux";
-
-            latestDataDiv.appendChild(lightP);
-        } else {
-            let temperateP = document.createElement("p");
-            temperateP.innerHTML = "Light: " + latestData[0].sensorData.lightLogscale + " log";
-
-            latestDataDiv.appendChild(temperateP);
-        }
-    }
+    // Update latest weather stuff
+    await updateLatestWeatherDiv();
 })();
