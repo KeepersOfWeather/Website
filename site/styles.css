@@ -11,6 +11,10 @@ p {
     color: white;
 }
 
+.city {
+    font-family: var(--font-body);
+}
+
 .tablinks 
 {
     background-color: blue;
