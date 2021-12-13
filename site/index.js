@@ -140,7 +140,7 @@ function removeActiveFromButtons() {
         
         citiesClass.appendChild(newCityButton);
 
-        if (city === "Enschede") {
+        if (city === "Wierden") {
             removeActiveFromButtons();
             newCityButton.classList.add("active");
             showDevices(deviceCollection)
