@@ -152,7 +152,7 @@ async function updateLatestWeatherDiv(forDeviceID) {
         latestData = await getLatest();
     }
 
-    if (!latestData) {
+    if (latestData.metadata[0] === undefined) {
         console.log("Can't reach API!");
         return;
     }
