@@ -152,8 +152,6 @@ async function updateLatestWeatherDiv(forDeviceID) {
         latestData = await getLatest();
     }
 
-    console.log(latestData);
-
     if (latestData.length === 0) {
         console.log("Can't reach API!");
         return;
@@ -168,13 +166,15 @@ async function updateLatestWeatherDiv(forDeviceID) {
     // Add latest temperature
     await addToLatestWeather("Temperature", latestData[0].sensorData.temperature + " °C");
 
-    if (latestData[0].sensorData.humidity === undefined) {
+    // Check if we are dealing with a py or an lht
+    if (latestData[0].sensorData.humidity === null) {
         await addToLatestWeather("Pressure", latestData[0].sensorData.pressure + " mBar");
     } else {
         await addToLatestWeather("Humidity", latestData[0].sensorData.humidity + "%");
     }
 
-    if (latestData[0].sensorData.lightLogscale === undefined) {
+    // Check if we are dealing with a py or an lht
+    if (latestData[0].sensorData.lightLogscale === null) {
         // We have no lightLogscale, use the lightLux parameter instead
         await addToLatestWeather("Light", latestData[0].sensorData.lightLux + " Lux");
     } else {
