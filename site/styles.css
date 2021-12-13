@@ -3,7 +3,7 @@ body {
 }
 
 :root {
-    --font-body: "sofia-pro",sans-serif;
+    --font-body: Arial, Helvetica, sans-serif;
 }
 
 p {
