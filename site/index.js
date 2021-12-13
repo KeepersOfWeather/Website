@@ -82,6 +82,19 @@ async function showDevices(devicesCollection) {
     }
 }
 
+function removeActiveFromButtons() {
+    let citiesClass = document.getElementsByClassName("cities");
+
+    if (citiesClass.length === 0)  {
+        console.log("Something is broken when finding tabs div...")
+        return;
+    }
+
+    for (button in citiesClass) {
+        button.classList.remove("active");
+    }
+}
+
 // We need to call an async function, but we're not calling it
 // From inside of an async function, so we do this hack:
 // https://stackoverflow.com/questions/39679505/using-await-outside-of-an-async-function
@@ -112,10 +125,11 @@ async function showDevices(devicesCollection) {
         newCityButton.id = city;
 
         newCityButton.onclick = async function () { 
+            removeActiveFromButtons();
             newCityButton.classList.add("active");
-            showDevices(deviceCollection) 
+            showDevices(deviceCollection)
         };
-        
+
         newCityButton.innerHTML = city; // Change the name to be the city name
         
         citiesClass.appendChild(newCityButton);
@@ -128,7 +142,11 @@ async function showDevices(devicesCollection) {
 
     let allDevices = await getDevices();
 
-    allButton.onclick = async function () { showDevices(allDevices) };
+    allButton.onclick = async function () {
+        removeActiveFromButtons();
+        newCityButton.classList.add("active");
+        showDevices(allDevices)
+    };
     allButton.innerHTML = "All"; // Change the name to be the city name
 
     citiesClass.appendChild(allButton);
