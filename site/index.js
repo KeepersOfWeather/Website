@@ -101,6 +101,33 @@ function removeActiveFromButtons() {
     }
 }
 
+async function addToLatestWeather(name, value) {
+
+    // Add latest data to latest-data div
+    let latestDataDiv = document.getElementsByClassName("latest-data");
+
+    if (latestDataDiv.length !== 0) {
+        latestDataDiv = latestDataDiv[0];
+    } else {
+        console.log("Something is broken when finding tabs div...")
+        return;
+    }
+
+    // Generate a new table entry for the latest weather table
+    let newTr = document.createElement("tr");
+
+    let nameTh = document.createElement("th");
+    nameTh.innerHTML = name;
+
+    let valueTh = document.createElement("th");
+    value.innerHTML = value;
+
+    newTr.appendChild(nameTh);
+    newTr.appendChild(valueTh);
+
+    latestDataDiv.appendChild(newTr);
+}
+
 async function updateLatestWeatherDiv() {
 
     // Add latest data to latest-data div
@@ -123,47 +150,26 @@ async function updateLatestWeatherDiv() {
     }
 
     // Add from device
-
-    let fromDeviceP = document.createElement("p");
-    fromDeviceP.innerHTML = "From device: " + latestData[0].metadata.deviceID;
-    
-    latestDataDiv.appendChild(fromDeviceP);
+    await addToLatestWeather("Device", latestData[0].metadata.deviceID);
 
     // Add latest timestamp
+    await addToLatestWeather("Timestamp", latestData[0].metadata.utcTimeStamp.replace("T", " ") + " UTC");
 
-    let timestampP = document.createElement("p");
-    timestampP.innerHTML = "Timestamp: " + latestData[0].metadata.utcTimeStamp.replace("T", " ") + " UTC";
-    
-    latestDataDiv.appendChild(timestampP);
-
-    let temperateP = document.createElement("p");
-    temperateP.innerHTML = "Temperature: " + latestData[0].sensorData.temperature + "°C";
-
-    latestDataDiv.appendChild(temperateP);
+    // Add latest temperature
+    await addToLatestWeather("Temperature", latestData[0].sensorData.temperature + " °C");
 
     if (latestData[0].sensorData.humidity !== null) {
-        let temperateP = document.createElement("p");
-        temperateP.innerHTML = "Humidity: " + latestData[0].sensorData.humidity + "%";
-
-        latestDataDiv.appendChild(temperateP);
+        await addToLatestWeather(Humidity, latestData[0].sensorData.humidity + "%");
     } else {
-        let temperateP = document.createElement("p");
-        temperateP.innerHTML = "Pressure: " + latestData[0].sensorData.pressure + " mBar";
-
-        latestDataDiv.appendChild(temperateP);
+        await addToLatestWeather("Pressure", latestData[0].sensorData.pressure + " mBar");
     }
 
     if (latestData[0].sensorData.lightLogscale === null) {
         // We have no lightLogscale, use the lightLux parameter instead
-        let lightP = document.createElement("p");
-        lightP.innerHTML = "Light: " + latestData[0].sensorData.lightLux + " Lux";
+        await addToLatestWeather("Light", latestData[0].sensorData.lightLux + " Lux");
 
-        latestDataDiv.appendChild(lightP);
     } else {
-        let temperateP = document.createElement("p");
-        temperateP.innerHTML = "Light: " + latestData[0].sensorData.lightLogscale + " log";
-
-        latestDataDiv.appendChild(temperateP);
+        await addToLatestWeather("Light", latestData[0].sensorData.lightLogscale + " log");
     }
 
 }
