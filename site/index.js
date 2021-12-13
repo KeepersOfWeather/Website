@@ -102,6 +102,17 @@ function removeActiveFromButtons() {
 }
 
 async function updateLatestWeatherDiv() {
+
+    // Add latest data to latest-data div
+    let latestDataDiv = document.getElementsByClassName("latest-data");
+
+    if (latestDataDiv.length !== 0) {
+        latestDataDiv = latestDataDiv[0];
+    } else {
+        console.log("Something is broken when finding tabs div...")
+        return;
+    }
+
     // Get latest data from API
 
     let latestData = await getLatest();
@@ -210,16 +221,6 @@ async function updateLatestWeatherDiv() {
     allButton.innerHTML = "All"; // Change the name to be the city name
 
     citiesClass.appendChild(allButton);
-
-    // Add latest data to latest-data div
-    let latestDataDiv = document.getElementsByClassName("latest-data");
-
-    if (latestDataDiv.length !== 0) {
-        latestDataDiv = latestDataDiv[0];
-    } else {
-        console.log("Something is broken when finding tabs div...")
-        return;
-    }
 
     // Update latest weather stuff
     await updateLatestWeatherDiv();
