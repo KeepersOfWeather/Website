@@ -11,6 +11,11 @@ p {
     color: white;
 }
 
+.cities {
+    display: flex;
+    gap: 24px;
+}
+
 .city {
     font-family: var(--font-body);
 }
