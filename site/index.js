@@ -195,6 +195,7 @@ async function getLatestForLocation(location) {
                 var latestDate = new Date('1970-01-01T00:00:00');
 
                 if (newestData !== {}) {
+                    console.log(newestData);
                     latestDate = new Date(newestData.metadata.utcTimeStamp);
                 } 
                 
