@@ -90,7 +90,9 @@ function removeActiveFromButtons() {
         return;
     }
 
-    for (button in citiesClass) {
+    let buttonList = citiesClass[0].childNodes;
+
+    for (button in buttonList) {
         button.classList.remove("active");
     }
 }
