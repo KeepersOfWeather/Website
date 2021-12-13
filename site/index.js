@@ -146,7 +146,7 @@ function removeActiveFromButtons() {
 
     allButton.onclick = async function () {
         removeActiveFromButtons();
-        newCityButton.classList.add("active");
+        allButton.classList.add("active");
         showDevices(allDevices)
     };
     allButton.innerHTML = "All"; // Change the name to be the city name
