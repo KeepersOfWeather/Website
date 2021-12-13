@@ -54,6 +54,7 @@ p {
 }
 
 .latest-data p {
-    text-align: center;
+    text-align: left;
     padding: 5px; 
+    margin-left: 20px;
 }
