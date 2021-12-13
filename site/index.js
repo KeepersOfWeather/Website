@@ -184,9 +184,37 @@ function removeActiveFromButtons() {
     } else {
 
         let timestampP = document.createElement("p");
-
         timestampP.innerHTML = "Timestamp: " + latestData[0].metadata.utcTimeStamp.replace("T", " ") + " UTC";
-
+        
         latestDataDiv.appendChild(timestampP);
+
+        let temperateP = document.createElement("p");
+        temperateP.innerHTML = "Temperature: " + latestData[0].sensorData.temperature + "°C";
+
+        latestDataDiv.appendChild(temperateP);
+
+        if (latestData[0].sensorData.humidity !== null) {
+            let temperateP = document.createElement("p");
+            temperateP.innerHTML = "Humidity: " + latestData[0].sensorData.humidity + "%";
+
+            latestDataDiv.appendChild(temperateP);
+        } else {
+            let temperateP = document.createElement("p");
+            temperateP.innerHTML = "Pressure: " + latestData[0].sensorData.pressure + " mBar";
+
+            latestDataDiv.appendChild(temperateP);
+        }
+
+        if (latestData[0].sensorData.lightLogscale !== null) {
+            let lightP = document.createElement("p");
+            temperateP.innerHTML = "Light: " + latestData[0].sensorData.lightLux + " Lux";
+
+            latestDataDiv.appendChild(temperateP);
+        } else {
+            let temperateP = document.createElement("p");
+            temperateP.innerHTML = "Light: " + latestData[0].sensorData.lightLogscale + " log";
+
+            latestDataDiv.appendChild(temperateP);
+        }
     }
 })();
