@@ -137,6 +137,7 @@ async function updateLatestWeatherDiv(forDeviceID) {
 
     if (latestDataDiv.length !== 0) {
         latestDataDiv = latestDataDiv[0];
+        latestDataDiv.innerHTML = "";
     } else {
         console.log("Something is broken when finding tabs div...")
         return;
