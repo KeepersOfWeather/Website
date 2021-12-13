@@ -14,7 +14,7 @@ p {
 
 .cities {
     display: flex;
-    gap: 24px;
+    gap: 10px;
     background-color: #333;
     overflow: hidden;
 }
