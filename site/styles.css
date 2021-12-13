@@ -50,11 +50,10 @@ p {
     border-style: solid;
     border-width: 2px;
     border-color: black;
-    border-radius: 8px;
+    border-radius: 4px;
     width: 200px;
 }
 
-/* .latest-data p {
-    /* margin: 0;
-    padding: 0; */
-} */
+.latest-data p {
+    padding: 10px; 
+}
