@@ -242,6 +242,8 @@ async function getLatestForLocation(location) {
             removeActiveFromButtons();
             newCityButton.classList.add("active");
             showDevices(deviceCollection);
+            let latestDataFromLocation = await getLatestForLocation(city);
+            await updateLatestWeatherDiv(latestDataFromLocation.fromDeviceId);
         };
 
         newCityButton.innerHTML = city; // Change the name to be the city name
