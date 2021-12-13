@@ -207,7 +207,7 @@ async function getLatestForLocation(location) {
         }
     }
 
-    return newestData;
+    return {fromDeviceId, newestData};
 }
 
 // We need to call an async function, but we're not calling it
