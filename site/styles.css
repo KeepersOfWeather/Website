@@ -36,20 +36,10 @@ p {
     color: black;
 }
 
-.active {
+.cities button.active {
     background-color: #04AA6D;
-}
-
-#city-li {
-    display: inline;
 }
 
 .city {
     font-family: var(--font-body);
-}
-
-.tablinks 
-{
-    background-color: blue;
-    color: burlywood;
 }
