@@ -38,7 +38,11 @@ async function fromDevice(deviceID) {
 }
 
 async function getLocations() {
-    return await fetchFromApi("locations")
+    return await fetchFromApi("locations");
+}
+
+async function getLatest() {
+    return await fetchFromApi("latest");
 }
 
 async function showDevices(devicesCollection) {
@@ -153,4 +157,29 @@ function removeActiveFromButtons() {
     allButton.innerHTML = "All"; // Change the name to be the city name
 
     citiesClass.appendChild(allButton);
+
+    // Add latest data to latest-data div
+    let latestDataDiv = document.getElementsByClassName("latest-data");
+
+    if (latestDataDiv.length !== 0) {
+        latestDataDiv = latestDataDiv[0];
+    } else {
+        console.log("Something is broken when finding tabs div...")
+        return;
+    }
+
+    // Get latest data from API
+
+    let latestData = await getLatest();
+
+    if (!latestData) {
+        console.log("Can't reach API!");
+    } else {
+
+        let timestampP = document.createElement("p");
+
+        timestampP.innerHTML = latestData[0].metadata.utcTimeStamp;
+
+        latestDataDiv.appendChild(timestampP);
+    }
 })();
