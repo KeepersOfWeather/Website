@@ -45,6 +45,10 @@ async function getLatest() {
     return await fetchFromApi("latest");
 }
 
+async function getLatestForDeviceID(id) {
+    return await fetchFromApi(`device/${id}/latest`);
+}
+
 async function showDevices(devicesCollection) {
     // This function will fill up the devices list with devices passed
     // as id: device in deviceCollection
@@ -102,7 +106,6 @@ function removeActiveFromButtons() {
 }
 
 async function addToLatestWeather(name, value) {
-
     // Add latest data to latest-data div
     let latestDataDiv = document.getElementsByClassName("latest-data");
 
@@ -128,8 +131,7 @@ async function addToLatestWeather(name, value) {
     latestDataDiv.appendChild(newTr);
 }
 
-async function updateLatestWeatherDiv() {
-
+async function updateLatestWeatherDiv(forDeviceID) {
     // Add latest data to latest-data div
     let latestDataDiv = document.getElementsByClassName("latest-data");
 
@@ -142,7 +144,7 @@ async function updateLatestWeatherDiv() {
 
     // Get latest data from API
 
-    let latestData = await getLatest();
+    let latestData = await getLatestForDeviceID(forDeviceID);
 
     if (!latestData) {
         console.log("Can't reach API!");
@@ -171,7 +173,35 @@ async function updateLatestWeatherDiv() {
     } else {
         await addToLatestWeather("Light", latestData[0].sensorData.lightLogscale + " log");
     }
+}
 
+async function getLatestForLocation(location) {
+    let cities = await getLocations();
+
+    var latestData = {};
+
+    // https://stackoverflow.com/questions/34913675/how-to-iterate-keys-values-in-javascript
+    for (const [city, deviceCollection] of Object.entries(cities)) {
+
+        if (city === location) {
+            for (const [id, device] of Object.entries(deviceCollection)) {
+                let latestFromDevice = await getLatestForDeviceID(id);
+                
+                let timestampDate = new Date(latestFromDevice.metadata.utcTimeStamp);
+                if (latestData) {
+                    let latestDate = new Date(latestData.metadata.utcTimeStamp);
+                } else {
+                    let latestDate = new Date('1970-01-01T00:00:00');
+                }
+                
+                if (timestampDate > latestDate) {
+                    latestData = latestFromDevice;
+                }
+            }
+        }
+    }
+
+    return latestData;
 }
 
 // We need to call an async function, but we're not calling it
@@ -206,7 +236,7 @@ async function updateLatestWeatherDiv() {
         newCityButton.onclick = async function () { 
             removeActiveFromButtons();
             newCityButton.classList.add("active");
-            showDevices(deviceCollection)
+            showDevices(deviceCollection);
         };
 
         newCityButton.innerHTML = city; // Change the name to be the city name
