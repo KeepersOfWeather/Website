@@ -139,6 +139,12 @@ function removeActiveFromButtons() {
         newCityButton.innerHTML = city; // Change the name to be the city name
         
         citiesClass.appendChild(newCityButton);
+
+        if (city === "Enschede") {
+            removeActiveFromButtons();
+            newCityButton.classList.add("active");
+            showDevices(deviceCollection)
+        }
     }
 
     let allButton = document.createElement("button");
@@ -154,10 +160,6 @@ function removeActiveFromButtons() {
         allButton.classList.add("active");
         showDevices(allDevices)
     };
-
-    removeActiveFromButtons();
-    allButton.classList.add("active");
-    showDevices(allDevices)
 
     allButton.innerHTML = "All"; // Change the name to be the city name
 
