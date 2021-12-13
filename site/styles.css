@@ -52,3 +52,8 @@ p {
     border-color: black;
     border-radius: 8px;
 }
+
+.latest-data p {
+    margin: 0;
+    padding: 0;
+}
