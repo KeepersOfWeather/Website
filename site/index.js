@@ -160,13 +160,13 @@ async function updateLatestWeatherDiv(forDeviceID) {
     // Add latest temperature
     await addToLatestWeather("Temperature", latestData[0].sensorData.temperature + " °C");
 
-    if (latestData[0].sensorData.humidity !== null) {
+    if (latestData[0].sensorData.humidity === undefined) {
         await addToLatestWeather(Humidity, latestData[0].sensorData.humidity + "%");
     } else {
         await addToLatestWeather("Pressure", latestData[0].sensorData.pressure + " mBar");
     }
 
-    if (latestData[0].sensorData.lightLogscale === null) {
+    if (latestData[0].sensorData.lightLogscale === undefined) {
         // We have no lightLogscale, use the lightLux parameter instead
         await addToLatestWeather("Light", latestData[0].sensorData.lightLux + " Lux");
 
