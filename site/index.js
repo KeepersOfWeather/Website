@@ -120,7 +120,7 @@ async function addToLatestWeather(name, value) {
     nameTh.innerHTML = name;
 
     let valueTh = document.createElement("th");
-    value.innerHTML = value;
+    valueTh.innerHTML = value;
 
     newTr.appendChild(nameTh);
     newTr.appendChild(valueTh);
