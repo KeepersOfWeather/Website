@@ -111,7 +111,11 @@ async function showDevices(devicesCollection) {
         newCityButton.classList.add("city");
         newCityButton.id = city;
 
-        newCityButton.onclick = async function () { showDevices(deviceCollection) };
+        newCityButton.onclick = async function () { 
+            newCityButton.classList.add("active");
+            showDevices(deviceCollection) 
+        };
+        
         newCityButton.innerHTML = city; // Change the name to be the city name
         
         citiesClass.appendChild(newCityButton);
