@@ -143,8 +143,13 @@ async function updateLatestWeatherDiv(forDeviceID) {
     }
 
     // Get latest data from API
+    var latestData = {};
 
-    let latestData = await getLatestForDeviceID(forDeviceID);
+    if (forDeviceID !== undefined) {
+        latestData = await getLatestForDeviceID(forDeviceID);
+    } else {
+        latestData = await getLatest();
+    }
 
     if (!latestData) {
         console.log("Can't reach API!");
@@ -270,7 +275,8 @@ async function getLatestForLocation(location) {
     allButton.onclick = async function () {
         removeActiveFromButtons();
         allButton.classList.add("active");
-        showDevices(allDevices)
+        showDevices(allDevices);
+        await updateLatestWeatherDiv();
     };
 
     allButton.innerHTML = "All"; // Change the name to be the city name
