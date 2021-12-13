@@ -51,9 +51,11 @@ p {
     border-width: 2px;
     border-color: black;
     border-radius: 8px;
+    width: 30px;
 }
 
 .latest-data p {
     margin: 0;
     padding: 0;
+    width: inherit;
 }
