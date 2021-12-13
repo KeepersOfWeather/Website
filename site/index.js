@@ -207,9 +207,9 @@ function removeActiveFromButtons() {
 
         if (latestData[0].sensorData.lightLogscale !== null) {
             let lightP = document.createElement("p");
-            temperateP.innerHTML = "Light: " + latestData[0].sensorData.lightLux + " Lux";
+            lightP.innerHTML = "Light: " + latestData[0].sensorData.lightLux + " Lux";
 
-            latestDataDiv.appendChild(temperateP);
+            latestDataDiv.appendChild(lightP);
         } else {
             let temperateP = document.createElement("p");
             temperateP.innerHTML = "Light: " + latestData[0].sensorData.lightLogscale + " log";
