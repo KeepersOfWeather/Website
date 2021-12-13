@@ -179,6 +179,7 @@ async function getLatestForLocation(location) {
     let cities = await getLocations();
 
     var latestData = {};
+    var fromDeviceId = undefined;
 
     // https://stackoverflow.com/questions/34913675/how-to-iterate-keys-values-in-javascript
     for (const [city, deviceCollection] of Object.entries(cities)) {
@@ -198,6 +199,7 @@ async function getLatestForLocation(location) {
                 
                 if (timestampDate > latestDate) {
                     latestData = latestFromDevice;
+                    fromDeviceId = id;
                 }
             }
         }
@@ -271,5 +273,5 @@ async function getLatestForLocation(location) {
     citiesClass.appendChild(allButton);
 
     // Update latest weather stuff
-    await updateLatestWeatherDiv();
+    // await updateLatestWeatherDiv();
 })();
