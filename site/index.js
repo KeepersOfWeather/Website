@@ -150,7 +150,7 @@ function removeActiveFromButtons() {
     let allButton = document.createElement("button");
         
     allButton.classList.add("All");
-    allButton.classList.add("active");
+    // allButton.classList.add("active");
     allButton.id = "All";
 
     let allDevices = await getDevices();
