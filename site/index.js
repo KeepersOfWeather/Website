@@ -205,7 +205,8 @@ function removeActiveFromButtons() {
             latestDataDiv.appendChild(temperateP);
         }
 
-        if (latestData[0].sensorData.lightLogscale !== null) {
+        if (latestData[0].sensorData.lightLogscale === null) {
+            // We have no lightLogscale, use the lightLux parameter instead
             let lightP = document.createElement("p");
             lightP.innerHTML = "Light: " + latestData[0].sensorData.lightLux + " Lux";
 
