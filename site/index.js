@@ -185,8 +185,10 @@ async function getLatestForLocation(location) {
 
         if (city === location) {
             for (const [id, device] of Object.entries(deviceCollection)) {
-                let latestFromDevice = await getLatestForDeviceID(id)[0];
+                var latestFromDevice = await getLatestForDeviceID(id);
                 
+                latestFromDevice = latestFromDevice[0];
+
                 let timestampDate = new Date(latestFromDevice.metadata.utcTimeStamp);
                 if (latestData) {
                     let latestDate = new Date(latestData.metadata.utcTimeStamp);
