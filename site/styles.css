@@ -9,7 +9,7 @@ body {
 
 p {
     font-family: var(--font-body);
-    color: white;
+    color: black;
 }
 
 .cities {
