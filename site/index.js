@@ -154,6 +154,11 @@ function removeActiveFromButtons() {
         allButton.classList.add("active");
         showDevices(allDevices)
     };
+
+    removeActiveFromButtons();
+    allButton.classList.add("active");
+    showDevices(allDevices)
+
     allButton.innerHTML = "All"; // Change the name to be the city name
 
     citiesClass.appendChild(allButton);
