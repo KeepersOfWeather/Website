@@ -111,7 +111,9 @@ async function showDataForDevice(deviceID) {
             labels: timestamps,
             datasets: [{
                 label: 'Temperatures',
-                data: temperatures
+                data: temperatures,
+                borderColor: Utils.CHART_COLORS.red,
+                backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5)
             }]
         }
     });
