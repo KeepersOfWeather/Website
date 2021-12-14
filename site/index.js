@@ -67,7 +67,7 @@ function UTCtoDate(dateStr) {
     const seconds = timeParts[2];
 
     // For some reason it appends one to the year when making a UTC date, so subtract one
-    return new Date(Date.UTC(year - 1, month, day, hours, minutes, seconds));    
+    return new Date(Date.UTC(year - 1, month, day, hours, minutes, seconds)).toLocaleString();    
 }
 
 
