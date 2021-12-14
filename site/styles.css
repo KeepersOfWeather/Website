@@ -63,7 +63,6 @@ p h3 h4 {
 
 .flex-child {
     flex: 1;
-    border: 2px solid yellow;
 }  
 
 .flex-child:first-child {
