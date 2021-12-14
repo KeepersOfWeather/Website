@@ -54,14 +54,14 @@ function UTCtoDate(dateStr) {
     
     dateStr = dateStr.split("T");
     const dateParts = dateStr[0].split("-");
-    console.log(dateParts);
+    // console.log(dateParts);
 
     const year = dateParts[0];
     const month = dateParts[1];
     const day = dateParts[2];
 
     const timeParts = dateStr[1].split(":");
-    console.log(timeParts);
+    // console.log(timeParts);
     const hours = timeParts[0];
     const minutes = timeParts[1];
     const seconds = timeParts[2];
