@@ -112,8 +112,7 @@ async function showDataForDevice(deviceID) {
             datasets: [{
                 label: 'Temperatures',
                 data: temperatures,
-                borderColor: Utils.CHART_COLORS.red,
-                backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5)
+                borderColor: rgb(255, 99, 132)
             }]
         }
     });
