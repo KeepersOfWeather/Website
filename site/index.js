@@ -80,18 +80,15 @@ async function showDataForDevice(deviceID) {
     let timestamps = await fetchTimestampsFromWeatherpoints(weatherPoints);
     let temperatures = await fetchTemperateFromWeatherpoints(weatherPoints);
 
-    const ctx = document.getElementById('weatherDataChart').getContext('2d');
+    const ctx = document.getElementById('weatherDataChart');
 
-    const myChart = new Chart(ctx, {
+    const chart = new Chart(ctx, {
         type: 'line',
         data : {
             labels: timestamps,
             datasets: [{
-                label: 'My First Dataset',
-                data: temperatures,
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
+                label: 'Temperatures',
+                data: temperatures
             }]
         }
     });
