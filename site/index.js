@@ -52,10 +52,10 @@ async function getLatestForDeviceID(id) {
 async function fetchTimestampsFromWeatherpoints(weatherPoints) {
     var timestamps = new Array;
     
-    for (const point of weatherPoints) {
+    for (var i = 0; i < weatherPoints.length; i++) {
         // This will initialise a date object from the UTC timestamp
         // Date should automatically conver to local timezone
-        let dateForTimestamp = new Date(Date(point.metadata.utcTimeStamp)).toLocaleString();
+        let dateForTimestamp = new Date(Date(weatherPoints[i].metadata.utcTimeStamp)).toLocaleString();
         timestamps.push(dateForTimestamp);
     }
 
@@ -65,9 +65,8 @@ async function fetchTimestampsFromWeatherpoints(weatherPoints) {
 async function fetchTemperateFromWeatherpoints(weatherPoints) {
     var temperatures = new Array;
     
-    for (const point of weatherPoints) {
-        console.log(point);
-        temperatures.push(point.sensorData.temperature);
+    for (var i = 0; i < weatherPoints.length; i++) {
+        temperatures.push(weatherPoints[i].sensorData.temperature);
     }
 
     return temperatures;
@@ -76,10 +75,10 @@ async function fetchTemperateFromWeatherpoints(weatherPoints) {
 async function showDataForDevice(deviceID) {
 
     // Get data from API for device id
-    let weatherPoints = await fromDevice(deviceID);
+    const weatherPoints = await fromDevice(deviceID);
 
-    let timestamps = await fetchTimestampsFromWeatherpoints(weatherPoints);
-    let temperatures = await fetchTemperateFromWeatherpoints(weatherPoints);
+    const timestamps = await fetchTimestampsFromWeatherpoints(weatherPoints);
+    const temperatures = await fetchTemperateFromWeatherpoints(weatherPoints);
 
     const ctx = document.getElementById('weatherDataChart');
 
