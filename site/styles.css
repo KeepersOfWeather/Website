@@ -57,7 +57,15 @@ p h3 h4 {
     text-align: left;
 }
 
-.flex {
+.flex-container {
     display: flex;
-    flex-direction: row
+}
+
+.flex-child {
+    flex: 1;
+    border: 2px solid yellow;
+}  
+
+.flex-child:first-child {
+    margin-right: 20px;
 }
