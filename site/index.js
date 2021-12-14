@@ -55,7 +55,7 @@ async function fetchTimestampsFromWeatherpoints(weatherPoints) {
     weatherPoints.forEach(weatherPoint => {
         // This will initialise a date object from the UTC timestamp
         // Date should automatically conver to local timezone
-        var dateForTimestamp = Date(Date(weatherPoint.metadata.utcTimeStamp + " UTC").toLocaleString());
+        let dateForTimestamp = new Date(Date(weatherPoint.metadata.utcTimeStamp)).toLocaleString();
         timestamps.push(dateForTimestamp);
     });
 
