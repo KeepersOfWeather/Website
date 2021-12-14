@@ -52,7 +52,7 @@ async function getLatestForDeviceID(id) {
 async function fetchTimestampsFromWeatherpoints(weatherPoints) {
     var timestamps = new Array;
     
-    for (var point in weatherPoints) {
+    for (const point of weatherPoints) {
         // This will initialise a date object from the UTC timestamp
         // Date should automatically conver to local timezone
         let dateForTimestamp = new Date(Date(point.metadata.utcTimeStamp)).toLocaleString();
@@ -65,7 +65,7 @@ async function fetchTimestampsFromWeatherpoints(weatherPoints) {
 async function fetchTemperateFromWeatherpoints(weatherPoints) {
     var temperatures = new Array;
     
-    for (var point in weatherPoints) {
+    for (const point of weatherPoints) {
         temperatures.push(point.sensorData.temperature);
     }
 
