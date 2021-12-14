@@ -66,13 +66,13 @@ async function fetchTemperateFromWeatherpoints(weatherPoints) {
     var temperatures = new Array;
     
     weatherPoints.forEach(weatherPoint => {
-        temperatures.push(temperatures.sensorData.temperature);
+        temperatures.push(weatherPoint.sensorData.temperature);
     });
 
     return temperatures;
 }
 
-async function showDataForDevice(deviceID, dataToShow) {
+async function showDataForDevice(deviceID) {
 
     // Get data from API for device id
     let weatherPoints = await fromDevice(deviceID);
