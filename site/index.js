@@ -82,20 +82,18 @@ async function showDataForDevice(deviceID) {
 
     const ctx = document.getElementById('weatherDataChart').getContext('2d');
 
-    const data = {
-        labels: timestamps,
-        datasets: [{
-            label: 'My First Dataset',
-            data: temperatures,
-            fill: false,
-            borderColor: 'rgb(75, 192, 192)',
-            tension: 0.1
-        }]
-    };
-    
     const myChart = new Chart(ctx, {
         type: 'line',
-        datasets : data
+        data : {
+            labels: timestamps,
+            datasets: [{
+                label: 'My First Dataset',
+                data: temperatures,
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        }
     });
 }
 
