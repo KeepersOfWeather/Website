@@ -49,12 +49,27 @@ async function getLatestForDeviceID(id) {
     return await fetchFromApi(`device/${id}/latest`);
 }
 
-function UTCTimestampToFormatted(timestamp) {
-    // This will initialise a date object from the UTC timestamp
-    // Date should automatically convert to local timezone
-    timestamp = Date(timestamp + " UTC");
-    return new Date(timestamp).toLocaleTimeString();
+function UTCtoDate(dateStr) {
+    // 2021-12-14T12:37:44
+    
+    dateStr = dateStr.split("T");
+    const dateParts = dateStr[0].split("-");
+    console.log(dateParts);
+
+    const year = dateParts[0];
+    const month = dateParts[1];
+    const day = dateParts[2];
+
+    const timeParts = dateStr[1].split(":");
+    console.log(timeParts);
+    const hours = timeParts[0];
+    const minutes = timeParts[1];
+    const seconds = timeParts[2];
+
+    // For some reason it appends one to the year when making a UTC date, so subtract one
+    return new Date(Date.UTC(year - 1, month, day, hours, minutes, seconds));    
 }
+
 
 async function fetchTimestampsFromWeatherpoints(weatherPoints) {
     var timestamps = new Array;
@@ -62,7 +77,7 @@ async function fetchTimestampsFromWeatherpoints(weatherPoints) {
     for (var i = 0; i < weatherPoints.length; i++) {
         console.log(weatherPoints[i].metadata.utcTimeStamp + " UTC");
 
-        let parsedTimestamp = UTCTimestampToFormatted(weatherPoints[i].metadata.utcTimeStamp);
+        let parsedTimestamp = UTCtoDate(weatherPoints[i].metadata.utcTimeStamp);
 
         timestamps.push(parsedTimestamp);
     }
