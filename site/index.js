@@ -75,7 +75,7 @@ async function fetchTimestampsFromWeatherpoints(weatherPoints) {
     var timestamps = new Array;
     
     for (var i = 0; i < weatherPoints.length; i++) {
-        console.log(weatherPoints[i].metadata.utcTimeStamp + " UTC");
+        // console.log(weatherPoints[i].metadata.utcTimeStamp + " UTC");
 
         let parsedTimestamp = UTCtoDate(weatherPoints[i].metadata.utcTimeStamp);
 
