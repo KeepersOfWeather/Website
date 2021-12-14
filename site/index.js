@@ -49,15 +49,20 @@ async function getLatestForDeviceID(id) {
     return await fetchFromApi(`device/${id}/latest`);
 }
 
+function UTCTimestampToFormatted(timestamp) {
+    // This will initialise a date object from the UTC timestamp
+    // Date should automatically convert to local timezone
+    timestamp = Date(timestamp + " UTC");
+    return new Date(timestamp).toLocaleTimeString();
+}
+
 async function fetchTimestampsFromWeatherpoints(weatherPoints) {
     var timestamps = new Array;
     
     for (var i = 0; i < weatherPoints.length; i++) {
         console.log(weatherPoints[i].metadata.utcTimeStamp + " UTC");
 
-        // This will initialise a date object from the UTC timestamp
-        // Date should automatically conver to local timezone
-        let parsedTimestamp = new Date(weatherPoints[i].metadata.utcTimeStamp + " UTC").toLocaleTimeString();
+        let parsedTimestamp = UTCTimestampToFormatted(weatherPoints[i].metadata.utcTimeStamp);
 
         timestamps.push(parsedTimestamp);
     }
