@@ -66,7 +66,7 @@ async function fetchTemperateFromWeatherpoints(weatherPoints) {
     var temperatures = new Array;
     
     weatherPoints.forEach(weatherPoint => {
-        timestamps.push(temperatures.sensorData.temperature);
+        temperatures.push(temperatures.sensorData.temperature);
     });
 
     return temperatures;
