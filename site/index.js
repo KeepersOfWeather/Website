@@ -329,5 +329,5 @@ async function getLatestForLocation(location) {
     allButton.innerHTML = "All"; // Change the name to be the city name
 
     citiesClass.appendChild(allButton);
-    await showDataForDevice(0);
+    await showDataForDevice(3);
 })();
