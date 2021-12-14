@@ -49,44 +49,58 @@ async function getLatestForDeviceID(id) {
     return await fetchFromApi(`device/${id}/latest`);
 }
 
-async function showData() {
-
-const ctx = document.getElementById('weatherDataChart').getContext('2d');
-    const myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
+async function fetchTimestampsFromWeatherpoints(weatherPoints) {
+    var timestamps = new Array;
+    
+    weatherPoints.forEach(weatherPoint => {
+        // This will initialise a date object from the UTC timestamp
+        // Date should automatically conver to local timezone
+        var dateForTimestamp = Date(weatherPoint.metadata.utcTimeStamp + " UTC");
+        timestamps.push(dateForTimestamp);
     });
 
+    return timestamps;
+}
+
+async function fetchTemperateFromWeatherpoints(weatherPoints) {
+    var temperatures = new Array;
+    
+    weatherPoints.forEach(weatherPoint => {
+        timestamps.push(temperatures.sensorData.temperature);
+    });
+
+    return temperatures;
+}
+
+async function showDataForDevice(deviceID, dataToShow) {
+
+    // Get data from API for device id
+    let weatherPoints = await fromDevice(deviceID);
+
+    let timestamps = await fetchTimestampsFromWeatherpoints(weatherPoints);
+    let temperatures = await fetchTemperateFromWeatherpoints(weatherPoints);
+
+    const ctx = document.getElementById('weatherDataChart').getContext('2d');
+
+    const data = {
+        labels: timestamps,
+        datasets: [{
+            label: 'My First Dataset',
+            data: temperatures,
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        }]
+    };
+
+    const config = {
+        type: 'line',
+        data: data,
+    };
+
+    const myChart = new Chart(ctx, {
+        
+    });
 }
 
 async function showDevices(devicesCollection) {
