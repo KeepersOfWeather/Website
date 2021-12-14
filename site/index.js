@@ -92,14 +92,10 @@ async function showDataForDevice(deviceID) {
             tension: 0.1
         }]
     };
-
-    const config = {
-        type: 'line',
-        data: data,
-    };
-
+    
     const myChart = new Chart(ctx, {
-        
+        type: 'line',
+        datasets : data
     });
 }
 
