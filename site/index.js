@@ -95,6 +95,20 @@ async function fetchTemperateFromWeatherpoints(weatherPoints) {
     return temperatures;
 }
 
+function lightToPercentage(logOrLux, type) {
+    if (type === "lux") {
+        // Highest lux value in database
+        return (logOrLux / 12415.0) * 100.0;
+    } else (type === "log" ) {
+        // Highest log value in database
+        return (logOrLux / 217.0) * 100.0;
+    }
+}
+
+async function generateDataset(name, data) {
+
+}
+
 async function showDataForDevice(deviceID) {
 
     // Get data from API for device id
@@ -104,6 +118,25 @@ async function showDataForDevice(deviceID) {
     const temperatures = await fetchTemperateFromWeatherpoints(weatherPoints);
 
     const ctx = document.getElementById('weatherDataChart');
+
+    var datasets = [];
+
+    // Check if we are dealing with a py or an lht
+    if (latestData[0].sensorData.humidity === null) {
+        await generateDataset("Pressure", latestData[0].sensorData.pressure);
+    } else {
+        await generateDataset("Humidity %", latestData[0].sensorData.humidity);
+    }
+
+    // Check if we are dealing with a py or an lht
+    if (latestData[0].sensorData.lightLux !== null) {
+        const lightPercentage = await lightToPercentage(latestData[0].sensorData.lightLux, "lux");
+        const dataset = await generateDataset("Light %", lightPercentage);
+        datasets.push(dataset);
+    } else if (latestData[0].sensorData.lightLogscale !== null) {
+        const lightPercentage = await lightToPercentage(latestData[0].sensorData.lightLogscale, "log");
+        await generateDataset("Light %", lightPercentage);
+    }
 
     const chart = new Chart(ctx, {
         type: 'line',
@@ -236,17 +269,17 @@ async function updateLatestWeatherDiv(forDeviceID) {
     await addToLatestWeather("Temperature", latestData[0].sensorData.temperature + " °C");
 
     // Check if we are dealing with a py or an lht
-    if (latestData[0].sensorData.humidity === null) {
+    if (latestData[0].sensorData.pressure !== null) {
         await addToLatestWeather("Pressure", latestData[0].sensorData.pressure + " mBar");
-    } else {
+    } else if (latestData[0].sensorData.humidity !== null) {
         await addToLatestWeather("Humidity", latestData[0].sensorData.humidity + "%");
     }
 
     // Check if we are dealing with a py or an lht
-    if (latestData[0].sensorData.lightLogscale === null) {
+    if (latestData[0].sensorData.lightLux !== null) {
         // We have no lightLogscale, use the lightLux parameter instead
         await addToLatestWeather("Light", latestData[0].sensorData.lightLux + " Lux");
-    } else {
+    } else if (latestData[0].sensorData.lightLogscale !== null) {
         await addToLatestWeather("Light", latestData[0].sensorData.lightLogscale + " log");
     }
 }
@@ -306,23 +339,23 @@ async function getLatestForLocation(location) {
     }
 
     // https://stackoverflow.com/questions/34913675/how-to-iterate-keys-values-in-javascript
-    for (const [city, deviceCollection] of Object.entries(cities)) {
+    for (const [locationEntry] of Object.entries(cities)) {
         
         // https://www.w3schools.com/jsref/met_node_appendchild.asp
         let newCityButton = document.createElement("button");
         
         newCityButton.classList.add("city");
-        newCityButton.id = city;
+        newCityButton.id = locationEntry.City;
 
         newCityButton.onclick = async function () { 
             removeActiveFromButtons();
             newCityButton.classList.add("active");
             showDevices(deviceCollection);
-            let latestDataFromLocation = await getLatestForLocation(city);
+            let latestDataFromLocation = await getLatestForLocation(locationEntry.City);
             await updateLatestWeatherDiv(latestDataFromLocation.fromDeviceId);
         };
 
-        newCityButton.innerHTML = city; // Change the name to be the city name
+        newCityButton.innerHTML = locationEntry.City; // Change the name to be the city name
         
         citiesClass.appendChild(newCityButton);
 
@@ -330,7 +363,7 @@ async function getLatestForLocation(location) {
             removeActiveFromButtons();
             newCityButton.classList.add("active");
             showDevices(deviceCollection);
-            let latestDataFromWierden = await getLatestForLocation(city);
+            let latestDataFromWierden = await getLatestForLocation(locationEntry.City);
             await updateLatestWeatherDiv(latestDataFromWierden.fromDeviceId);
         }
     }
