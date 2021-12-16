@@ -359,7 +359,7 @@ async function getLatestForLocation(location) {
         
         citiesClass.appendChild(newCityButton);
 
-        if (city === "Wierden") {
+        if (locationEntry.city === "Wierden") {
             removeActiveFromButtons();
             newCityButton.classList.add("active");
             showDevices(deviceCollection);
