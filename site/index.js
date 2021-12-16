@@ -99,7 +99,7 @@ function lightToPercentage(logOrLux, type) {
     if (type === "lux") {
         // Highest lux value in database
         return (logOrLux / 12415.0) * 100.0;
-    } else (type === "log" ) {
+    } else if (type === "log" ) {
         // Highest log value in database
         return (logOrLux / 217.0) * 100.0;
     }
