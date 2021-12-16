@@ -291,11 +291,11 @@ async function getLatestForLocation(location) {
     var fromDeviceId = undefined;
 
     // https://stackoverflow.com/questions/34913675/how-to-iterate-keys-values-in-javascript
-    for (const [city, deviceCollection] of Object.entries(cities)) {
+    for (const [locationEntry] of Object.entries(cities)) {
 
-        if (city === location) {
-            for (const [id, device] of Object.entries(deviceCollection)) {
-                var latestFromDevice = await getLatestForDeviceID(id);
+        if (locationEntry.City === location) {
+            for (const [City, deviceID, deviceNumber] of Object.entries(locationEntry)) {
+                var latestFromDevice = await getLatestForDeviceID(deviceNumber);
                 
                 latestFromDevice = latestFromDevice[0];
 
