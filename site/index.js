@@ -106,7 +106,7 @@ function lightToPercentage(logOrLux, type) {
 }
 
 async function generateDataset(name, data) {
-
+    // TODO:: implement like fetchTemperateFromWeatherpoints(weatherPoints)
 }
 
 async function showDataForDevice(deviceID) {
@@ -359,7 +359,7 @@ async function getLatestForLocation(location) {
         newCityButton.onclick = async function () { 
             removeActiveFromButtons();
             newCityButton.classList.add("active");
-            showDevices(deviceCollection);
+            showDevices(locationEntry.deviceCollection);
             let latestDataFromLocation = await getLatestForLocation(locationEntry.City);
             await updateLatestWeatherDiv(latestDataFromLocation.fromDeviceId);
         };
@@ -368,10 +368,11 @@ async function getLatestForLocation(location) {
         
         citiesClass.appendChild(newCityButton);
 
+        // TODO: why extra wierden?
         if (locationEntry.city === "Wierden") {
             removeActiveFromButtons();
             newCityButton.classList.add("active");
-            showDevices(deviceCollection);
+            showDevices(locationEntry.deviceCollection);
             let latestDataFromWierden = await getLatestForLocation(locationEntry.City);
             await updateLatestWeatherDiv(latestDataFromWierden.fromDeviceId);
         }
