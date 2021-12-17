@@ -167,7 +167,7 @@ async function showDevices(devicesCollection) {
     let devicesList = document.getElementsByClassName("devices");
 
     if (devicesList.length !== 0) {
-        devicesList = devicesList[0];
+        devicesList = devicesList;
     } else {
         console.log("Something is broken when finding devices ul...")
         return;
