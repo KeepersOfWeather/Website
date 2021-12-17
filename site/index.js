@@ -114,12 +114,12 @@ async function showDataForDevice(deviceID) {
     // Get data from API for device id
     const weatherPoints = await fromDevice(deviceID);
 
-    // if (weatherPoints) {
-    //     weatherPoints = weatherPoints;
-    // } else {
-    //     console.log("API ded?");
-    //     return;
-    // }
+    if (weatherPoints) {
+        weatherPoints = weatherPoints;
+    } else {
+        console.log("API ded?");
+        return;
+    }
 
     const timestamps = await fetchTimestampsFromWeatherpoints(weatherPoints);
     const temperatures = await fetchTemperateFromWeatherpoints(weatherPoints);
@@ -132,9 +132,9 @@ async function showDataForDevice(deviceID) {
 
     // Check if we are dealing with a py or an lht
     if (weatherPoints[0].sensorData.humidity === null) {
-        await generateDataset("Pressure", latestData[0].sensorData.pressure);
+        await generateDataset("Pressure", weatherPoints[0].sensorData.pressure);
     } else {
-        await generateDataset("Humidity %", latestData[0].sensorData.humidity);
+        await generateDataset("Humidity %", weatherPoints[0].sensorData.humidity);
     }
 
     // Check if we are dealing with a py or an lht
