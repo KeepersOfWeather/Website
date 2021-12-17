@@ -138,12 +138,12 @@ async function showDataForDevice(deviceID) {
     }
 
     // Check if we are dealing with a py or an lht
-    if (latestData[0].sensorData.lightLux !== null) {
-        const lightPercentage = await lightToPercentage(latestData[0].sensorData.lightLux, "lux");
+    if (weatherPoints[0].sensorData.lightLux !== null) {
+        const lightPercentage = await lightToPercentage(weatherPoints[0].sensorData.lightLux, "lux");
         const dataset = await generateDataset("Light %", lightPercentage);
         datasets.push(dataset);
-    } else if (latestData[0].sensorData.lightLogscale !== null) {
-        const lightPercentage = await lightToPercentage(latestData[0].sensorData.lightLogscale, "log");
+    } else if (weatherPoints[0].sensorData.lightLogscale !== null) {
+        const lightPercentage = await lightToPercentage(weatherPoints[0].sensorData.lightLogscale, "log");
         await generateDataset("Light %", lightPercentage);
     }
 
