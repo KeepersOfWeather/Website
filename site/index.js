@@ -348,7 +348,7 @@ async function getLatestForLocation(location) {
     }
 
     // https://stackoverflow.com/questions/34913675/how-to-iterate-keys-values-in-javascript
-    for (const [locationEntry] of Object.entries(cities)) {
+    for (const [key, locationEntry] of Object.entries(cities)) {
         
         // https://www.w3schools.com/jsref/met_node_appendchild.asp
         let newCityButton = document.createElement("button");
