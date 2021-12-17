@@ -360,7 +360,7 @@ async function getLatestForLocation(location) {
         newCityButton.onclick = async function () { 
             removeActiveFromButtons();
             newCityButton.classList.add("active");
-            showDevices(locationEntry.deviceCollection);
+            showDevices(locationEntry.deviceID);
             let latestDataFromLocation = await getLatestForLocation(locationEntry.City);
             await updateLatestWeatherDiv(latestDataFromLocation.fromDeviceId);
         };
