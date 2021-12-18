@@ -170,7 +170,7 @@ async function showDataForDevice(deviceID) {
         }
     });
 
-    const chart = new Chart(ctx, {
+    const chart1 = new Chart(ctx, {
         type: 'line',
         data : {
             labels: timestamps,
