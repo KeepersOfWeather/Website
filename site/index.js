@@ -95,6 +95,16 @@ async function fetchTemperateFromWeatherpoints(weatherPoints) {
     return temperatures;
 }
 
+async function fetchPressureFromWeatherpoints(weatherPoints) {
+    var pressure = new Array;
+    
+    for (var i = 0; i < weatherPoints.length; i++) {
+        pressure.push(weatherPoints[i].sensorData.pressure);
+    }
+
+    return pressure;
+}
+
 function lightToPercentage(logOrLux, type) {
     if (type === "lux") {
         // Highest lux value in database
@@ -132,6 +142,7 @@ async function showDataForDevice(deviceID) {
 
     // Check if we are dealing with a py or an lht
     if (weatherPoints[0].sensorData.humidity === null) {
+        const pressure = await fetchPressureFromWeatherpoints(weatherPoints);
         await generateDataset("Pressure", weatherPoints[0].sensorData.pressure);
     } else {
         await generateDataset("Humidity %", weatherPoints[0].sensorData.humidity);
@@ -154,6 +165,18 @@ async function showDataForDevice(deviceID) {
             datasets: [{
                 label: 'Temperatures',
                 data: temperatures,
+                borderColor: 'rgb(255, 99, 132)'
+            }]
+        }
+    });
+
+    const chart = new Chart(ctx, {
+        type: 'line',
+        data : {
+            labels: timestamps,
+            datasets: [{
+                label: 'Pressure',
+                data: pressure,
                 borderColor: 'rgb(255, 99, 132)'
             }]
         }
