@@ -115,6 +115,26 @@ async function fetchHumidityFromWeatherpoints(weatherPoints) {
     return hum;
 }
 
+async function fetchLightLuxFromWeatherpoints(weatherPoints) {
+    var light = new Array;
+    
+    for (var i = 0; i < weatherPoints.length; i++) {
+        hum.push(weatherPoints[i].sensorData.lightLux);
+    }
+
+    return hum;
+}
+
+async function fetchHumidityFromWeatherpoints(weatherPoints) {
+    var light = new Array;
+    
+    for (var i = 0; i < weatherPoints.length; i++) {
+        hum.push(weatherPoints[i].sensorData.lightLogscale);
+    }
+
+    return hum;
+}
+
 function lightToPercentage(logOrLux, type) {
     if (type === "lux") {
         // Highest lux value in database
@@ -156,15 +176,45 @@ async function showDataForDevice(deviceID) {
     // Check if we are dealing with a py or an lht
     if (weatherPoints[0].sensorData.humidity === null) {
         pressure = await fetchPressureFromWeatherpoints(weatherPoints);
+        const chart1 = new Chart(ctx1, {
+            type: 'line',
+            data : {
+                labels: timestamps,
+                datasets: [{
+                    label: 'Pressure',
+                    data: pressure,
+                    borderColor: 'rgb(255, 99, 132)'
+                }]
+            }
+        });
+
         //await generateDataset("Pressure", weatherPoints[0].sensorData.pressure);
     } else {
         hum = await fetchHumidityFromWeatherpoints(weatherPoints);
+        const chart1 = new Chart(ctx1, {
+            type: 'line',
+            data : {
+                labels: timestamps,
+                datasets: [{
+                    label: 'Humidity',
+                    data: hum,
+                    borderColor: 'rgb(255, 99, 132)'
+                }]
+            }
+        });
+
         //await generateDataset("Humidity %", weatherPoints[0].sensorData.humidity);
     }
 
     // Check if we are dealing with a py or an lht
     if (weatherPoints[0].sensorData.lightLux !== null) {
+        light = await fetchLightLuxFromWeatherpoints(weatherPoints);
+
+
         const lightPercentage = await lightToPercentage(weatherPoints[0].sensorData.lightLux, "lux");
+
+
+
         const dataset = await generateDataset("Light %", lightPercentage);
         datasets.push(dataset);
     } else if (weatherPoints[0].sensorData.lightLogscale !== null) {
@@ -181,15 +231,19 @@ async function showDataForDevice(deviceID) {
                 label: 'Temperatures',
                 data: temperatures,
                 borderColor: 'rgb(255, 99, 132)'
-            },{
-                label: 'Humidity',
-                data: hum,
-                borderColor: 'rgb(255, 99, 132)'
-            }]
+            }
+            // ,{
+            //     label: 'Humidity',
+            //     data: hum,
+            //     borderColor: 'rgb(255, 99, 132)'
+            // }
+        ]
         }
     });
 
-    const chart1 = new Chart(ctx1, {
+    
+
+    const chart2 = new Chart(ctx1, {
         type: 'line',
         data : {
             labels: timestamps,
@@ -397,28 +451,28 @@ async function getLatestForLocation(location) {
         let newCityButton = document.createElement("button");
         
         newCityButton.classList.add("city");
-        newCityButton.id = locationEntry.City;
+        newCityButton.id = key;
 
         newCityButton.onclick = async function () { 
             removeActiveFromButtons();
             newCityButton.classList.add("active");
-            showDevices(locationEntry.deviceID);
-            let latestDataFromLocation = await getLatestForLocation(locationEntry.City);
+            showDevices(locationEntry);
+            let latestDataFromLocation = await getLatestForLocation(locationEntry);
             await updateLatestWeatherDiv(latestDataFromLocation.fromDeviceId);
         };
 
-        newCityButton.innerHTML = locationEntry.City; // Change the name to be the city name
+        newCityButton.innerHTML = key; // Change the name to be the city name
         
         citiesClass.appendChild(newCityButton);
 
         //TODO: why extra wierden?
-        if (locationEntry.city === "Wierden") {
-            removeActiveFromButtons();
-            newCityButton.classList.add("active");
-            showDevices(locationEntry.deviceCollection);
-            let latestDataFromWierden = await getLatestForLocation(locationEntry.City);
-            await updateLatestWeatherDiv(latestDataFromWierden.fromDeviceId);
-        }
+        // if (locationEntry.city === "Wierden") {
+        //     removeActiveFromButtons();
+        //     newCityButton.classList.add("active");
+        //     showDevices(locationEntry.deviceCollection);
+        //     let latestDataFromWierden = await getLatestForLocation(locationEntry.City);
+        //     await updateLatestWeatherDiv(latestDataFromWierden.fromDeviceId);
+        // }
     }
 
     let allButton = document.createElement("button");
