@@ -444,24 +444,22 @@ async function getLatestForLocation(location) {
     }
 
     // https://stackoverflow.com/questions/34913675/how-to-iterate-keys-values-in-javascript
-    for (const [key, locationEntry] of Object.entries(cities)) {
-        console.log(key);
-        console.log(locationEntry);
+    for (const [city, deviceList] of Object.entries(cities)) {
         // https://www.w3schools.com/jsref/met_node_appendchild.asp
         let newCityButton = document.createElement("button");
         
         newCityButton.classList.add("city");
-        newCityButton.id = key;
+        newCityButton.id = city;
 
         newCityButton.onclick = async function () { 
             removeActiveFromButtons();
             newCityButton.classList.add("active");
-            showDevices(locationEntry);
-            let latestDataFromLocation = await getLatestForLocation(locationEntry);
+            showDevices(deviceList);
+            let latestDataFromLocation = await getLatestForLocation(deviceList);
             await updateLatestWeatherDiv(latestDataFromLocation.fromDeviceId);
         };
 
-        newCityButton.innerHTML = key; // Change the name to be the city name
+        newCityButton.innerHTML = city; // Change the name to be the city name
         
         citiesClass.appendChild(newCityButton);
 
