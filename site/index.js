@@ -138,11 +138,13 @@ async function showDataForDevice(deviceID) {
 
     var datasets = [];
 
+    var pressure = new Array;
+
     // TODO: Finish this, lmao bye
 
     // Check if we are dealing with a py or an lht
     if (weatherPoints[0].sensorData.humidity === null) {
-        const pressure = await fetchPressureFromWeatherpoints(weatherPoints);
+        pressure = await fetchPressureFromWeatherpoints(weatherPoints);
         await generateDataset("Pressure", weatherPoints[0].sensorData.pressure);
     } else {
         await generateDataset("Humidity %", weatherPoints[0].sensorData.humidity);
