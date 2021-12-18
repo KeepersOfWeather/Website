@@ -69,15 +69,15 @@ p h3 h4 {
     align-items: left;
 }
 
+/*
 #tempDataChart {
-    width: 240px;
-    height: 240px;
+    width: inherit;
+    height: inherit;
 }
-#humDataChart {
-    width: 240px;
-    height: 240px;
-}
-#lightDataChart {
+*/
+
+.chart_styling
+{
     width: 240px;
     height: 240px;
 }
