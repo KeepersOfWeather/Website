@@ -265,20 +265,6 @@ async function showDataForDevice(deviceID) {
         ]
         }
     });
-
-    
-
-    const chart2 = new Chart(ctx1, {
-        type: 'line',
-        data : {
-            labels: timestamps,
-            datasets: [{
-                label: 'Humidity',
-                data: hum,
-                borderColor: 'rgb(255, 99, 132)'
-            }]
-        }
-    });
 }
 
 async function showDevices(devicesCollection) {
