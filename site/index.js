@@ -369,14 +369,14 @@ async function getLatestForLocation(location) {
         
         citiesClass.appendChild(newCityButton);
 
-        // TODO: why extra wierden?
-        // if (locationEntry.city === "Wierden") {
-        //     removeActiveFromButtons();
-        //     newCityButton.classList.add("active");
-        //     showDevices(locationEntry.deviceCollection);
-        //     let latestDataFromWierden = await getLatestForLocation(locationEntry.City);
-        //     await updateLatestWeatherDiv(latestDataFromWierden.fromDeviceId);
-        // }
+        //TODO: why extra wierden?
+        if (locationEntry.city === "Wierden") {
+            removeActiveFromButtons();
+            newCityButton.classList.add("active");
+            showDevices(locationEntry.deviceCollection);
+            let latestDataFromWierden = await getLatestForLocation(locationEntry.City);
+            await updateLatestWeatherDiv(latestDataFromWierden.fromDeviceId);
+        }
     }
 
     let allButton = document.createElement("button");
