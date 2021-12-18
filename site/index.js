@@ -171,17 +171,17 @@ async function showDataForDevice(deviceID) {
         await generateDataset("Light %", lightPercentage);
     }
 
-    // const chart = new Chart(ctx, {
-    //     type: 'line',
-    //     data : {
-    //         labels: timestamps,
-    //         datasets: [{
-    //             label: 'Temperatures',
-    //             data: temperatures,
-    //             borderColor: 'rgb(255, 99, 132)'
-    //         }]
-    //     }
-    // });
+    const chart = new Chart(ctx, {
+        type: 'line',
+        data : {
+            labels: timestamps,
+            datasets: [{
+                label: 'Temperatures',
+                data: temperatures,
+                borderColor: 'rgb(255, 99, 132)'
+            }]
+        }
+    });
 
     const chart1 = new Chart(ctx, {
         type: 'line',
