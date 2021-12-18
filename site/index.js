@@ -129,22 +129,22 @@ async function fetchLightLuxFromWeatherpoints(weatherPoints) {
     var light = new Array;
     
     for (var i = 0; i < weatherPoints.length; i++) {
-        light.push(weatherPoints[i].sensorData.lightLux);
+        light.push((weatherPoints[i].sensorData.lightLux/ 12415.0) * 100.0);
     }
 
-    const lightPercentage = await lightToPercentage(light, "lux");
-    return lightPercentage;
+    //const lightPercentage = await lightToPercentage(light, "lux");
+    return light;
 }
 
 async function fetchLightLogFromWeatherpoints(weatherPoints) {
     var light = new Array;
     
     for (var i = 0; i < weatherPoints.length; i++) {
-        light.push(weatherPoints[i].sensorData.lightLogscale);
+        light.push((weatherPoints[i].sensorData.lightLogscale/ 217.0) * 100.0);
     }
 
-    const lightPercentage = await lightToPercentage(light, "log");
-    return lightPercentage;
+    //const lightPercentage = await lightToPercentage(light, "log");
+    return light;
 }
 
 
