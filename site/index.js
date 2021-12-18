@@ -176,6 +176,7 @@ async function showDataForDevice(deviceID) {
 
     var pressure = new Array;
     var hum = new Array;
+    var light = new Array;
     // TODO: Finish this, lmao bye
 
     // Check if we are dealing with a py or an lht
