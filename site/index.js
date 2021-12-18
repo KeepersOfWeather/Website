@@ -115,26 +115,6 @@ async function fetchHumidityFromWeatherpoints(weatherPoints) {
     return hum;
 }
 
-async function fetchLightLuxFromWeatherpoints(weatherPoints) {
-    var light = new Array;
-    
-    for (var i = 0; i < weatherPoints.length; i++) {
-        hum.push(weatherPoints[i].sensorData.lightLux);
-    }
-
-    return hum;
-}
-
-async function fetchHumidityFromWeatherpoints(weatherPoints) {
-    var light = new Array;
-    
-    for (var i = 0; i < weatherPoints.length; i++) {
-        hum.push(weatherPoints[i].sensorData.lightLogscale);
-    }
-
-    return hum;
-}
-
 function lightToPercentage(logOrLux, type) {
     if (type === "lux") {
         // Highest lux value in database
@@ -144,6 +124,30 @@ function lightToPercentage(logOrLux, type) {
         return (logOrLux / 217.0) * 100.0;
     }
 }
+
+async function fetchLightLuxFromWeatherpoints(weatherPoints) {
+    var light = new Array;
+    
+    for (var i = 0; i < weatherPoints.length; i++) {
+        light.push(weatherPoints[i].sensorData.lightLux);
+    }
+
+    const lightPercentage = await lightToPercentage(light, "lux");
+    return lightPercentage;
+}
+
+async function fetchLightLogFromWeatherpoints(weatherPoints) {
+    var light = new Array;
+    
+    for (var i = 0; i < weatherPoints.length; i++) {
+        light.push(weatherPoints[i].sensorData.lightLogscale);
+    }
+
+    const lightPercentage = await lightToPercentage(light, "log");
+    return lightPercentage;
+}
+
+
 
 async function generateDataset(name, data) {
     // TODO:: implement like fetchTemperateFromWeatherpoints(weatherPoints)
@@ -166,6 +170,7 @@ async function showDataForDevice(deviceID) {
 
     const ctx = document.getElementById('tempDataChart');
     const ctx1 = document.getElementById('humDataChart');
+    const ctx2 = document.getElementById('lightDataChart');
 
     var datasets = [];
 
@@ -196,7 +201,7 @@ async function showDataForDevice(deviceID) {
             data : {
                 labels: timestamps,
                 datasets: [{
-                    label: 'Humidity',
+                    label: 'Humidity %',
                     data: hum,
                     borderColor: 'rgb(255, 99, 132)'
                 }]
@@ -209,17 +214,36 @@ async function showDataForDevice(deviceID) {
     // Check if we are dealing with a py or an lht
     if (weatherPoints[0].sensorData.lightLux !== null) {
         light = await fetchLightLuxFromWeatherpoints(weatherPoints);
+        const chart2 = new Chart(ctx2, {
+            type: 'line',
+            data : {
+                labels: timestamps,
+                datasets: [{
+                    label: 'Light %',
+                    data: light,
+                    borderColor: 'rgb(255, 99, 132)'
+                }]
+            }
+        });
 
-
-        const lightPercentage = await lightToPercentage(weatherPoints[0].sensorData.lightLux, "lux");
-
-
-
-        const dataset = await generateDataset("Light %", lightPercentage);
+        // const lightPercentage = await lightToPercentage(weatherPoints[0].sensorData.lightLux, "lux");
+        // const dataset = await generateDataset("Light %", lightPercentage);
         datasets.push(dataset);
     } else if (weatherPoints[0].sensorData.lightLogscale !== null) {
-        const lightPercentage = await lightToPercentage(weatherPoints[0].sensorData.lightLogscale, "log");
-        await generateDataset("Light %", lightPercentage);
+        light = await fetchLightLogFromWeatherpoints(weatherPoints);
+        const chart2 = new Chart(ctx2, {
+            type: 'line',
+            data : {
+                labels: timestamps,
+                datasets: [{
+                    label: 'Light %',
+                    data: light,
+                    borderColor: 'rgb(255, 99, 132)'
+                }]
+            }
+        });
+        // const lightPercentage = await lightToPercentage(weatherPoints[0].sensorData.lightLogscale, "log");
+        // await generateDataset("Light %", lightPercentage);
     }
 
     const chart = new Chart(ctx, {
