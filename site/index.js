@@ -176,9 +176,14 @@ async function showDataForDevice(deviceID) {
         type: 'line',
         data : {
             labels: timestamps,
-            datasets: [{
+            datasets: [
+                {
                 label: 'Temperatures',
                 data: temperatures,
+                borderColor: 'rgb(255, 99, 132)'
+            },{
+                label: 'Humidity',
+                data: hum,
                 borderColor: 'rgb(255, 99, 132)'
             }]
         }
