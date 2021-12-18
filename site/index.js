@@ -229,7 +229,7 @@ async function showDataForDevice(deviceID) {
 
         // const lightPercentage = await lightToPercentage(weatherPoints[0].sensorData.lightLux, "lux");
         // const dataset = await generateDataset("Light %", lightPercentage);
-        datasets.push(dataset);
+        //datasets.push(dataset);
     } else if (weatherPoints[0].sensorData.lightLogscale !== null) {
         light = await fetchLightLogFromWeatherpoints(weatherPoints);
         const chart2 = new Chart(ctx2, {
