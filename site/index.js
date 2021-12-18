@@ -144,7 +144,8 @@ async function showDataForDevice(deviceID) {
     const timestamps = await fetchTimestampsFromWeatherpoints(weatherPoints);
     const temperatures = await fetchTemperateFromWeatherpoints(weatherPoints);
 
-    const ctx = document.getElementById('weatherDataChart');
+    const ctx = document.getElementById('tempDataChart');
+    const ctx1 = document.getElementById('humDataChart');
 
     var datasets = [];
 
@@ -183,12 +184,12 @@ async function showDataForDevice(deviceID) {
         }
     });
 
-    const chart1 = new Chart(ctx, {
+    const chart1 = new Chart(ctx1, {
         type: 'line',
         data : {
             labels: timestamps,
             datasets: [{
-                label: 'Pressure',
+                label: 'Humidity',
                 data: hum,
                 borderColor: 'rgb(255, 99, 132)'
             }]
