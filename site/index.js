@@ -105,6 +105,16 @@ async function fetchPressureFromWeatherpoints(weatherPoints) {
     return pressure;
 }
 
+async function fetchHumidityFromWeatherpoints(weatherPoints) {
+    var hum = new Array;
+    
+    for (var i = 0; i < weatherPoints.length; i++) {
+        hum.push(weatherPoints[i].sensorData.humidity);
+    }
+
+    return hum;
+}
+
 function lightToPercentage(logOrLux, type) {
     if (type === "lux") {
         // Highest lux value in database
@@ -139,15 +149,16 @@ async function showDataForDevice(deviceID) {
     var datasets = [];
 
     var pressure = new Array;
-
+    var hum = new Array;
     // TODO: Finish this, lmao bye
 
     // Check if we are dealing with a py or an lht
     if (weatherPoints[0].sensorData.humidity === null) {
         pressure = await fetchPressureFromWeatherpoints(weatherPoints);
-        await generateDataset("Pressure", weatherPoints[0].sensorData.pressure);
+        //await generateDataset("Pressure", weatherPoints[0].sensorData.pressure);
     } else {
-        await generateDataset("Humidity %", weatherPoints[0].sensorData.humidity);
+        hum = await fetchHumidityFromWeatherpoints(weatherPoints);
+        //await generateDataset("Humidity %", weatherPoints[0].sensorData.humidity);
     }
 
     // Check if we are dealing with a py or an lht
@@ -178,7 +189,7 @@ async function showDataForDevice(deviceID) {
             labels: timestamps,
             datasets: [{
                 label: 'Pressure',
-                data: pressure,
+                data: hum,
                 borderColor: 'rgb(255, 99, 132)'
             }]
         }
