@@ -157,6 +157,8 @@ function sleep(ms) {
 
 async function showDataForDevice(deviceID) {
 
+    console.log(`showDataForDevice called with ${deviceID}`)
+
     // Get data from API for device id
     let weatherPoints = await fromDevice(deviceID);
 
