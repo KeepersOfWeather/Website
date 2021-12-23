@@ -151,14 +151,19 @@ async function generateDataset(name, data) {
     // TODO:: implement like fetchTemperateFromWeatherpoints(weatherPoints)
 }
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 async function showDataForDevice(deviceID) {
 
     // Get data from API for device id
     let weatherPoints = await fromDevice(deviceID);
 
-    if (weatherPoints.length === 0) {
+    while (weatherPoints.length === 0) {
         console.log("API ded?");
-        return;
+
+        await sleep(2000);
     }
 
     const timestamps = await fetchTimestampsFromWeatherpoints(weatherPoints);
