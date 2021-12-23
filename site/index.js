@@ -471,7 +471,7 @@ async function getLatestForLocation(location) {
 
         newCityButton.innerHTML = cityName; // rename the button
         
-        citiesClass.appendChild(newCityButton);
+        citiesDiv.appendChild(newCityButton);
     }
 
     let allButton = document.createElement("button");
