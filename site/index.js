@@ -183,7 +183,7 @@ async function showDataForDevice(deviceID) {
     // Check if we are dealing with a py or an lht
     if (weatherPoints[0].sensorData.humidity === null) {
         const pressure = await fetchPressureFromWeatherpoints(weatherPoints);
-        const chart1 = new Chart(ctx1, {
+        const _ = new Chart(ctx1, {
             type: 'line',
             data : {
                 labels: timestamps,
@@ -198,7 +198,7 @@ async function showDataForDevice(deviceID) {
         //await generateDataset("Pressure", weatherPoints[0].sensorData.pressure);
     } else {
         const hum = await fetchHumidityFromWeatherpoints(weatherPoints);
-        const chart1 = new Chart(ctx1, {
+        const _ = new Chart(ctx1, {
             type: 'line',
             data : {
                 labels: timestamps,
@@ -216,7 +216,7 @@ async function showDataForDevice(deviceID) {
     // Check if we are dealing with a py or an lht
     if (weatherPoints[0].sensorData.lightLux !== null) {
         const light = await fetchLightLuxFromWeatherpoints(weatherPoints);
-        const chart2 = new Chart(ctx2, {
+        const _ = new Chart(ctx2, {
             type: 'line',
             data : {
                 labels: timestamps,
@@ -232,8 +232,8 @@ async function showDataForDevice(deviceID) {
         // const dataset = await generateDataset("Light %", lightPercentage);
         //datasets.push(dataset);
     } else if (weatherPoints[0].sensorData.lightLogscale !== null) {
-        light = await fetchLightLogFromWeatherpoints(weatherPoints);
-        const chart2 = new Chart(ctx2, {
+        const light = await fetchLightLogFromWeatherpoints(weatherPoints);
+        const _ = new Chart(ctx2, {
             type: 'line',
             data : {
                 labels: timestamps,
@@ -248,7 +248,7 @@ async function showDataForDevice(deviceID) {
         // await generateDataset("Light %", lightPercentage);
     }
 
-    const chart = new Chart(ctx, {
+    const _ = new Chart(ctx, {
         type: 'line',
         data : {
             labels: timestamps,
