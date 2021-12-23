@@ -174,8 +174,7 @@ async function showDataForDevice(deviceID) {
 
     console.log("All stuff is awaited!");
 
-
-    await (async () => {
+    const makeGraphs = (async () => {
 
         console.log("Time to show graphs!");
 
@@ -266,6 +265,8 @@ async function showDataForDevice(deviceID) {
             }
         });
     });
+
+    setTimeout(logName, 5);
 }
 
 async function showDevices(devicesCollection) {
