@@ -439,28 +439,29 @@ async function getLatestForLocation(location) {
 // https://stackoverflow.com/questions/39679505/using-await-outside-of-an-async-function
 
 (async () => {
-    // Begin by asking API for all devices sorted by location
-        // Generate tabs dynamically: https://www.w3schools.com/howto/howto_js_tabs.asp
+
+    // Generate tabs based on devices from API
+    // Info here: https://www.w3schools.com/howto/howto_js_tabs.asp
+
     let cities = await getLocations();
-    // Grab cities Div from index.html
-    let citiesDiv = document.getElementsByClassName("cities");
-    if (citiesDiv.length !== 0) {
-        citiesDiv = citiesDiv[0];
+
+    let citiesClass = document.getElementsByClassName("cities");
+
+    if (citiesClass.length !== 0) {
+        citiesClass = citiesClass[0];
     } else {
         console.log("Something is broken when finding tabs div...")
         return;
     }
 
-    // Iterate through each location stored cities
-        // https://stackoverflow.com/questions/34913675/how-to-iterate-keys-values-in-javascript
-    for (const [cityName, deviceList] of Object.entries(cities)) {
-        // Generate a button for each availiable location recieved from the API 
-            // https://www.w3schools.com/jsref/met_node_appendchild.asp
+    // https://stackoverflow.com/questions/34913675/how-to-iterate-keys-values-in-javascript
+    for (const [city, deviceList] of Object.entries(cities)) {
+        // https://www.w3schools.com/jsref/met_node_appendchild.asp
         let newCityButton = document.createElement("button");
         
-        newCityButton.classList.add("city"); 
-        newCityButton.id = cityName;
-        // When 
+        newCityButton.classList.add("city");
+        newCityButton.id = city;
+
         newCityButton.onclick = async function () { 
             removeActiveFromButtons();
             newCityButton.classList.add("active");
@@ -469,9 +470,18 @@ async function getLatestForLocation(location) {
             await updateLatestWeatherDiv(latestDataFromLocation.fromDeviceId);
         };
 
-        newCityButton.innerHTML = cityName; // rename the button
+        newCityButton.innerHTML = city; // Change the name to be the city name
         
         citiesClass.appendChild(newCityButton);
+
+        //TODO: why extra wierden?
+        // if (locationEntry.city === "Wierden") {
+        //     removeActiveFromButtons();
+        //     newCityButton.classList.add("active");
+        //     showDevices(locationEntry.deviceCollection);
+        //     let latestDataFromWierden = await getLatestForLocation(locationEntry.City);
+        //     await updateLatestWeatherDiv(latestDataFromWierden.fromDeviceId);
+        // }
     }
 
     let allButton = document.createElement("button");
