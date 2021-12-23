@@ -57,5 +57,9 @@ p h3 h4 {
 
 .grid-container {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto;
+}
+
+.grid-child {
+    padding: 10px;
 }
