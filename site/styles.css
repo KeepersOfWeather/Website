@@ -57,16 +57,9 @@ p h3 h4 {
     text-align: left;
 }
 
-.flex-container {
-    display: flex;
-}
-
-.flex-child {
-    flex: 1;
-}  
-
-.flex-child:first-child {
-    align-items: left;
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto
 }
 
 /*
