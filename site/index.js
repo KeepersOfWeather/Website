@@ -174,6 +174,8 @@ async function showDataForDevice(deviceID) {
 
     await (async () => {
 
+        console.log("Time to show graphs!");
+
         // Check if we are dealing with a py or an lht
         if (weatherPoints[0].sensorData.humidity === null) {
             const pressure = await fetchPressureFromWeatherpoints(weatherPoints);
