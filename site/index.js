@@ -194,7 +194,6 @@ async function showDataForDevice(deviceID) {
                 }]
             }
         });
-        ctx1.style = "";
 
         //await generateDataset("Pressure", weatherPoints[0].sensorData.pressure);
     } else {
@@ -210,8 +209,6 @@ async function showDataForDevice(deviceID) {
                 }]
             }
         });
-
-        ctx1.style = "";
 
         //await generateDataset("Humidity %", weatherPoints[0].sensorData.humidity);
     }
@@ -231,8 +228,6 @@ async function showDataForDevice(deviceID) {
             }
         });
 
-        ctx2.style = "";
-
         // const lightPercentage = await lightToPercentage(weatherPoints[0].sensorData.lightLux, "lux");
         // const dataset = await generateDataset("Light %", lightPercentage);
         //datasets.push(dataset);
@@ -249,8 +244,6 @@ async function showDataForDevice(deviceID) {
                 }]
             }
         });
-
-        ctx2.style = "";
         // const lightPercentage = await lightToPercentage(weatherPoints[0].sensorData.lightLogscale, "log");
         // await generateDataset("Light %", lightPercentage);
     }
@@ -261,7 +254,7 @@ async function showDataForDevice(deviceID) {
             labels: timestamps,
             datasets: [
                 {
-                label: 'Temperature',
+                label: 'Temperatures',
                 data: temperatures,
                 borderColor: 'rgb(255, 99, 132)'
             }
@@ -273,8 +266,6 @@ async function showDataForDevice(deviceID) {
         ]
         }
     });
-
-    ctx.style = "";
 }
 
 async function showDevices(devicesCollection) {
