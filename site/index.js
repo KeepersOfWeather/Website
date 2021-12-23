@@ -254,7 +254,7 @@ async function showDataForDevice(deviceID) {
             labels: timestamps,
             datasets: [
                 {
-                label: 'Temperatures',
+                label: 'Temperature',
                 data: temperatures,
                 borderColor: 'rgb(255, 99, 132)'
             }
