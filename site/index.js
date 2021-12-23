@@ -172,7 +172,7 @@ async function showDataForDevice(deviceID) {
 
     // var datasets = [];
 
-        await (async () => {
+    await (async () => {
 
         // Check if we are dealing with a py or an lht
         if (weatherPoints[0].sensorData.humidity === null) {
@@ -260,7 +260,7 @@ async function showDataForDevice(deviceID) {
             ]
             }
         });
-    })();
+    });
 }
 
 async function showDevices(devicesCollection) {
