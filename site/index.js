@@ -172,6 +172,9 @@ async function showDataForDevice(deviceID) {
 
     // var datasets = [];
 
+    console.log("All stuff is awaited!");
+
+
     await (async () => {
 
         console.log("Time to show graphs!");
