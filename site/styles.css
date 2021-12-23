@@ -60,3 +60,8 @@ p h3 h4 {
     grid-template-columns: auto auto auto;
     gap: 40px;
 }
+
+.grid-container canvas {
+    width: unset;
+    height: unset;
+}
