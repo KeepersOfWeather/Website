@@ -154,7 +154,7 @@ async function generateDataset(name, data) {
 async function showDataForDevice(deviceID) {
 
     // Get data from API for device id
-    const weatherPoints = await fromDevice(deviceID);
+    let weatherPoints = await fromDevice(deviceID);
 
     if (weatherPoints.length === 0) {
         console.log("API ded?");
