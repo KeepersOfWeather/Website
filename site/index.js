@@ -162,10 +162,9 @@ async function showDataForDevice(deviceID) {
     // Get data from API for device id
     let weatherPoints = await fromDevice(deviceID);
 
-    while (weatherPoints.length === 0) {
-        console.log("API ded?");
-
-        await sleep(2000);
+    if (weatherPoints.length === 0) {
+        console.log(`API returned empty array for await fromDevice(${deviceID})`);
+        return;
     }
 
     const timestamps = await fetchTimestampsFromWeatherpoints(weatherPoints);
