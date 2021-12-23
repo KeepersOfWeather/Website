@@ -266,7 +266,7 @@ async function showDataForDevice(deviceID) {
         });
     });
 
-    setTimeout(logName, 5);
+    setTimeout(makeGraphs, 5);
 }
 
 async function showDevices(devicesCollection) {
