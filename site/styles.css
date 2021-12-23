@@ -55,13 +55,12 @@ p h3 h4 {
     text-align: left;
 }
 
-/* .grid-container {
+.grid-container {
     display: grid;
     grid-template-columns: auto auto auto;
     gap: 40px;
 }
 
-.grid-container canvas {
-    width: unset;
-    height: unset;
-} */
+.grid-child {
+    width: .33vh;
+}
