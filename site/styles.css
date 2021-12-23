@@ -13,8 +13,6 @@ p h3 h4 {
 }
 
 .cities {
-    /* display: flex;
-    gap: 10px; */
     background-color: #333;
     overflow: hidden;
 }
@@ -60,17 +58,4 @@ p h3 h4 {
 .grid-container {
     display: grid;
     grid-template-columns: auto auto auto;
-}
-
-/*
-#tempDataChart {
-    width: inherit;
-    height: inherit;
-}
-*/
-
-.chart_styling
-{
-    width: inherit;
-    height: inherit;
 }
