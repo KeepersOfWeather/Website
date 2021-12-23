@@ -173,7 +173,7 @@ async function showDataForDevice(deviceID) {
         // var datasets = [];
 
         while (weatherPoints[0] === undefined) {
-            
+            console.log("Waiting...")
         }
 
         // Check if we are dealing with a py or an lht
