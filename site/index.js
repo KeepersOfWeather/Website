@@ -172,92 +172,95 @@ async function showDataForDevice(deviceID) {
 
     // var datasets = [];
 
-    // Check if we are dealing with a py or an lht
-    if (weatherPoints[0].sensorData.humidity === null) {
-        const pressure = await fetchPressureFromWeatherpoints(weatherPoints);
-        const chart1 = new Chart(ctx1, {
-            type: 'line',
-            data : {
-                labels: timestamps,
-                datasets: [{
-                    label: 'Pressure',
-                    data: pressure,
-                    borderColor: 'rgb(255, 99, 132)'
-                }]
-            }
-        });
+        await (async () => {
 
-        //await generateDataset("Pressure", weatherPoints[0].sensorData.pressure);
-    } else {
-        const hum = await fetchHumidityFromWeatherpoints(weatherPoints);
-        const chart1 = new Chart(ctx1, {
-            type: 'line',
-            data : {
-                labels: timestamps,
-                datasets: [{
-                    label: 'Humidity %',
-                    data: hum,
-                    borderColor: 'rgb(255, 99, 132)'
-                }]
-            }
-        });
+        // Check if we are dealing with a py or an lht
+        if (weatherPoints[0].sensorData.humidity === null) {
+            const pressure = await fetchPressureFromWeatherpoints(weatherPoints);
+            const chart1 = new Chart(ctx1, {
+                type: 'line',
+                data : {
+                    labels: timestamps,
+                    datasets: [{
+                        label: 'Pressure',
+                        data: pressure,
+                        borderColor: 'rgb(255, 99, 132)'
+                    }]
+                }
+            });
 
-        //await generateDataset("Humidity %", weatherPoints[0].sensorData.humidity);
-    }
+            //await generateDataset("Pressure", weatherPoints[0].sensorData.pressure);
+        } else {
+            const hum = await fetchHumidityFromWeatherpoints(weatherPoints);
+            const chart1 = new Chart(ctx1, {
+                type: 'line',
+                data : {
+                    labels: timestamps,
+                    datasets: [{
+                        label: 'Humidity %',
+                        data: hum,
+                        borderColor: 'rgb(255, 99, 132)'
+                    }]
+                }
+            });
 
-    // Check if we are dealing with a py or an lht
-    if (weatherPoints[0].sensorData.lightLux !== null) {
-        const light = await fetchLightLuxFromWeatherpoints(weatherPoints);
-        const chart2 = new Chart(ctx2, {
-            type: 'line',
-            data : {
-                labels: timestamps,
-                datasets: [{
-                    label: 'Light %',
-                    data: light,
-                    borderColor: 'rgb(255, 99, 132)'
-                }]
-            }
-        });
-
-        // const lightPercentage = await lightToPercentage(weatherPoints[0].sensorData.lightLux, "lux");
-        // const dataset = await generateDataset("Light %", lightPercentage);
-        //datasets.push(dataset);
-    } else if (weatherPoints[0].sensorData.lightLogscale !== null) {
-        light = await fetchLightLogFromWeatherpoints(weatherPoints);
-        const chart2 = new Chart(ctx2, {
-            type: 'line',
-            data : {
-                labels: timestamps,
-                datasets: [{
-                    label: 'Light %',
-                    data: light,
-                    borderColor: 'rgb(255, 99, 132)'
-                }]
-            }
-        });
-        // const lightPercentage = await lightToPercentage(weatherPoints[0].sensorData.lightLogscale, "log");
-        // await generateDataset("Light %", lightPercentage);
-    }
-
-    const chart = new Chart(ctx, {
-        type: 'line',
-        data : {
-            labels: timestamps,
-            datasets: [
-                {
-                label: 'Temperatures',
-                data: temperatures,
-                borderColor: 'rgb(255, 99, 132)'
-            }
-            // ,{
-            //     label: 'Humidity',
-            //     data: hum,
-            //     borderColor: 'rgb(255, 99, 132)'
-            // }
-        ]
+            //await generateDataset("Humidity %", weatherPoints[0].sensorData.humidity);
         }
-    });
+
+        // Check if we are dealing with a py or an lht
+        if (weatherPoints[0].sensorData.lightLux !== null) {
+            const light = await fetchLightLuxFromWeatherpoints(weatherPoints);
+            const chart2 = new Chart(ctx2, {
+                type: 'line',
+                data : {
+                    labels: timestamps,
+                    datasets: [{
+                        label: 'Light %',
+                        data: light,
+                        borderColor: 'rgb(255, 99, 132)'
+                    }]
+                }
+            });
+
+            // const lightPercentage = await lightToPercentage(weatherPoints[0].sensorData.lightLux, "lux");
+            // const dataset = await generateDataset("Light %", lightPercentage);
+            //datasets.push(dataset);
+        } else if (weatherPoints[0].sensorData.lightLogscale !== null) {
+            light = await fetchLightLogFromWeatherpoints(weatherPoints);
+            const chart2 = new Chart(ctx2, {
+                type: 'line',
+                data : {
+                    labels: timestamps,
+                    datasets: [{
+                        label: 'Light %',
+                        data: light,
+                        borderColor: 'rgb(255, 99, 132)'
+                    }]
+                }
+            });
+            // const lightPercentage = await lightToPercentage(weatherPoints[0].sensorData.lightLogscale, "log");
+            // await generateDataset("Light %", lightPercentage);
+        }
+
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data : {
+                labels: timestamps,
+                datasets: [
+                    {
+                    label: 'Temperatures',
+                    data: temperatures,
+                    borderColor: 'rgb(255, 99, 132)'
+                }
+                // ,{
+                //     label: 'Humidity',
+                //     data: hum,
+                //     borderColor: 'rgb(255, 99, 132)'
+                // }
+            ]
+            }
+        });
+    })();
 }
 
 async function showDevices(devicesCollection) {
@@ -433,10 +436,12 @@ async function getLatestForLocation(location) {
 
 (async () => {
     // Begin by asking API for all devices sorted by location
-        // Generate tabs dynamically: https://www.w3schools.com/howto/howto_js_tabs.asp
+    // Generate tabs dynamically: https://www.w3schools.com/howto/howto_js_tabs.asp
     let cities = await getLocations();
+
     // Grab cities Div from index.html
     let citiesDiv = document.getElementsByClassName("cities");
+
     if (citiesDiv.length !== 0) {
         citiesDiv = citiesDiv[0];
     } else {
@@ -445,14 +450,17 @@ async function getLatestForLocation(location) {
     }
 
     // Iterate through each location stored cities
-        // https://stackoverflow.com/questions/34913675/how-to-iterate-keys-values-in-javascript
+    // https://stackoverflow.com/questions/34913675/how-to-iterate-keys-values-in-javascript
     for (const [cityName, deviceList] of Object.entries(cities)) {
+
         // Generate a button for each availiable location recieved from the API 
-            // https://www.w3schools.com/jsref/met_node_appendchild.asp
+        // https://www.w3schools.com/jsref/met_node_appendchild.asp
+
         let newCityButton = document.createElement("button");
         
         newCityButton.classList.add("city"); 
         newCityButton.id = cityName;
+
         // When 
         newCityButton.onclick = async function () { 
             removeActiveFromButtons();
