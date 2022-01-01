@@ -517,15 +517,15 @@ async function getLatestForLocation(location) {
 
     citiesDiv.appendChild(allButton);
 
-    var el = document.getElementById('div');
-    var dev = div.getElementsByTagName('input');
-    var length = dev.length;
+    // var el = document.getElementById('div');
+    // var dev = div.getElementsByTagName('input');
+    // var length = dev.length;
 
-    for(var i=0; i<length; i++){
-        if(dev[i].type === 'checkbox'){
-            dev[i].onclick = await showDataForDevice()
-        }
-    }
+    // for(var i=0; i<length; i++){
+    //     if(dev[i].type === 'checkbox'){
+    //         dev[i].onclick = await showDataForDevice()
+    //     }
+    // }
 
-    //await showDataForDevice(0);
+    await showDataForDevice(0);
 })();
