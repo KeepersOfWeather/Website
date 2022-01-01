@@ -527,7 +527,7 @@ async function getLatestForLocation(location) {
     //     }
     // }
 
-    if(document.getElementById("devices").getElementsByClassName("div") === null) console.log('EMPTY');
+    if(document.getElementById("devices") === null) console.log('EMPTY');
     else console.log(document.getElementById("devices").getElementsByClassName("div").length);
 
     await showDataForDevice(0);
