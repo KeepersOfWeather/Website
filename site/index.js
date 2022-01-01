@@ -4,6 +4,7 @@ async function fetchFromApi(endpoint, parameters) {
 
     // This is our base URL to the API
     let url = 'https://keepersofweather.nl/api/';
+
     // We can add endpoints to our base URL
     if (endpoint) {
         url += endpoint;
@@ -175,10 +176,6 @@ async function showDataForDevice(deviceID) {
 
     // var datasets = [];
 
-    console.log("All stuff is awaited!");
-
-    console.log("Time to show graphs!");
-
     // Check if we are dealing with a py or an lht
     if (weatherPoints[0].sensorData.humidity === null) {
         const pressure = await fetchPressureFromWeatherpoints(weatherPoints);
@@ -247,24 +244,46 @@ async function showDataForDevice(deviceID) {
         // await generateDataset("Light %", lightPercentage);
     }
 
+    console.log("All stuff is awaited!");
+
+    console.log("Time to show graphs!");
+
+    displayGraph('Temperatures', temperatures, timestamps, ctx);
+
+    // const _ = new Chart(ctx, {
+    //     type: 'line',
+    //     data : {
+    //         labels: timestamps,
+    //         datasets: [
+    //             {
+    //             label: 'Temperatures',
+    //             data: temperatures,
+    //             borderColor: 'rgb(255, 99, 132)'
+    //         }
+    //         // ,{
+    //         //     label: 'Humidity',
+    //         //     data: hum,
+    //         //     borderColor: 'rgb(255, 99, 132)'
+    //         // }
+    //     ]
+    //     }
+    // });
+}
+
+async function displayGraph(title, data, timestamps, ctx) {
     const _ = new Chart(ctx, {
-        type: 'line',
-        data : {
-            labels: timestamps,
-            datasets: [
-                {
-                label: 'Temperatures',
-                data: temperatures,
-                borderColor: 'rgb(255, 99, 132)'
+            type: 'line',
+            data : {
+                labels: timestamps,
+                datasets: [
+                    {
+                    label: title,
+                    data: data,
+                    borderColor: 'rgb(255, 99, 132)'
+                }
+            ]
             }
-            // ,{
-            //     label: 'Humidity',
-            //     data: hum,
-            //     borderColor: 'rgb(255, 99, 132)'
-            // }
-        ]
-        }
-    });
+        });
 }
 
 async function showDevices(devicesCollection) {
@@ -497,5 +516,16 @@ async function getLatestForLocation(location) {
     allButton.innerHTML = "All"; // Change the name to be the city name
 
     citiesDiv.appendChild(allButton);
-    await showDataForDevice(0);
+
+    var el = document.getElementById('div');
+    var dev = div.getElementsByTagName('input');
+    var length = dev.length;
+
+    for(var i=0; i<length; i++){
+        if(dev[i].type === 'checkbox'){
+            dev[i].onclick = await showDataForDevice()
+        }
+    }
+
+    //await showDataForDevice(0);
 })();
