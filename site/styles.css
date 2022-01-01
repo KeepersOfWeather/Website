@@ -1,5 +1,6 @@
 body {
-    background: url(/img/cream_dust.png) repeat 0 0;
+    background-image: url("paper.gif");
+    background-color: #cccccc;
     margin: 0;
 }
 
