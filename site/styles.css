@@ -56,6 +56,8 @@ p h3 h4 {
 }
 
 .grid-container {
+    float: left;
+    width: 50%;
     display: grid;
     grid-template-columns: auto auto auto;
     gap: 40px;
@@ -63,4 +65,9 @@ p h3 h4 {
 
 .grid-child {
     width: .33vh;
+}
+
+.info-class{
+    float: left;
+    width: 50%;
 }
