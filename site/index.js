@@ -1,5 +1,7 @@
 'use strict';
 
+//--------------------------------------API Utils----------------------------------------------------
+
 async function fetchFromApi(endpoint, parameters) {
 
     // This is our base URL to the API
@@ -70,6 +72,7 @@ function UTCtoDate(dateStr) {
     return new Date(Date.UTC(year - 1, month, day, hours, minutes, seconds)).toLocaleString();    
 }
 
+//--------------------------------------Data Retrieval Utils----------------------------------------------------
 
 async function fetchTimestampsFromWeatherpoints(weatherPoints) {
     var timestamps = new Array;
@@ -147,118 +150,10 @@ async function fetchLightLogFromWeatherpoints(weatherPoints) {
     return light;
 }
 
-async function generateDataset(name, data) {
-    // TODO:: implement like fetchTemperateFromWeatherpoints(weatherPoints)
-}
+//--------------------------------------Update Utils----------------------------------------------------
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function checkInput() {
-
-}
-
-async function fillGraph(title, data, timestamps, ctx) {
-    const _ = new Chart(ctx, {
-            type: 'line',
-            data : {
-                labels: timestamps,
-                datasets: [
-                    {
-                    label: title,
-                    data: data,
-                    borderColor: 'rgb(255, 99, 132)'
-                }
-            ]
-            }
-        });
-}
-
-async function showDataForDevice() {
-    var deviceIDs = new Array;
-
-    checkInput(deviceIDs);
-
-    console.log(`Display data for device: ${deviceIDs}`)
-
-    if(document.getElementById("devices") === null) console.log('EMPTY');
-    else console.log(document.getElementById("devices").getElementsByClassName("div").length);
-
-    // Get data from API for device id
-    let weatherPoints = await fromDevice(deviceID);
-
-    if (weatherPoints.length === 0) {
-        console.log(`API returned empty array for await fromDevice(${deviceIDs})`);
-        return;
-    }
-
-    const timestamps = await fetchTimestampsFromWeatherpoints(weatherPoints);
-    const temperatures = await fetchTemperateFromWeatherpoints(weatherPoints);
-
-    const ctx = document.getElementById('tempDataChart');
-    const ctx1 = document.getElementById('humDataChart');
-    const ctx2 = document.getElementById('lightDataChart');
-
-    // Check if we are dealing with a py or an lht
-    if (weatherPoints[0].sensorData.humidity === null) {
-        const pressure = await fetchPressureFromWeatherpoints(weatherPoints);
-    } else {
-        const humidity = await fetchHumidityFromWeatherpoints(weatherPoints);
-    }
-
-    // Check if we are dealing with a py or an lht
-    if (weatherPoints[0].sensorData.lightLux !== null) {
-        const light = await fetchLightLuxFromWeatherpoints(weatherPoints);
-    } else if (weatherPoints[0].sensorData.lightLogscale !== null) {
-        const light = await fetchLightLogFromWeatherpoints(weatherPoints);
-    }
-
-    console.log("All device data finished awaiting!");
-    console.log("Calling display graph.");
-
-    fillGraph('Temperatures', temperatures, timestamps, ctx);
-}
-
-async function showDevices(devicesCollection) {
-    // This function will fill up the devices list with devices passed
-    // as id: device in deviceCollection
-    /// param deviceCollection: dictionary
-    let devicesList = document.getElementsByClassName("devices");
-
-    if (devicesList.length !== 0) {
-        devicesList = devicesList[0];
-    } else {
-        console.log("Something is broken when finding devices ul...")
-        return;
-    }
-
-    // Clear list of devices
-    devicesList.innerHTML = ""
-
-    // Go over each id and name in the passed dictionary
-    for (const [deviceId, deviceName] of Object.entries(devicesCollection)) {
-
-        // Create a div with a check box and a label
-        let newDeviceEntry = document.createElement("div");
-
-            let newDeviceCheckBox = document.createElement("input");
-            newDeviceCheckBox.type = "checkbox";
-            newDeviceCheckBox.id = deviceName;
-            newDeviceCheckBox.name = deviceName;
-
-            let newDeviceLabel = document.createElement("label");
-            newDeviceLabel.htmlFor = deviceName;
-            newDeviceLabel.innerHTML = deviceName;
-
-        // Add the checkbox and label for the checkbox
-        // To the div for the new entry
-        newDeviceEntry.appendChild(newDeviceCheckBox);
-        newDeviceEntry.appendChild(newDeviceLabel);
-
-        // Add the new entry to our list of devices
-        devicesList.appendChild(newDeviceEntry);
-    }
 }
 
 function removeActiveFromButtons() {
@@ -387,7 +282,50 @@ async function getLatestForLocation(location) {
     return {fromDeviceId, newestData};
 }
 
-async function createNavigationBar() {
+//--------------------------------------Navigation----------------------------------------------------
+
+async function showDevices(devicesCollection) {
+    // This function will fill up the devices list with devices passed
+    // as id: device in deviceCollection
+    /// param deviceCollection: dictionary
+    let devicesList = document.getElementsByClassName("devices");
+
+    if (devicesList.length !== 0) {
+        devicesList = devicesList[0];
+    } else {
+        console.log("Something is broken when finding devices ul...")
+        return;
+    }
+
+    // Clear list of devices
+    devicesList.innerHTML = ""
+
+    // Go over each id and name in the passed dictionary
+    for (const [deviceId, deviceName] of Object.entries(devicesCollection)) {
+
+        // Create a div with a check box and a label
+        let newDeviceEntry = document.createElement("div");
+
+            let newDeviceCheckBox = document.createElement("input");
+            newDeviceCheckBox.type = "checkbox";
+            newDeviceCheckBox.id = deviceName;
+            newDeviceCheckBox.name = deviceName;
+
+            let newDeviceLabel = document.createElement("label");
+            newDeviceLabel.htmlFor = deviceName;
+            newDeviceLabel.innerHTML = deviceName;
+
+        // Add the checkbox and label for the checkbox
+        // To the div for the new entry
+        newDeviceEntry.appendChild(newDeviceCheckBox);
+        newDeviceEntry.appendChild(newDeviceLabel);
+
+        // Add the new entry to our list of devices
+        devicesList.appendChild(newDeviceEntry);
+    }
+}
+
+async function createNavBar() {
     // Begin by asking API for all devices sorted by location
     // Generate tabs dynamically: https://www.w3schools.com/howto/howto_js_tabs.asp
     let cities = await getLocations();
@@ -452,12 +390,80 @@ async function createNavigationBar() {
     await updateLatestWeatherDiv();
 }
 
+//--------------------------------------Graphing----------------------------------------------------
+
+async function fillGraph(title, data, timestamps, ctx) {
+    const _ = new Chart(ctx, {
+            type: 'line',
+            data : {
+                labels: timestamps,
+                datasets: [
+                    {
+                    label: title,
+                    data: data,
+                    borderColor: 'rgb(255, 99, 132)'
+                }
+            ]
+            }
+        });
+}
+
+async function checkInput(deviceIDs) {
+
+}
+
+async function createGraphs() {
+    var deviceIDs = new Array;
+
+    checkInput(deviceIDs);
+
+    console.log(`Display data for device: ${deviceIDs}`)
+
+    if(document.getElementById("devices") === null) console.log('EMPTY');
+    else console.log(document.getElementById("devices").getElementsByClassName("div").length);
+
+    // Get data from API for device id
+    let weatherPoints = await fromDevice(deviceID);
+
+    if (weatherPoints.length === 0) {
+        console.log(`API returned empty array for await fromDevice(${deviceIDs})`);
+        return;
+    }
+
+    const timestamps = await fetchTimestampsFromWeatherpoints(weatherPoints);
+    const temperatures = await fetchTemperateFromWeatherpoints(weatherPoints);
+
+    const ctx = document.getElementById('tempDataChart');
+    const ctx1 = document.getElementById('humDataChart');
+    const ctx2 = document.getElementById('lightDataChart');
+
+    // Check if we are dealing with a py or an lht
+    if (weatherPoints[0].sensorData.humidity === null) {
+        const pressure = await fetchPressureFromWeatherpoints(weatherPoints);
+    } else {
+        const humidity = await fetchHumidityFromWeatherpoints(weatherPoints);
+    }
+
+    // Check if we are dealing with a py or an lht
+    if (weatherPoints[0].sensorData.lightLux !== null) {
+        const light = await fetchLightLuxFromWeatherpoints(weatherPoints);
+    } else if (weatherPoints[0].sensorData.lightLogscale !== null) {
+        const light = await fetchLightLogFromWeatherpoints(weatherPoints);
+    }
+
+    console.log("All device data finished awaiting!");
+    console.log("Calling display graph.");
+
+    fillGraph('Temperatures', temperatures, timestamps, ctx);
+}
+
+//--------------------------------------Main----------------------------------------------------
+
 // We need to call an async function, but we're not calling it
 // From inside of an async function, so we do this hack:
 // https://stackoverflow.com/questions/39679505/using-await-outside-of-an-async-function
-
 (async () => {
-    await createNavigationBar();
+    await createNavBar();
 
-    await showDataForDevice();
+    await createGraphs();
 })();
