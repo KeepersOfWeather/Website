@@ -388,6 +388,20 @@ async function getLatestForLocation(location) {
 }
 
 async function createNavigationBar() {
+    // Begin by asking API for all devices sorted by location
+    // Generate tabs dynamically: https://www.w3schools.com/howto/howto_js_tabs.asp
+    let cities = await getLocations();
+
+    // Grab cities Div from index.html
+    let citiesDiv = document.getElementsByClassName("cities");
+
+    if (citiesDiv.length !== 0) {
+        citiesDiv = citiesDiv[0];
+    } else {
+        console.log("Something is broken when finding tabs div...")
+        return;
+    }
+
     let allButton = document.createElement("button");
         
     allButton.classList.add("All");
@@ -443,20 +457,6 @@ async function createNavigationBar() {
 // https://stackoverflow.com/questions/39679505/using-await-outside-of-an-async-function
 
 (async () => {
-    // Begin by asking API for all devices sorted by location
-    // Generate tabs dynamically: https://www.w3schools.com/howto/howto_js_tabs.asp
-    let cities = await getLocations();
-
-    // Grab cities Div from index.html
-    let citiesDiv = document.getElementsByClassName("cities");
-
-    if (citiesDiv.length !== 0) {
-        citiesDiv = citiesDiv[0];
-    } else {
-        console.log("Something is broken when finding tabs div...")
-        return;
-    }
-
     await createNavigationBar();
 
     await showDataForDevice();
