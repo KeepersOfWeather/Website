@@ -156,6 +156,8 @@ function sleep(ms) {
 }
 
 async function showDataForDevice(deviceID) {
+    if(document.getElementById("devices") === null) console.log('EMPTY');
+    else console.log(document.getElementById("devices").getElementsByClassName("div").length);
 
     console.log(`showDataForDevice called with ${deviceID}`)
 
@@ -526,9 +528,6 @@ async function getLatestForLocation(location) {
     //         dev[i].onclick = await showDataForDevice()
     //     }
     // }
-
-    if(document.getElementById("devices") === null) console.log('EMPTY');
-    else console.log(document.getElementById("devices").getElementsByClassName("div").length);
 
     await showDataForDevice(0);
 })();
