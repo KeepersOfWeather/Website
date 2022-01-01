@@ -55,9 +55,15 @@ p h3 h4 {
     text-align: left;
 }
 
+.info-class{
+    float: left;
+    width: 20%;
+    text-align: center;
+}
+
 .grid-container {
     float: left;
-    width: 50%;
+    width: 80%;
     display: grid;
     grid-template-columns: auto auto auto;
     gap: 40px;
@@ -67,7 +73,3 @@ p h3 h4 {
     width: .33vh;
 }
 
-.info-class{
-    float: left;
-    width: 50%;
-}
