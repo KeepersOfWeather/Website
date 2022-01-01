@@ -527,5 +527,7 @@ async function getLatestForLocation(location) {
     //     }
     // }
 
+    console.log(document.getElementById("devices").getElementsByClassName("div").length)
+
     await showDataForDevice(0);
 })();
