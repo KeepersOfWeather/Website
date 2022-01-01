@@ -4,7 +4,6 @@ async function fetchFromApi(endpoint, parameters) {
 
     // This is our base URL to the API
     let url = 'https://keepersofweather.nl/api/';
-    //test
     // We can add endpoints to our base URL
     if (endpoint) {
         url += endpoint;
