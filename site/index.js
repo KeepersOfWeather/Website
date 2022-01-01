@@ -155,6 +155,10 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+async function checkInput() {
+
+}
+
 async function fillGraph(title, data, timestamps, ctx) {
     const _ = new Chart(ctx, {
             type: 'line',
@@ -171,8 +175,12 @@ async function fillGraph(title, data, timestamps, ctx) {
         });
 }
 
-async function showDataForDevice(deviceID) {
-    console.log(`Display data for device: ${deviceID}`)
+async function showDataForDevice() {
+    var deviceIDs = new Array;
+
+    checkInput(deviceIDs);
+
+    console.log(`Display data for device: ${deviceIDs}`)
 
     if(document.getElementById("devices") === null) console.log('EMPTY');
     else console.log(document.getElementById("devices").getElementsByClassName("div").length);
@@ -181,7 +189,7 @@ async function showDataForDevice(deviceID) {
     let weatherPoints = await fromDevice(deviceID);
 
     if (weatherPoints.length === 0) {
-        console.log(`API returned empty array for await fromDevice(${deviceID})`);
+        console.log(`API returned empty array for await fromDevice(${deviceIDs})`);
         return;
     }
 
@@ -379,24 +387,25 @@ async function getLatestForLocation(location) {
     return {fromDeviceId, newestData};
 }
 
-// We need to call an async function, but we're not calling it
-// From inside of an async function, so we do this hack:
-// https://stackoverflow.com/questions/39679505/using-await-outside-of-an-async-function
+async function createNavigationBar() {
+    let allButton = document.createElement("button");
+        
+    allButton.classList.add("All");
+    // allButton.classList.add("active");
+    allButton.id = "All";
 
-(async () => {
-    // Begin by asking API for all devices sorted by location
-    // Generate tabs dynamically: https://www.w3schools.com/howto/howto_js_tabs.asp
-    let cities = await getLocations();
+    let allDevices = await getDevices();
 
-    // Grab cities Div from index.html
-    let citiesDiv = document.getElementsByClassName("cities");
+    allButton.onclick = async function () {
+        removeActiveFromButtons();
+        allButton.classList.add("active");
+        showDevices(allDevices);
+        await updateLatestWeatherDiv();
+    };
 
-    if (citiesDiv.length !== 0) {
-        citiesDiv = citiesDiv[0];
-    } else {
-        console.log("Something is broken when finding tabs div...")
-        return;
-    }
+    allButton.innerHTML = "All"; // Change the name to be the city name
+
+    citiesDiv.appendChild(allButton);
 
     // Iterate through each location stored cities
     // https://stackoverflow.com/questions/34913675/how-to-iterate-keys-values-in-javascript
@@ -424,34 +433,31 @@ async function getLatestForLocation(location) {
         citiesDiv.appendChild(newCityButton);
     }
 
-    let allButton = document.createElement("button");
-        
-    allButton.classList.add("All");
-    // allButton.classList.add("active");
-    allButton.id = "All";
+    allButton.classList.add("active");
+    showDevices(allDevices);
+    await updateLatestWeatherDiv();
+}
 
-    let allDevices = await getDevices();
+// We need to call an async function, but we're not calling it
+// From inside of an async function, so we do this hack:
+// https://stackoverflow.com/questions/39679505/using-await-outside-of-an-async-function
 
-    allButton.onclick = async function () {
-        removeActiveFromButtons();
-        allButton.classList.add("active");
-        showDevices(allDevices);
-        await updateLatestWeatherDiv();
-    };
+(async () => {
+    // Begin by asking API for all devices sorted by location
+    // Generate tabs dynamically: https://www.w3schools.com/howto/howto_js_tabs.asp
+    let cities = await getLocations();
 
-    allButton.innerHTML = "All"; // Change the name to be the city name
+    // Grab cities Div from index.html
+    let citiesDiv = document.getElementsByClassName("cities");
 
-    citiesDiv.appendChild(allButton);
+    if (citiesDiv.length !== 0) {
+        citiesDiv = citiesDiv[0];
+    } else {
+        console.log("Something is broken when finding tabs div...")
+        return;
+    }
 
-    // var el = document.getElementById('div');
-    // var dev = div.getElementsByTagName('input');
-    // var length = dev.length;
+    await createNavigationBar();
 
-    // for(var i=0; i<length; i++){
-    //     if(dev[i].type === 'checkbox'){
-    //         dev[i].onclick = await showDataForDevice()
-    //     }
-    // }
-
-    await showDataForDevice(0);
+    await showDataForDevice();
 })();
