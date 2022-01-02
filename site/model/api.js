@@ -1,4 +1,4 @@
-class ApiQuery {
+export class ApiQuery {
     constructor(endpoint, parameters){
         this.json = m_fetch(endpoint, parameters);
     }

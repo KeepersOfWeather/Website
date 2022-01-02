@@ -1,6 +1,6 @@
 import {ApiQuery} from './api.js';
 
-class Device{
+export class Device{
     constructor(id, startTime, endTime){
         this.id = id;
 
