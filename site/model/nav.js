@@ -1,3 +1,4 @@
+import { Api }  from './api.js';
 import { updateLatestWeatherDiv, getLatestForLocation }  from './latestWeather.js';
 'use strict';
 

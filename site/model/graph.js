@@ -1,3 +1,4 @@
+import { Device }  from './device.js';
 'use strict';
 
 async function fillGraph(title, data, timestamps, ctx) {
