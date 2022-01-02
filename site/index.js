@@ -26,6 +26,8 @@ async function fetchFromApi(endpoint, parameters) {
 
     // Fetch our contents from the API
     let response = await fetch(url);
+    console.log(endpoint);
+    console.log(response.json());
     return await response.json(); // And return it as a JSON object
 }
 
@@ -76,46 +78,38 @@ function UTCtoDate(dateStr) {
 
 async function fetchTimestampsFromWeatherpoints(weatherPoints) {
     var timestamps = new Array;
-    
-    for (var i = 0; i < weatherPoints.length; i++) {
-        // console.log(weatherPoints[i].metadata.utcTimeStamp + " UTC");
-
-        let parsedTimestamp = UTCtoDate(weatherPoints[i].metadata.utcTimeStamp);
-
-        timestamps.push(parsedTimestamp);
-    }
-
+    for (var i = 0; i < weatherPoints.length; i++) timestamps.push(UTCtoDate(weatherPoints[i].metadata.utcTimeStamp));
     return timestamps;
 }
 
 async function fetchTemperateFromWeatherpoints(weatherPoints) {
     var temperatures = new Array;
-    
-    for (var i = 0; i < weatherPoints.length; i++) {
-        temperatures.push(weatherPoints[i].sensorData.temperature);
-    }
-
+    for (var i = 0; i < weatherPoints.length; i++) temperatures.push(weatherPoints[i].sensorData.temperature);
     return temperatures;
 }
 
 async function fetchPressureFromWeatherpoints(weatherPoints) {
     var pressure = new Array;
-    
-    for (var i = 0; i < weatherPoints.length; i++) {
-        pressure.push(weatherPoints[i].sensorData.pressure);
-    }
-
+    for (var i = 0; i < weatherPoints.length; i++) pressure.push(weatherPoints[i].sensorData.pressure);
     return pressure;
 }
 
 async function fetchHumidityFromWeatherpoints(weatherPoints) {
-    var hum = new Array;
-    
-    for (var i = 0; i < weatherPoints.length; i++) {
-        hum.push(weatherPoints[i].sensorData.humidity);
-    }
+    var humidity = new Array;
+    for (var i = 0; i < weatherPoints.length; i++) humidity.push(weatherPoints[i].sensorData.humidity);
+    return humidity;
+}
 
-    return hum;
+async function fetchLightLuxFromWeatherpoints(weatherPoints) {
+    var light = new Array;
+    for (var i = 0; i < weatherPoints.length; i++) light.push((weatherPoints[i].sensorData.lightLux/ 12415.0) * 100.0);
+    return light;
+}
+
+async function fetchLightLogFromWeatherpoints(weatherPoints) {
+    var light = new Array;
+    for (var i = 0; i < weatherPoints.length; i++) light.push((weatherPoints[i].sensorData.lightLogscale/ 217.0) * 100.0);
+    return light;
 }
 
 function lightToPercentage(logOrLux, type) {
@@ -126,28 +120,6 @@ function lightToPercentage(logOrLux, type) {
         // Highest log value in database
         return (logOrLux / 217.0) * 100.0;
     }
-}
-
-async function fetchLightLuxFromWeatherpoints(weatherPoints) {
-    var light = new Array;
-    
-    for (var i = 0; i < weatherPoints.length; i++) {
-        light.push((weatherPoints[i].sensorData.lightLux/ 12415.0) * 100.0);
-    }
-
-    //const lightPercentage = await lightToPercentage(light, "lux");
-    return light;
-}
-
-async function fetchLightLogFromWeatherpoints(weatherPoints) {
-    var light = new Array;
-    
-    for (var i = 0; i < weatherPoints.length; i++) {
-        light.push((weatherPoints[i].sensorData.lightLogscale/ 217.0) * 100.0);
-    }
-
-    //const lightPercentage = await lightToPercentage(light, "log");
-    return light;
 }
 
 //--------------------------------------Update Utils----------------------------------------------------
@@ -409,7 +381,10 @@ async function fillGraph(title, data, timestamps, ctx) {
 }
 
 async function checkInput(deviceIDs) {
-
+    
+    const box = document.getElementById(device);
+    const checked = box.checked;
+    if(checked) break;
 }
 
 async function createGraphs(deviceID) {
