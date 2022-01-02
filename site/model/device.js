@@ -12,10 +12,7 @@ class Device{
         this.connection = latest.json[0].metadata.snr;
         this.location = location.json[0][0];
         
-
-        if(endTime && startTime) let weather = new ApiQuery(`device/${id}`); //TODO:: only return sensor data
-        else if(!endTime) let weather = new ApiQuery(`device/${id}`);
-        else let weather = new ApiQuery(`device/${id}`);
+        let weather = new ApiQuery(`device/${id}`);
 
         this.timeStamps, this.temperature, this.humidity, this.pressure, this.light = new Array;
         for(var i=0; i<weather.json.length; i++){
