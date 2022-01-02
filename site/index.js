@@ -380,18 +380,30 @@ async function fillGraph(title, data, timestamps, ctx) {
         });
 }
 
-async function checkInput(deviceIDs) {
+// if return -1 dont graph anything
+async function checkInput() {
+    let devices = document.getElementById(devices);
+    if (devices === null) return -1;
 
-    // const box = document.getElementById(device);
-    // const checked = box.checked;
-    // if(checked) break;
+    let id = 0;
+    for(const [input,lable] of Object.entries(devices)){
+        const box = document.getElementById(lable);
+        const checked = box.checked;
+        if(checked) return id;
+        id++;
+    }
+    return -1;
 }
 
-async function createGraphs(deviceID) {
-    var deviceIDs = new Array;
+async function createGraphs() {
+    var deviceID = checkInput();
 
-    checkInput(deviceIDs);
-
+    if (deviceID === -1) {
+        let data = new Array;
+        let timestamps = new Array;
+        fillGraph('Temperature', data, timestamps, ctx);
+    }
+    else{
     console.log(`Display data for device: ${deviceID}`)
 
     if(document.getElementById("devices") === null) console.log('EMPTY');
@@ -430,6 +442,7 @@ async function createGraphs(deviceID) {
     console.log("Calling display graph.");
 
     fillGraph('Temperatures', temperatures, timestamps, ctx);
+    }
 }
 
 //--------------------------------------Main----------------------------------------------------
