@@ -16,7 +16,7 @@ class Api {
             }
         }
         // await and store api contents
-        response = await fetch(url);
-        this.json =  response.json(); // keep a json object handy
+        response = fetch(url);
+        this.json =  await response.json(); // keep a json object handy
     }
 }
