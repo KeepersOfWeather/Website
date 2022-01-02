@@ -1,4 +1,4 @@
-import {ApiQuery} from './api';
+import {ApiQuery} from './api.js';
 
 class Device{
     constructor(id, startTime, endTime){
