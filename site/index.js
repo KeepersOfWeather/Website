@@ -412,7 +412,7 @@ async function checkInput(deviceIDs) {
 
 }
 
-async function createGraphs() {
+async function createGraphs(deviceIDS) {
     var deviceIDs = new Array;
 
     checkInput(deviceIDs);
@@ -465,5 +465,5 @@ async function createGraphs() {
 (async () => {
     await createNavBar();
 
-    await createGraphs();
+    await createGraphs(0);
 })();
