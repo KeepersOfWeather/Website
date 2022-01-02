@@ -82,7 +82,7 @@ export async function updateLatestWeatherDiv(forDeviceID) {
         latestData = new ApiQuery('latest');
     }
 
-    if (latestData.json.length === 0) {
+    if (latestData.json.length === 0 || latestData.json === null) {
         console.log("Can't reach API!");
         return;
     }
