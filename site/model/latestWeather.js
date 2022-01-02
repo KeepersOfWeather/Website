@@ -1,7 +1,8 @@
+import { ApiQuery }  from './api.js';
 'use strict';
 
 export async function getLatestForLocation(location) {
-    let cities = await getLocations();
+    let cities = new ApiQuery('locations');
 
     var newestData = {};
     var fromDeviceId = undefined;
@@ -78,7 +79,7 @@ export async function updateLatestWeatherDiv(forDeviceID) {
     if (forDeviceID !== undefined) {
         latestData = await getLatestForDeviceID(forDeviceID);
     } else {
-        latestData = await getLatest();
+        latestData = new ApiQuery('latest');
     }
 
     if (latestData.length === 0) {
