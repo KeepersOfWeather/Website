@@ -26,8 +26,8 @@ async function fetchFromApi(endpoint, parameters) {
 
     // Fetch our contents from the API
     let response = await fetch(url);
-    console.log(endpoint);
-    console.log(response.json());
+    // console.log(endpoint);
+    // console.log(response.json());
     return await response.json(); // And return it as a JSON object
 }
 
