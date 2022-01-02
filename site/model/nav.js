@@ -59,7 +59,7 @@ async function createDeviceList(devicesCollection) {
 export async function createNavBar() {
     // Begin by asking API for all devices sorted by location
     // Generate tabs dynamically: https://www.w3schools.com/howto/howto_js_tabs.asp
-    let cities = api_query('locations');
+    let cities = await api_query('locations');
 
     // Grab cities Div from index.html
     let citiesDiv = document.getElementsByClassName("cities");
@@ -77,7 +77,7 @@ export async function createNavBar() {
     // allButton.classList.add("active");
     allButton.id = "All";
 
-    let allDevices = api_query('devices');
+    let allDevices = await api_query('devices');
 
     allButton.onclick = async function () {
         removeActiveFromButtons();

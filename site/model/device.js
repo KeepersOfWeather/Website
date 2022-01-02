@@ -1,18 +1,18 @@
-import {ApiQuery} from './api.js';
+import {api_query} from './api.js';
 
 export class Device{
     constructor(id, startTime, endTime){
         this.id = id;
 
-        let latest = new ApiQuery(`device/${id}/latest`);
-        let location = new ApiQuery(`device/${id}/location`); //TODO:: combine endpoints
+        let latest = api_query(`device/${id}/latest`);
+        let location = api_query(`device/${id}/location`); //TODO:: combine endpoints
         
         this.name = latest.json[0].metadata.deviceID;;
         this.lastRecieved = latest.json[0].metadata.utcTimeStamp;
         this.connection = latest.json[0].metadata.snr;
         this.location = location.json[0][0];
         
-        let weather = new ApiQuery(`device/${id}`);
+        let weather = api_query(`device/${id}`);
 
         this.timeStamps, this.temperature, this.humidity, this.pressure, this.light = new Array;
         for(var i=0; i<weather.json.length; i++){

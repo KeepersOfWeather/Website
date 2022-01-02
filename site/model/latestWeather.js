@@ -2,7 +2,7 @@ import { api_query }  from './api.js';
 'use strict';
 
 export async function getLatestForLocation(location) {
-    let cities = api_query('locations');
+    let cities = await api_query('locations');
 
     var newestData = {};
     var fromDeviceId = undefined;
@@ -12,7 +12,7 @@ export async function getLatestForLocation(location) {
 
         if (locationEntry.City === location) {
             for (const [City, deviceID, deviceNumber] of Object.entries(locationEntry)) {
-                var latestFromDevice = api_query(`device/${forDeviceID}/latest`);
+                var latestFromDevice = await api_query(`device/${forDeviceID}/latest`);
                 
                 latestFromDevice = latestFromDevice[0];
 
@@ -77,9 +77,9 @@ export async function updateLatestWeatherDiv(forDeviceID) {
     var latestData = {};
 
     if (forDeviceID !== undefined) {
-        latestData = api_query(`device/${forDeviceID}/latest`);
+        latestData = await api_query(`device/${forDeviceID}/latest`);
     } else {
-        latestData = api_query('latest');
+        latestData = await api_query('latest');
     }
 
     if (latestData.length === 0) {
