@@ -1,4 +1,4 @@
-import { ApiQuery }  from './api.js';
+import { api_query }  from './api.js';
 import { updateLatestWeatherDiv, getLatestForLocation }  from './latestWeather.js';
 'use strict';
 
@@ -59,7 +59,7 @@ async function createDeviceList(devicesCollection) {
 export async function createNavBar() {
     // Begin by asking API for all devices sorted by location
     // Generate tabs dynamically: https://www.w3schools.com/howto/howto_js_tabs.asp
-    let cities = new ApiQuery('locations');
+    let cities = api_query('locations');
 
     // Grab cities Div from index.html
     let citiesDiv = document.getElementsByClassName("cities");
@@ -77,12 +77,12 @@ export async function createNavBar() {
     // allButton.classList.add("active");
     allButton.id = "All";
 
-    let allDevices = new ApiQuery('devices');
+    let allDevices = api_query('devices');
 
     allButton.onclick = async function () {
         removeActiveFromButtons();
         allButton.classList.add("active");
-        createDeviceList(allDevices.json);
+        createDeviceList(allDevices);
         await updateLatestWeatherDiv();
     };
 
@@ -92,7 +92,7 @@ export async function createNavBar() {
 
     // Iterate through each location stored cities
     // https://stackoverflow.com/questions/34913675/how-to-iterate-keys-values-in-javascript
-    for (const [cityName, deviceList] of Object.entries(cities.json)) {
+    for (const [cityName, deviceList] of Object.entries(cities)) {
 
         // Generate a button for each availiable location recieved from the API 
         // https://www.w3schools.com/jsref/met_node_appendchild.asp
@@ -107,7 +107,7 @@ export async function createNavBar() {
             removeActiveFromButtons();
             newCityButton.classList.add("active");
             createDeviceList(deviceList);
-            let latestDataFromLocation = await getLatestForLocation(deviceList);
+            let latestDataFromLocation = await getLatestForLocation(deviceList); //double query?
             await updateLatestWeatherDiv(latestDataFromLocation.fromDeviceId);
         };
 

@@ -1,10 +1,4 @@
-export class ApiQuery {
-    constructor(endpoint, parameters){
-        this.json = m_fetch(endpoint, parameters);
-    }
-}
-
-async function m_fetch(endpoint, parameters) {
+export async function api_query(endpoint, parameters) {
     // base URL to our API
     let url = 'https://keepersofweather.nl/api/';
 

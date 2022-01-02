@@ -1,8 +1,8 @@
-import { ApiQuery }  from './api.js';
+import { api_query }  from './api.js';
 'use strict';
 
 export async function getLatestForLocation(location) {
-    let cities = new ApiQuery('locations');
+    let cities = api_query('locations');
 
     var newestData = {};
     var fromDeviceId = undefined;
@@ -12,7 +12,7 @@ export async function getLatestForLocation(location) {
 
         if (locationEntry.City === location) {
             for (const [City, deviceID, deviceNumber] of Object.entries(locationEntry)) {
-                var latestFromDevice = await getLatestForDeviceID(deviceNumber);
+                var latestFromDevice = api_query(`device/${forDeviceID}/latest`);
                 
                 latestFromDevice = latestFromDevice[0];
 
@@ -77,37 +77,37 @@ export async function updateLatestWeatherDiv(forDeviceID) {
     var latestData = {};
 
     if (forDeviceID !== undefined) {
-        latestData = await getLatestForDeviceID(forDeviceID);
+        latestData = api_query(`device/${forDeviceID}/latest`);
     } else {
-        latestData = new ApiQuery('latest');
+        latestData = api_query('latest');
     }
 
-    if (latestData.json.length === 0 || latestData.json === null) {
+    if (latestData.length === 0) {
         console.log("Can't reach API!");
         return;
     }
 
     // Add from device
-    await addToLatestWeather("Device", latestData.json[0].metadata.deviceID);
+    await addToLatestWeather("Device", latestData[0].metadata.deviceID);
 
     // Add latest timestamp
-    await addToLatestWeather("Timestamp", latestData.json[0].metadata.utcTimeStamp.replace("T", " ") + " UTC");
+    await addToLatestWeather("Timestamp", latestData[0].metadata.utcTimeStamp.replace("T", " ") + " UTC");
 
     // Add latest temperature
-    await addToLatestWeather("Temperature", latestData.json[0].sensorData.temperature + " °C");
+    await addToLatestWeather("Temperature", latestData[0].sensorData.temperature + " °C");
 
     // Check if we are dealing with a py or an lht
-    if (latestData.json[0].sensorData.pressure !== null) {
-        await addToLatestWeather("Pressure", latestData.json[0].sensorData.pressure + " mBar");
-    } else if (latestData.json[0].sensorData.humidity !== null) {
-        await addToLatestWeather("Humidity", latestData.json[0].sensorData.humidity + "%");
+    if (latestData[0].sensorData.pressure !== null) {
+        await addToLatestWeather("Pressure", latestData[0].sensorData.pressure + " mBar");
+    } else if (latestData[0].sensorData.humidity !== null) {
+        await addToLatestWeather("Humidity", latestData[0].sensorData.humidity + "%");
     }
 
     // Check if we are dealing with a py or an lht
-    if (latestData.json[0].sensorData.lightLux !== null) {
+    if (latestData[0].sensorData.lightLux !== null) {
         // We have no lightLogscale, use the lightLux parameter instead
-        await addToLatestWeather("Light", latestData.json[0].sensorData.lightLux + " Lux");
-    } else if (latestData.json[0].sensorData.lightLogscale !== null) {
-        await addToLatestWeather("Light", latestData.json[0].sensorData.lightLogscale + " log");
+        await addToLatestWeather("Light", latestData[0].sensorData.lightLux + " Lux");
+    } else if (latestData[0].sensorData.lightLogscale !== null) {
+        await addToLatestWeather("Light", latestData[0].sensorData.lightLogscale + " log");
     }
 }
