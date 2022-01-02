@@ -55,7 +55,7 @@ async function createDeviceList(devicesCollection) {
     
 }
 
-var nav = async function createNavBar() {
+export async function createNavBar() {
     // Begin by asking API for all devices sorted by location
     // Generate tabs dynamically: https://www.w3schools.com/howto/howto_js_tabs.asp
     let cities = new Api('locations');
@@ -119,5 +119,3 @@ var nav = async function createNavBar() {
     createDeviceList(allDevices.json);
     await updateLatestWeatherDiv();
 }
-
-export {nav}
