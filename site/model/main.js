@@ -1,5 +1,5 @@
-import {createNavBar} from './nav';
-import {createGraphs} from './graph';
+import {createNavBar} from './nav.js';
+import {createGraphs} from './graph.js';
 
 (async () => {
     await createNavBar();
