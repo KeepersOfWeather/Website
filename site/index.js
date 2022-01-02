@@ -412,12 +412,12 @@ async function checkInput(deviceIDs) {
 
 }
 
-async function createGraphs(deviceIDS) {
+async function createGraphs(deviceID) {
     var deviceIDs = new Array;
 
     checkInput(deviceIDs);
 
-    console.log(`Display data for device: ${deviceIDs}`)
+    console.log(`Display data for device: ${deviceID}`)
 
     if(document.getElementById("devices") === null) console.log('EMPTY');
     else console.log(document.getElementById("devices").getElementsByClassName("div").length);
@@ -426,7 +426,7 @@ async function createGraphs(deviceIDS) {
     let weatherPoints = await fromDevice(deviceID);
 
     if (weatherPoints.length === 0) {
-        console.log(`API returned empty array for await fromDevice(${deviceIDs})`);
+        console.log(`API returned empty array for await fromDevice(${deviceID})`);
         return;
     }
 
