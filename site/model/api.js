@@ -1,6 +1,6 @@
 class ApiQuery {
     constructor(endpoint, parameters){
-        this.json =  await m_fetch(endpoint, parameters);
+        this.json = m_fetch(endpoint, parameters);
     }
 }
 
