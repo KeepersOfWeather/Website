@@ -1,19 +1,21 @@
+import {ApiQuery} from './api';
+
 class Device{
     constructor(id, startTime, endTime){
         this.id = id;
 
-        let latest = new Api(`device/${id}/latest`);
-        let location = new Api(`device/${id}/location`); //TODO:: combine endpoints
+        let latest = new ApiQuery(`device/${id}/latest`);
+        let location = new ApiQuery(`device/${id}/location`); //TODO:: combine endpoints
         
-        this.name = await latest.json[0].metadata.deviceID;;
-        this.lastRecieved = await latest.json[0].metadata.utcTimeStamp;
-        this.connection = await latest.json[0].metadata.snr;
-        this.location = await location.json[0][0];
+        this.name = latest.json[0].metadata.deviceID;;
+        this.lastRecieved = latest.json[0].metadata.utcTimeStamp;
+        this.connection = latest.json[0].metadata.snr;
+        this.location = location.json[0][0];
         
 
-        if(endTime && startTime) let weather = new Api(`device/${id}`); //TODO:: only return sensor data
-        else if(!endTime) let weather = new Api(`device/${id}`);
-        else let weather = new Api(`device/${id}`);
+        if(endTime && startTime) let weather = new ApiQuery(`device/${id}`); //TODO:: only return sensor data
+        else if(!endTime) let weather = new ApiQuery(`device/${id}`);
+        else let weather = new ApiQuery(`device/${id}`);
 
         this.timeStamps, this.temperature, this.humidity, this.pressure, this.light = new Array;
         for(var i=0; i<weather.json.length; i++){
