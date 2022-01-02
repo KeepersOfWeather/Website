@@ -117,6 +117,6 @@ export async function createNavBar() {
     }
 
     allButton.classList.add("active");
-    createDeviceList(allDevices.json);
+    createDeviceList(allDevices);
     await updateLatestWeatherDiv();
 }
