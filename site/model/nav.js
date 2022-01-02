@@ -1,4 +1,4 @@
-import { updateLatestWeatherDiv, getLatestForLocation }  from './latestWeather';
+import { updateLatestWeatherDiv, getLatestForLocation }  from './latestWeather.js';
 'use strict';
 
 function removeActiveFromButtons() {
