@@ -381,10 +381,10 @@ async function fillGraph(title, data, timestamps, ctx) {
 }
 
 async function checkInput(deviceIDs) {
-    
-    const box = document.getElementById(device);
-    const checked = box.checked;
-    if(checked) break;
+
+    // const box = document.getElementById(device);
+    // const checked = box.checked;
+    // if(checked) break;
 }
 
 async function createGraphs(deviceID) {
