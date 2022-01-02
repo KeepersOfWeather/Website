@@ -275,26 +275,45 @@ async function showDevices(devicesCollection) {
     // Go over each id and name in the passed dictionary
     for (const [deviceId, deviceName] of Object.entries(devicesCollection)) {
 
-        // Create a div with a check box and a label
-        let newDeviceEntry = document.createElement("div");
+        // // Create a div with a check box and a label
+        // let newDeviceEntry = document.createElement("div");
 
-            let newDeviceCheckBox = document.createElement("input");
-            newDeviceCheckBox.type = "checkbox";
-            newDeviceCheckBox.id = deviceName;
-            newDeviceCheckBox.name = deviceName;
+        //     let newDeviceCheckBox = document.createElement("input");
+        //     newDeviceCheckBox.type = "checkbox";
+        //     newDeviceCheckBox.id = deviceName;
+        //     newDeviceCheckBox.name = deviceName;
 
-            let newDeviceLabel = document.createElement("label");
-            newDeviceLabel.htmlFor = deviceName;
-            newDeviceLabel.innerHTML = deviceName;
+        //     let newDeviceLabel = document.createElement("label");
+        //     newDeviceLabel.htmlFor = deviceName;
+        //     newDeviceLabel.innerHTML = deviceName;
 
-        // Add the checkbox and label for the checkbox
-        // To the div for the new entry
-        newDeviceEntry.appendChild(newDeviceCheckBox);
-        newDeviceEntry.appendChild(newDeviceLabel);
+        // // Add the checkbox and label for the checkbox
+        // // To the div for the new entry
+        // newDeviceEntry.appendChild(newDeviceCheckBox);
+        // newDeviceEntry.appendChild(newDeviceLabel);
 
-        // Add the new entry to our list of devices
-        devicesList.appendChild(newDeviceEntry);
+        // // Add the new entry to our list of devices
+        // devicesList.appendChild(newDeviceEntry);
+
+        let devicesDiv = document.getElementsByClassName("devices");
+
+        let newDeviceButton = document.createElement("button");
+        
+        newDeviceButton.classList.add("devices"); 
+        newDeviceButton.id = cityName;
+
+        newDeviceButton.onclick = async function () { 
+            removeActiveFromButtons();
+            newDeviceButton.classList.add("active");
+            get
+            createGraphs();
+        };
+
+        newDeviceButton.innerHTML = cityName; // rename the button
+        
+        devicesDiv.appendChild(newCityButton);
     }
+    
 }
 
 async function createNavBar() {
@@ -453,5 +472,5 @@ async function createGraphs() {
 (async () => {
     await createNavBar();
 
-    await createGraphs(0);
+    await createGraphs();
 })();
