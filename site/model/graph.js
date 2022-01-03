@@ -41,13 +41,13 @@ export async function createGraphs() {
         fillGraph('Temperature', data, timestamps, ctx);
     }
     else{
-        let device = initDevice(id);
-        console.log(`Display data for device: ${device.name}`)
+        let device = await initDevice(id);
+        console.log(`Display data for device: ${await device.name}`)
 
         const ctx = document.getElementById('tempDataChart');
         const ctx1 = document.getElementById('humDataChart');
         const ctx2 = document.getElementById('lightDataChart');
 
-        fillGraph('Temperatures', device.temperatures, device.timestamps, ctx);
+        fillGraph('Temperatures', await device.temperatures, await device.timestamps, ctx);
     }
 }
