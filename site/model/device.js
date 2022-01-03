@@ -3,10 +3,11 @@ import {api_query} from './api.js';
 export async function initDevice(id, startTime, endTime){
     let latest = await api_query(`device/${id}/latest`);
     let location = await api_query(`device/${id}/location`); //TODO:: combine endpoints
-    
+
     let weather = await api_query(`device/${id}`);
 
-    let timeStamps, temperature, humidity, pressure, light = new Array;
+    let temperature, humidity, pressure, light = new Array;
+    let timeStamps = new Array;
     for(var i=0; i<await weather.length; i++){
         timeStamps.push(await weather[i].metadata.utcTimeStamp);
 
