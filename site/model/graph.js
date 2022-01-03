@@ -2,6 +2,7 @@ import { initDevice }  from './device.js';
 'use strict';
 
 async function fillGraph(title, data, timestamps, ctx) {
+    ctx.destroy();
     const _ = new Chart(ctx, {
             type: 'line',
             data : {
@@ -36,12 +37,10 @@ async function checkInput() {
 
 export async function createGraphs(id) {
 
-    console.log("1 error");
     var tempCanvas = document.getElementById('tempGraph');
     var humCanvas = document.getElementById('humGraph');
     var lightCanvas = document.getElementById('lightGraph');
 
-    console.log("2 error");
     var tempContext = tempCanvas.getContext('2d');
     var humContext = humCanvas.getContext('2d');
     var lightContext = lightCanvas.getContext('2d');
@@ -54,8 +53,6 @@ export async function createGraphs(id) {
     // humContext.destroy();
     // lightContext.destroy();
 
-
-    console.log("3 error");
     if (id === -1) {
         let data = new Array;
         let timestamps = new Array;
