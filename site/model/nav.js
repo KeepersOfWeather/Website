@@ -51,7 +51,7 @@ async function createDeviceList(devicesCollection) {
 
         newDeviceButton.innerHTML = deviceName; // rename the button
         
-        devicesDiv.appendChild(newCityButton);
+        devicesDiv.appendChild(newDeviceButton);
     }
     
 }
