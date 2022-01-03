@@ -48,6 +48,6 @@ export async function createGraphs() {
         const ctx1 = document.getElementById('humDataChart');
         const ctx2 = document.getElementById('lightDataChart');
 
-        fillGraph('Temperatures', await device.temperatures, await device.timestamps, ctx);
+        fillGraph('Temperatures', device.temperature, device.timeStamps, ctx);
     }
 }
