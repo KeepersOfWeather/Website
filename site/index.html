@@ -12,38 +12,28 @@
     <meta property="og:title" content="Keepers of Weather!">
     <meta property="og:description" content="The Official Dashboard of Keepers of Weather!">
     <meta property="og:image" content="http://www.nyan.cat/cats/original.gif">
-    <link href="http://fonts.googleapis.com/css?family=Corben:bold" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Nobile" rel="stylesheet" type="text/css">
 </head>
 <body>
-
     <script type='module' src='./model/main.js'></script>
+    <body style="background-color:powderblue;">
 
-    <!-- This div will hold our tabs with devices -->
-    <div class="cities"></div>
+        <!-- This div will hold our tabs with devices -->
+        <div class="cities"></div>
 
-    <div class="content">
-        <div class="info-class">
-            <h2>Devices:</h2>
-            <ul class="devices"></ul>
+        <div class="content">
+            <div class="info-class">
+                <h2>Devices:</h2>
+                <ul class="devices"></ul>
 
-            <h2>Latest weather data:</h3>
-            <table class="latest-data"></table>
-            <!-- checking the placement of the weather station predictions -->
-            <iframe src="https://gadgets.buienradar.nl/gadget/forecastandstation/6290/" 
-            noresize scrolling=no hspace=0 vspace=0 
-            frameborder=0 marginheight=0 marginwidth=0 width=300 height=220>
-            </iframe> 
-    
-            <iframe src="https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.21833&lng=6.89583&overname=2&zoom=8&naam=Enschede&size=2&voor=0" 
-            scrolling=no width=256 height=256 frameborder=no>
-            </iframe>
+                <h2>
+                    Latest weather data:</h3>
+                    <table class="latest-data"></table>
+            </div>
+            <div class="grid-container">
+                <canvas id="tempGraph" class="grid-child"></canvas>
+                <canvas id="humGraph" class="grid-child"></canvas>
+                <canvas id="lightGraph" class="grid-child"></canvas>
+            </div>
         </div>
-        <div class="grid-container">
-            <canvas id="tempGraph"  class="grid-child"></canvas>
-            <canvas id="humGraph"   class="grid-child"></canvas>
-            <canvas id="lightGraph" class="grid-child"></canvas>
-        </div>
-    </div>
-</body>
+    </body>
 </html>
