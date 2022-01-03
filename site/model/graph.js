@@ -2,8 +2,9 @@ import { initDevice }  from './device.js';
 'use strict';
 
 async function fillGraph(title, data, timestamps, ctx) {
-    //ctx.destroy();
-    _.destroy();
+    let oldGraph = Chart.getChart(ctx)
+    oldGraph.destroy();
+
     let _ = new Chart(ctx, {
             type: 'line',
             data : {
