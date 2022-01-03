@@ -1,8 +1,8 @@
 import { initDevice }  from './device.js';
 'use strict';
 
-async function fillGraph(title, data, timestamps, ctx) {
-    const _ = new Chart(ctx, {
+async function fillGraph(title, data, timestamps, canvas) {
+    const _ = new Chart(canvas, {
             type: 'line',
             data : {
                 labels: timestamps,
