@@ -15,25 +15,23 @@
 </head>
 <body>
     <script type='module' src='./model/main.js'></script>
-    <div style="background-image: url('https://www.computable.nl/img/66/46/org_org/6646174.jpg');">
+    <!-- This div will hold our tabs with devices -->
+    <div class="cities"></div>
 
-        <!-- This div will hold our tabs with devices -->
-        <div class="cities"></div>
+    <div class="content">
+        <div class="info-class">
+            <h2>Devices:</h2>
+            <ul class="devices"></ul>
 
-        <div class="content">
-            <div class="info-class">
-                <h2>Devices:</h2>
-                <ul class="devices"></ul>
-
-                <h2>
-                    Latest weather data:</h3>
-                    <table class="latest-data"></table>
-            </div>
-            <div class="grid-container">
-                <canvas id="tempGraph" class="grid-child"></canvas>
-                <canvas id="humGraph" class="grid-child"></canvas>
-                <canvas id="lightGraph" class="grid-child"></canvas>
-            </div>
+            <h2>
+                Latest weather data:</h3>
+                <table class="latest-data"></table>
         </div>
+        <div class="grid-container">
+            <canvas id="tempGraph" class="grid-child"></canvas>
+            <canvas id="humGraph" class="grid-child"></canvas>
+            <canvas id="lightGraph" class="grid-child"></canvas>
+        </div>
+    </div>
 </body>
 </html>
