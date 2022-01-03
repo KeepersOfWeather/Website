@@ -1,8 +1,8 @@
 import { initDevice }  from './device.js';
 'use strict';
 
-async function fillGraph(title, data, timestamps, canvas) {
-    const _ = new Chart(canvas, {
+async function fillGraph(title, data, timestamps, ctx) {
+    const _ = new Chart(ctx, {
             type: 'line',
             data : {
                 labels: timestamps,
@@ -37,28 +37,27 @@ export async function createGraphs(id) {
     var humCanvas = document.getElementById('humGraph');
     var lightCanvas = document.getElementById('lightGraph');
 
-    if(tempCanvas){
-        var tempContext = tempCanvas.getContext('2d');
-        var humContext = humCanvas.getContext('2d');
-        var lightContext = lightCanvas.getContext('2d');
+    var tempContext = tempCanvas.getContext('2d');
+    var humContext = humCanvas.getContext('2d');
+    var lightContext = lightCanvas.getContext('2d');
 
-        tempContext.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
-        humContext.clearRect(0, 0, humCanvas.width, humCanvas.height);
-        lightContext.clearRect(0, 0, lightCanvas.width, lightCanvas.height);
-    }
+    tempContext.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+    humContext.clearRect(0, 0, humCanvas.width, humCanvas.height);
+    lightContext.clearRect(0, 0, lightCanvas.width, lightCanvas.height);
+
 
     if (id === -1) {
         let data = new Array;
         let timestamps = new Array;
-        fillGraph('Temperature', data, timestamps, tempCanvas);
-        fillGraph('Pressure', data, timestamps, humCanvas);
-        fillGraph('Light', data, timestamps, lightCanvas);
+        fillGraph('Temperature', data, timestamps, tempContext);
+        fillGraph('Pressure', data, timestamps, humContext);
+        fillGraph('Light', data, timestamps, lightContext);
     }
     else{
         let device = await initDevice(id);
-        fillGraph('Temperatures', device.temperature, device.timeStamps, tempCanvas);
-        if(device.pressure[0]===null) fillGraph('Humidity', device.humidity, device.timeStamps, humCanvas);
-        else fillGraph('Pressure', device.pressure, device.timeStamps, humCanvas);
-        fillGraph('Light', device.light, device.timeStamps, lightCanvas);
+        fillGraph('Temperatures', device.temperature, device.timeStamps, tempContext);
+        if(device.pressure[0]===null) fillGraph('Humidity', device.humidity, device.timeStamps, humContext);
+        else fillGraph('Pressure', device.pressure, device.timeStamps, humContext);
+        fillGraph('Light', device.light, device.timeStamps, lightContext);
     }
 }
