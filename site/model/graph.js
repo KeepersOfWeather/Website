@@ -1,4 +1,4 @@
-import { Device }  from './device.js';
+import { Device, initDevice }  from './device.js';
 'use strict';
 
 async function fillGraph(title, data, timestamps, ctx) {
@@ -33,7 +33,7 @@ async function checkInput() {
 }
 
 export async function createGraphs() {
-    var id = checkInput();
+    var id = 1;
 
     if (id === -1) {
         let data = new Array;
@@ -41,7 +41,7 @@ export async function createGraphs() {
         fillGraph('Temperature', data, timestamps, ctx);
     }
     else{
-        let device = new Device(id);
+        let device = initDevice(id);
         console.log(`Display data for device: ${device.name}`)
 
         const ctx = document.getElementById('tempDataChart');
