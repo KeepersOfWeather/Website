@@ -17,21 +17,21 @@
     <script type='module' src='./model/main.js'></script>
     <!-- This div will hold our tabs with devices -->
     <div class="cities"></div>
+    <body style="background-color:azure;">
+        <div class="content">
+            <div class="info-class">
+                <h2>Devices:</h2>
+                <ul class="devices"></ul>
 
-    <div class="content">
-        <div class="info-class">
-            <h2>Devices:</h2>
-            <ul class="devices"></ul>
-
-            <h2>
-                Latest weather data:</h3>
-                <table class="latest-data"></table>
+                <h2>
+                    Latest weather data:</h3>
+                    <table class="latest-data"></table>
+            </div>
+            <div class="grid-container">
+                <canvas id="tempGraph" class="grid-child"></canvas>
+                <canvas id="humGraph" class="grid-child"></canvas>
+                <canvas id="lightGraph" class="grid-child"></canvas>
+            </div>
         </div>
-        <div class="grid-container">
-            <canvas id="tempGraph" class="grid-child"></canvas>
-            <canvas id="humGraph" class="grid-child"></canvas>
-            <canvas id="lightGraph" class="grid-child"></canvas>
-        </div>
-    </div>
-</body>
+    </body>
 </html>
