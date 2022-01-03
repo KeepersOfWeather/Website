@@ -37,6 +37,7 @@ export async function createGraphs(id) {
     
     if(document.getElementById('tempGraph') || document.getElementById('humGraph')||document.getElementById('lightGraph'))
     {
+        print("Destroying the graphs");
         document.getElementById('tempGraph').destroy();
         document.getElementById('humGraph').destroy();
         document.getElementById('lightGraph').destroy();
