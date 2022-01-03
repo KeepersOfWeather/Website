@@ -33,9 +33,9 @@ async function checkInput() {
 }
 
 export async function createGraphs(id) {
-    var tempCanvas = document.getElementById('tempDataChart');
-    var humCanvas = document.getElementById('humDataChart');
-    var lightCanvas = document.getElementById('lightDataChart');
+    var tempCanvas = document.getElementById('tempGraph');
+    var humCanvas = document.getElementById('humGraph');
+    var lightCanvas = document.getElementById('lightGraph');
 
     if(tempContext){
         var tempContext = tempCanvas.getContext('2d');
