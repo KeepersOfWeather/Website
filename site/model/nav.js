@@ -1,5 +1,5 @@
 import { api_query }  from './api.js';
-import { updateLatestWeatherDiv, getLatestForLocation }  from './latestWeather.js';
+import { updateLatestWeatherDiv }  from './latestWeather.js';
 'use strict';
 
 function removeActiveFromButtons() {
@@ -17,6 +17,40 @@ function removeActiveFromButtons() {
     }
 }
 
+async function getLatestForLocation(location) {
+    let cities = await api_query('locations');
+
+    var newestData = {};
+    var fromDeviceId = undefined;
+
+    // https://stackoverflow.com/questions/34913675/how-to-iterate-keys-values-in-javascript
+    for (const [locationEntry] of Object.entries(cities)) {
+
+        if (locationEntry.City === location) {
+            for (const [City, deviceID, deviceNumber] of Object.entries(locationEntry)) {
+                var latestFromDevice = await api_query(`device/${forDeviceID}/latest`);
+                
+                latestFromDevice = latestFromDevice[0];
+
+                let timestampDate = new Date(latestFromDevice.metadata.utcTimeStamp);
+
+                var latestDate = new Date('1970-01-01T00:00:00');
+
+                if (newestData.metadata !== undefined) {
+                    latestDate = new Date(newestData.metadata.utcTimeStamp);
+                } 
+                
+                if (timestampDate > latestDate) {
+                    newestData = latestFromDevice;
+                    fromDeviceId = id;
+                }
+            }
+        }
+    }
+
+    return {fromDeviceId, newestData};
+}
+
 /// This function will fill up the devices list with devices passed as id: device in deviceCollection
 /// param deviceCollection: dictionary
 async function createDeviceList(devicesCollection) {
@@ -30,9 +64,7 @@ async function createDeviceList(devicesCollection) {
     }
 
     // Clear list of devices
-    devicesList.innerHTML = ""
-
-    let devicesDiv = document.getElementsByClassName("devices");
+    devicesList.innerHTML = "";
 
     // Go over each id and name in the passed dictionary
     for (const [deviceId, deviceName] of Object.entries(devicesCollection)) {
@@ -43,6 +75,12 @@ async function createDeviceList(devicesCollection) {
             newDeviceCheckBox.type = "checkbox";
             newDeviceCheckBox.id = deviceName;
             newDeviceCheckBox.name = deviceName;
+
+            newDeviceCheckBox.onclick = async function () {
+                if(newDeviceCheckBox.checked) console.log('unchecked');
+                else console.log('unchecked');
+                console.log(deviceName);
+            }
 
             let newDeviceLabel = document.createElement("label");
             newDeviceLabel.htmlFor = deviceName;
