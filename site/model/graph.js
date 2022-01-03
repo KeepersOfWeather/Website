@@ -33,19 +33,26 @@ async function checkInput() {
 }
 
 export async function createGraphs(id) {
+    const ctx = document.getElementById('tempDataChart');
+    const ctx1 = document.getElementById('humDataChart');
+    const ctx2 = document.getElementById('lightDataChart');
+
+    ctx.clear();
+    ctx1.clear();
+    ctx2.clear();
+
     if (id === -1) {
         let data = new Array;
         let timestamps = new Array;
         fillGraph('Temperature', data, timestamps, ctx);
+        fillGraph('Pressure', data, timestamps, ctx1);
+        fillGraph('Light', data, timestamps, ctx2);
     }
     else{
         let device = await initDevice(id);
-        console.log(`Display data for device: ${await device.name}`)
-
-        const ctx = document.getElementById('tempDataChart');
-        const ctx1 = document.getElementById('humDataChart');
-        const ctx2 = document.getElementById('lightDataChart');
-
         fillGraph('Temperatures', device.temperature, device.timeStamps, ctx);
+        if(device.pressure[0]===null) fillGraph('Humidity', device.humidity, device.timeStamps, ctx1);
+        else fillGraph('Pressure', device.pressure, device.timeStamps, ctx1);
+        fillGraph('Light', device.light, device.timeStamps, ctx2);
     }
 }
