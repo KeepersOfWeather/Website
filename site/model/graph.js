@@ -37,11 +37,11 @@ export async function createGraphs(id) {
     var humCanvas = document.getElementById('humDataChart');
     var lightCanvas = document.getElementById('lightDataChart');
 
-    var tempContext = tempCanvas.getContext('2d');
-    var humContext = humCanvas.getContext('2d');
-    var lightContext = lightCanvas.getContext('2d');
-
     if(tempContext){
+        var tempContext = tempCanvas.getContext('2d');
+        var humContext = humCanvas.getContext('2d');
+        var lightContext = lightCanvas.getContext('2d');
+
         tempContext.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
         humContext.clearRect(0, 0, humCanvas.width, humCanvas.height);
         lightContext.clearRect(0, 0, lightCanvas.width, lightCanvas.height);
