@@ -40,7 +40,7 @@ async function createDeviceList(devicesCollection) {
         let newDeviceButton = document.createElement("button");
         
         newDeviceButton.classList.add("devices"); 
-        newDeviceButton.id = cityName;
+        newDeviceButton.id = deviceName;
 
         newDeviceButton.onclick = async function () { 
             removeActiveFromButtons();
@@ -49,7 +49,7 @@ async function createDeviceList(devicesCollection) {
             createGraphs();
         };
 
-        newDeviceButton.innerHTML = cityName; // rename the button
+        newDeviceButton.innerHTML = deviceName; // rename the button
         
         devicesDiv.appendChild(newCityButton);
     }
