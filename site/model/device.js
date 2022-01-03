@@ -27,14 +27,23 @@ export async function initDevice(id, startTime, endTime){
         name : await latest[0].metadata.deviceID,
         lastRecieved : await latest[0].metadata.utcTimeStamp,
         connection : await latest[0].metadata.snr,
-        location : await location.value,
+        location :  Object.entries(await location).value,
         timeStamps : timeStamps, 
         temperature : temperature, 
         humidity : humidity, 
         pressure : pressure, 
         light : light
     };
+    console.log(device.id);
+    console.log(device.name);
+    console.log(device.lastRecieved);
+    console.log(device.connection);
     console.log(device.location);
+    console.log(device.timeStamps);
+    console.log(device.temperature);
+    console.log(device.humidity);
+    console.log(device.pressure);
+    console.log(device.light);
     return device;
 }
 
