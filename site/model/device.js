@@ -18,7 +18,7 @@ export async function initDevice(id, startTime, endTime){
         humidity.push(await weather[i].sensorData.humidity);
         pressure.push(await weather[i].sensorData.pressure);
 
-        if(await weather[i].sensorData.lightLux === null) this.light.push((await weather[i].sensorData.lightLogscale/ 217.0) * 100.0);
+        if(await weather[i].sensorData.lightLux === null) light.push((await weather[i].sensorData.lightLogscale/ 217.0) * 100.0);
         else light.push((await weather[i].sensorData.lightLux/ 12415.0) * 100.0);
     } 
 
