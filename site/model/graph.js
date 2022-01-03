@@ -34,16 +34,6 @@ async function checkInput() {
 
 export async function createGraphs(id) {
 
-    
-    if(document.getElementById('tempGraph') || document.getElementById('humGraph')||document.getElementById('lightGraph'))
-    {
-        print("Destroying the graphs");
-        document.getElementById('0').destroy();
-        document.getElementById('1').destroy();
-        document.getElementById('2').destroy();
-    }
-
-
     var tempCanvas = document.getElementById('tempGraph');
     var humCanvas = document.getElementById('humGraph');
     var lightCanvas = document.getElementById('lightGraph');
@@ -52,9 +42,13 @@ export async function createGraphs(id) {
     var humContext = humCanvas.getContext('2d');
     var lightContext = lightCanvas.getContext('2d');
 
-    tempContext.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
-    humContext.clearRect(0, 0, humCanvas.width, humCanvas.height);
-    lightContext.clearRect(0, 0, lightCanvas.width, lightCanvas.height);
+    // tempContext.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+    // humContext.clearRect(0, 0, humCanvas.width, humCanvas.height);
+    // lightContext.clearRect(0, 0, lightCanvas.width, lightCanvas.height);
+
+    tempContext.destroy();
+    humContext.destroy();
+    lightContext.destroy();
 
 
     if (id === -1) {
