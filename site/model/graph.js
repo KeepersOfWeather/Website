@@ -33,13 +33,17 @@ async function checkInput() {
 }
 
 export async function createGraphs(id) {
-    const ctx = document.getElementById('tempDataChart');
-    const ctx1 = document.getElementById('humDataChart');
-    const ctx2 = document.getElementById('lightDataChart');
+    const tempCanvas = document.getElementById('tempDataChart');
+    const humCanvas = document.getElementById('humDataChart');
+    const lightCanvas = document.getElementById('lightDataChart');
 
-    ctx.clear();
-    ctx1.clear();
-    ctx2.clear();
+    var tempContext = tempCanvas.getContext('2d');
+    var humContext = humCanvas.getContext('2d');
+    var lightContext = lightCanvas.getContext('2d');
+
+    tempContext.clear();
+    humContext.clear();
+    lightContext.clear();
 
     if (id === -1) {
         let data = new Array;
