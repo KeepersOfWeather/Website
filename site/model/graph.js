@@ -37,7 +37,7 @@ export async function createGraphs(id) {
     var humCanvas = document.getElementById('humGraph');
     var lightCanvas = document.getElementById('lightGraph');
 
-    if(tempContext){
+    if(tempCanvas){
         var tempContext = tempCanvas.getContext('2d');
         var humContext = humCanvas.getContext('2d');
         var lightContext = lightCanvas.getContext('2d');
