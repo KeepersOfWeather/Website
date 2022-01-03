@@ -33,30 +33,32 @@ async function checkInput() {
 }
 
 export async function createGraphs(id) {
-    const tempCanvas = document.getElementById('tempDataChart');
-    const humCanvas = document.getElementById('humDataChart');
-    const lightCanvas = document.getElementById('lightDataChart');
+    var tempCanvas = document.getElementById('tempDataChart');
+    var humCanvas = document.getElementById('humDataChart');
+    var lightCanvas = document.getElementById('lightDataChart');
 
     var tempContext = tempCanvas.getContext('2d');
     var humContext = humCanvas.getContext('2d');
     var lightContext = lightCanvas.getContext('2d');
 
-    tempContext.clear();
-    humContext.clear();
-    lightContext.clear();
+    if(tempContext){
+        tempContext.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+        humContext.clearRect(0, 0, humCanvas.width, humCanvas.height);
+        lightContext.clearRect(0, 0, lightCanvas.width, lightCanvas.height);
+    }
 
     if (id === -1) {
         let data = new Array;
         let timestamps = new Array;
-        fillGraph('Temperature', data, timestamps, ctx);
-        fillGraph('Pressure', data, timestamps, ctx1);
-        fillGraph('Light', data, timestamps, ctx2);
+        fillGraph('Temperature', data, timestamps, tempCanvas);
+        fillGraph('Pressure', data, timestamps, humCanvas);
+        fillGraph('Light', data, timestamps, lightCanvas);
     }
     else{
         let device = await initDevice(id);
-        fillGraph('Temperatures', device.temperature, device.timeStamps, ctx);
-        if(device.pressure[0]===null) fillGraph('Humidity', device.humidity, device.timeStamps, ctx1);
-        else fillGraph('Pressure', device.pressure, device.timeStamps, ctx1);
-        fillGraph('Light', device.light, device.timeStamps, ctx2);
+        fillGraph('Temperatures', device.temperature, device.timeStamps, tempCanvas);
+        if(device.pressure[0]===null) fillGraph('Humidity', device.humidity, device.timeStamps, humCanvas);
+        else fillGraph('Pressure', device.pressure, device.timeStamps, humCanvas);
+        fillGraph('Light', device.light, device.timeStamps, lightCanvas);
     }
 }
