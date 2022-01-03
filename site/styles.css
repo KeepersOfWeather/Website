@@ -34,9 +34,9 @@ p h3 h4 {
     color: black;
 }
 
-.cities button.active {
-    background-color: #04AA6D;
-}
+    .cities button.active {
+        background-color: #F0FFFF;
+    }
 
 .city {
     font-family: var(--font-body);
