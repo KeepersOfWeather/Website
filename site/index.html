@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.1/dist/chart.min.js"></script>
-    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-highway.css">
     <link rel="stylesheet" href="styles.css">
     <title>Keepers of Weather</title>
 
@@ -16,23 +15,25 @@
 </head>
 <body>
     <script type='module' src='./model/main.js'></script>
+    <body style="background-color:powderblue;">
 
-    <!-- This div will hold our tabs with devices -->
-    <div class="cities"></div>
+        <!-- This div will hold our tabs with devices -->
+        <div class="cities"></div>
 
-    <div class="content">
-        <div class="info-class">
-            <h2>Devices:</h2>
-            <ul class="devices"></ul>
+        <div class="content">
+            <div class="info-class">
+                <h2>Devices:</h2>
+                <ul class="devices"></ul>
 
-            <h2>Latest weather data:</h3>
-            <table class="latest-data"></table>
+                <h2>
+                    Latest weather data:</h3>
+                    <table class="latest-data"></table>
+            </div>
+            <div class="grid-container">
+                <canvas id="tempGraph" class="grid-child"></canvas>
+                <canvas id="humGraph" class="grid-child"></canvas>
+                <canvas id="lightGraph" class="grid-child"></canvas>
+            </div>
         </div>
-        <div class="grid-container">
-            <canvas id="tempGraph"  class="grid-child"></canvas>
-            <canvas id="humGraph"   class="grid-child"></canvas>
-            <canvas id="lightGraph" class="grid-child"></canvas>
-        </div>
-    </div>
-</body>
+    </body>
 </html>
