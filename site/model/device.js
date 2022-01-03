@@ -27,7 +27,7 @@ export async function initDevice(id, startTime, endTime){
         name : await latest[0].metadata.deviceID,
         lastRecieved : await latest[0].metadata.utcTimeStamp,
         connection : await latest[0].transmissionalData.snr,
-        location :  Object.entries(await location)[0],
+        location :  Object.entries(await location)[0][1],
         timeStamps : timeStamps, 
         temperature : temperature, 
         humidity : humidity, 
