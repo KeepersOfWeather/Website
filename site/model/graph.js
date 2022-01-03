@@ -32,9 +32,7 @@ async function checkInput() {
     return -1;
 }
 
-export async function createGraphs() {
-    var id = 1;
-
+export async function createGraphs(id) {
     if (id === -1) {
         let data = new Array;
         let timestamps = new Array;

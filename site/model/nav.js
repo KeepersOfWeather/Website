@@ -1,4 +1,5 @@
 import { api_query }  from './api.js';
+import {createGraphs} from './graph.js';
 import { updateLatestWeatherDiv }  from './latestWeather.js';
 'use strict';
 
@@ -73,12 +74,19 @@ async function createDeviceList(devicesCollection) {
 
             let newDeviceCheckBox = document.createElement("input");
             newDeviceCheckBox.type = "checkbox";
-            newDeviceCheckBox.id = deviceName;
+            newDeviceCheckBox.id = deviceId;
             newDeviceCheckBox.name = deviceName;
 
             newDeviceCheckBox.onclick = async function () {
-                if(newDeviceCheckBox.checked) console.log('unchecked');
-                else console.log('checked');
+                if(newDeviceCheckBox.checked){
+                    createGraphs(newDeviceCheckBox.id);
+                    console.log('checked');
+                } 
+                else {
+
+                    console.log('unchecked');
+                }
+
                 console.log(deviceName);
             }
 

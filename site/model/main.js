@@ -4,5 +4,5 @@ import {createGraphs} from './graph.js';
 (async () => {
     await createNavBar();
 
-    await createGraphs();
+    await createGraphs(-1);
 })();

@@ -1,40 +1,6 @@
 import { api_query }  from './api.js';
 'use strict';
 
-export async function getLatestForLocation(location) {
-    let cities = await api_query('locations');
-
-    var newestData = {};
-    var fromDeviceId = undefined;
-
-    // https://stackoverflow.com/questions/34913675/how-to-iterate-keys-values-in-javascript
-    for (const [locationEntry] of Object.entries(cities)) {
-
-        if (locationEntry.City === location) {
-            for (const [City, deviceID, deviceNumber] of Object.entries(locationEntry)) {
-                var latestFromDevice = await api_query(`device/${forDeviceID}/latest`);
-                
-                latestFromDevice = latestFromDevice[0];
-
-                let timestampDate = new Date(latestFromDevice.metadata.utcTimeStamp);
-
-                var latestDate = new Date('1970-01-01T00:00:00');
-
-                if (newestData.metadata !== undefined) {
-                    latestDate = new Date(newestData.metadata.utcTimeStamp);
-                } 
-                
-                if (timestampDate > latestDate) {
-                    newestData = latestFromDevice;
-                    fromDeviceId = id;
-                }
-            }
-        }
-    }
-
-    return {fromDeviceId, newestData};
-}
-
 async function addToLatestWeather(name, value) {
     // Add latest data to latest-data div
     let latestDataDiv = document.getElementsByClassName("latest-data");
