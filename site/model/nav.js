@@ -20,7 +20,6 @@ function removeActiveFromButtons() {
 /// This function will fill up the devices list with devices passed as id: device in deviceCollection
 /// param deviceCollection: dictionary
 async function createDeviceList(devicesCollection) {
-    
     let devicesList = document.getElementsByClassName("devices");
 
     if (devicesList.length !== 0) {
@@ -33,25 +32,29 @@ async function createDeviceList(devicesCollection) {
     // Clear list of devices
     devicesList.innerHTML = ""
 
+    let devicesDiv = document.getElementsByClassName("devices");
+
     // Go over each id and name in the passed dictionary
     for (const [deviceId, deviceName] of Object.entries(devicesCollection)) {
-        let devicesDiv = document.getElementsByClassName("devices");
+        // Create a div with a check box and a label
+        let newDeviceEntry = document.createElement("div");
 
-        let newDeviceButton = document.createElement("button");
-        
-        newDeviceButton.classList.add("devices"); 
-        newDeviceButton.id = deviceName;
+            let newDeviceCheckBox = document.createElement("input");
+            newDeviceCheckBox.type = "checkbox";
+            newDeviceCheckBox.id = deviceName;
+            newDeviceCheckBox.name = deviceName;
 
-        newDeviceButton.onclick = async function () { 
-            removeActiveFromButtons();
-            newDeviceButton.classList.add("active");
-            get
-            createGraphs();
-        };
+            let newDeviceLabel = document.createElement("label");
+            newDeviceLabel.htmlFor = deviceName;
+            newDeviceLabel.innerHTML = deviceName;
 
-        newDeviceButton.innerHTML = deviceName; // rename the button
-        
-        devicesDiv.appendChild(newDeviceButton);
+        // Add the checkbox and label for the checkbox
+        // To the div for the new entry
+        newDeviceEntry.appendChild(newDeviceCheckBox);
+        newDeviceEntry.appendChild(newDeviceLabel);
+
+        // Add the new entry to our list of devices
+        devicesList.appendChild(newDeviceEntry);
     }
     
 }
