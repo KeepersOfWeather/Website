@@ -15,6 +15,8 @@ async function fillGraph(title, data, timestamps, ctx) {
             ]
             }
         });
+
+        _.destroy();
 }
 
 // dont graph anything if return -1
@@ -46,9 +48,9 @@ export async function createGraphs(id) {
     // humContext.clearRect(0, 0, humCanvas.width, humCanvas.height);
     // lightContext.clearRect(0, 0, lightCanvas.width, lightCanvas.height);
 
-    tempContext.destroy();
-    humContext.destroy();
-    lightContext.destroy();
+    // tempContext.destroy();
+    // humContext.destroy();
+    // lightContext.destroy();
 
 
     if (id === -1) {
