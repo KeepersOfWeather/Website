@@ -78,7 +78,7 @@ async function createDeviceList(devicesCollection) {
 
             newDeviceCheckBox.onclick = async function () {
                 if(newDeviceCheckBox.checked) console.log('unchecked');
-                else console.log('unchecked');
+                else console.log('checked');
                 console.log(deviceName);
             }
 
