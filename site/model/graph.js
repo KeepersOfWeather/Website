@@ -1,4 +1,4 @@
-import { Device, initDevice }  from './device.js';
+import { initDevice }  from './device.js';
 'use strict';
 
 async function fillGraph(title, data, timestamps, ctx) {
