@@ -36,12 +36,12 @@ async function checkInput() {
 
 export async function createGraphs(id) {
 
-    print("1 error");
+    console.log("1 error");
     var tempCanvas = document.getElementById('tempGraph');
     var humCanvas = document.getElementById('humGraph');
     var lightCanvas = document.getElementById('lightGraph');
 
-    print("2 error");
+    console.log("2 error");
     var tempContext = tempCanvas.getContext('2d');
     var humContext = humCanvas.getContext('2d');
     var lightContext = lightCanvas.getContext('2d');
@@ -55,7 +55,7 @@ export async function createGraphs(id) {
     // lightContext.destroy();
 
 
-    print("3 error");
+    console.log("3 error");
     if (id === -1) {
         let data = new Array;
         let timestamps = new Array;
