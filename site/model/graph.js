@@ -2,8 +2,8 @@ import { initDevice }  from './device.js';
 'use strict';
 
 async function fillGraph(title, data, timestamps, ctx) {
-    ctx.destroy();
-    const _ = new Chart(ctx, {
+    //ctx.destroy();
+    let _ = new Chart(ctx, {
             type: 'line',
             data : {
                 labels: timestamps,
@@ -17,7 +17,7 @@ async function fillGraph(title, data, timestamps, ctx) {
             }
         });
 
-    //_.destroy();
+    _.destroy();
 }
 
 // dont graph anything if return -1
