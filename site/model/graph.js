@@ -33,6 +33,16 @@ async function checkInput() {
 }
 
 export async function createGraphs(id) {
+
+    
+    if(document.getElementById('tempGraph') || document.getElementById('humGraph')||document.getElementById('lightGraph'))
+    {
+        document.getElementById('tempGraph').destroy();
+        document.getElementById('humGraph').destroy();
+        document.getElementById('lightGraph').destroy();
+    }
+
+
     var tempCanvas = document.getElementById('tempGraph');
     var humCanvas = document.getElementById('humGraph');
     var lightCanvas = document.getElementById('lightGraph');
