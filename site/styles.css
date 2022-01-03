@@ -1,5 +1,4 @@
 body {
-    background-color: #34568B;
     margin: 0;
 }
 
@@ -35,7 +34,7 @@ p h3 h4 {
 }
 
     .cities button.active {
-        background-color: #F0FFFF;
+        background-color: #d4fcfc;
     }
 
 .city {
