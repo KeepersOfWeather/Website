@@ -8,7 +8,7 @@ body {
 }
 
 p h3 h4 {
-    font-family: 'Corben', Georgia, Times, serif;
+    font-family: var(--font-body);
     color: black;
 }
 
