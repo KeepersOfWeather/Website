@@ -16,7 +16,7 @@ async function fillGraph(title, data, timestamps, ctx) {
             ]
             }
         });
-    //_.destroy();
+    _.destroy();
 }
 
 // dont graph anything if return -1
@@ -61,10 +61,6 @@ export async function createGraphs(id) {
     }
     else{
         let device = await initDevice(id);
-
-        tempCanvas.destroy();
-        humCanvas.destroy();
-        lightCanvas.destroy();
 
         fillGraph('Temperatures', device.temperature, device.timeStamps, tempContext);
         if(device.pressure[0]===null) fillGraph('Humidity', device.humidity, device.timeStamps, humContext);
