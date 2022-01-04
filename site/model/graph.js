@@ -2,12 +2,13 @@ import { initDevice }  from './device.js';
 'use strict';
 
 async function fillGraph(title, data, timestamps, ctx) {
+
+    // if a graph with this context already exists then destroy it to make room for a new graph.
     let oldGraph = Chart.getChart(ctx)
     if(oldGraph)
     {
         oldGraph.destroy();
     }
-    
 
     let _ = new Chart(ctx, {
             type: 'line',
@@ -66,7 +67,6 @@ export async function createGraphs(id) {
     }
     else{
         let device = await initDevice(id);
-
         fillGraph('Temperatures', device.temperature, device.timeStamps, tempContext);
         if(device.pressure[0]===null) fillGraph('Humidity', device.humidity, device.timeStamps, humContext);
         else fillGraph('Pressure', device.pressure, device.timeStamps, humContext);
