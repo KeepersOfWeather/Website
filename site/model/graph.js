@@ -26,9 +26,9 @@ async function fillGraph(title, data, timestamps, ctx) {
 
     // create the input 'buttons' where we get the date from
     // create date input. 
-    let beginDate = document.createElement('input');
+    var beginDate = document.createElement('input');
     beginDate.type = 'date';
-    let endDate = document.createElement('input');
+    var endDate = document.createElement('input');
     beginDate.type = 'date';
     // make unique id's and classes
     beginDate.className = 'dateInput';
