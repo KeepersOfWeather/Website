@@ -67,7 +67,7 @@ export async function createGraphs(id) {
     endDate.id = 'EndDate';
 
     // add the input dates to the div.
-    let tempdiv = document.getElementsByClassName('grid-container');
+    let tempdiv = document.getElementsByClassName('date-container');
     if(tempdiv)
     {
         console.log('found the grid-container div');
