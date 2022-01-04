@@ -67,8 +67,9 @@ export async function createGraphs(id) {
     endDate.id = 'EndDate';
 
     // add the input dates to the div.
-    document.getElementsByClassName('grid-container').appendChild(beginDate);
-    document.getElementsByClassName('grid-container').appendChild(endDate);
+    let tempdiv = document.getElementsByClassName('grid-container');
+    tempdiv.appendChild(beginDate);
+    tempdiv.appendChild(endDate);
 
     // tempContext.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
     // humContext.clearRect(0, 0, humCanvas.width, humCanvas.height);
