@@ -122,6 +122,18 @@ function lightToPercentage(logOrLux, type) {
     }
 }
 
+async function radar() {
+    //https://stackoverflow.com/questions/8726455/creating-an-iframe-using-javascript
+    let ifrmRad = document.createElement("iframe");
+    var srcRad = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.755&lng=5.96528&overname=2&zoom=6&naam=Nederland&size=2&voor=1"
+    ifrmRad.setAttribute("src", srcRad);
+    ifrmRad.scrollBy(0,0);
+    //perhaps something for styles.css?
+    ifrmRad.style.width = "640px";
+    ifrmRad.style.height = "480px";
+    document.appendChild(ifrmRad);
+}
+
 //--------------------------------------Update Utils----------------------------------------------------
 
 function sleep(ms) {
@@ -371,6 +383,7 @@ async function createNavBar() {
             await updateLatestWeatherDiv(latestDataFromLocation.fromDeviceId);
         };
 
+
         newCityButton.innerHTML = cityName; // rename the button
         
         citiesDiv.appendChild(newCityButton);
@@ -379,6 +392,7 @@ async function createNavBar() {
     allButton.classList.add("active");
     showDevices(allDevices);
     await updateLatestWeatherDiv();
+    await radar();
 }
 
 //--------------------------------------Graphing----------------------------------------------------
