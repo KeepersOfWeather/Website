@@ -70,6 +70,7 @@ export async function createGraphs(id) {
     let tempdiv = document.getElementsByClassName('grid-container');
     if(tempdiv)
     {
+        console.log('found the grid-container div');
         tempdiv.innerHTML += beginDate;
         tempdiv.innerHTML += endDate;
     }
