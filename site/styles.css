@@ -1,5 +1,4 @@
 body {
-    background-color: #34568B;
     margin: 0;
 }
 
@@ -29,14 +28,15 @@ p h3 h4 {
     font-size: 17px;
 }
 
-.cities button:hover {
-    background-color: #ddd;
-    color: black;
-}
+    .cities button:hover {
+        background-color: #E6F1FF;
+        color: black;
+    }
 
-.cities button.active {
-    background-color: #04AA6D;
-}
+    .cities button.active {
+        background-color: #68ADFF;
+        color: black;
+    }
 
 .city {
     font-family: var(--font-body);

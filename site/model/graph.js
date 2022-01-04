@@ -2,7 +2,15 @@ import { initDevice }  from './device.js';
 'use strict';
 
 async function fillGraph(title, data, timestamps, ctx) {
-    const _ = new Chart(ctx, {
+
+    // if a graph with this context already exists then destroy it to make room for a new graph.
+    let oldGraph = Chart.getChart(ctx)
+    if(oldGraph)
+    {
+        oldGraph.destroy();
+    }
+
+    let _ = new Chart(ctx, {
             type: 'line',
             data : {
                 labels: timestamps,
@@ -15,7 +23,10 @@ async function fillGraph(title, data, timestamps, ctx) {
             ]
             }
         });
+
+
 }
+
 
 // dont graph anything if return -1
 async function checkInput() {
@@ -33,6 +44,7 @@ async function checkInput() {
 }
 
 export async function createGraphs(id) {
+
     var tempCanvas = document.getElementById('tempGraph');
     var humCanvas = document.getElementById('humGraph');
     var lightCanvas = document.getElementById('lightGraph');
@@ -40,11 +52,15 @@ export async function createGraphs(id) {
     var tempContext = tempCanvas.getContext('2d');
     var humContext = humCanvas.getContext('2d');
     var lightContext = lightCanvas.getContext('2d');
+   
 
-    tempContext.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
-    humContext.clearRect(0, 0, humCanvas.width, humCanvas.height);
-    lightContext.clearRect(0, 0, lightCanvas.width, lightCanvas.height);
+    // tempContext.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+    // humContext.clearRect(0, 0, humCanvas.width, humCanvas.height);
+    // lightContext.clearRect(0, 0, lightCanvas.width, lightCanvas.height);
 
+    // tempContext.destroy();
+    // humContext.destroy();
+    // lightContext.destroy();
 
     if (id === -1) {
         let data = new Array;
