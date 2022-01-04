@@ -374,13 +374,14 @@ async function createNavBar() {
         newCityButton.id = cityName;
 
         // When 
-        newCityButton.onclick = async function () { 
-            removeActiveFromButtons();
-            newCityButton.classList.add("active");
-            showDevices(deviceList);
-            let latestDataFromLocation = await getLatestForLocation(deviceList);
-            await updateLatestWeatherDiv(latestDataFromLocation.fromDeviceId);
-        };
+        // newCityButton.onclick = async function () {
+        //     console.log('click on ${cityName}');
+        //     removeActiveFromButtons();
+        //     newCityButton.classList.add("active");
+        //     showDevices(deviceList);
+        //     let latestDataFromLocation = await getLatestForLocation(deviceList);
+        //     await updateLatestWeatherDiv(latestDataFromLocation.fromDeviceId);
+        // };
 
 
         newCityButton.innerHTML = cityName; // rename the button
