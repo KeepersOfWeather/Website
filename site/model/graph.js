@@ -52,32 +52,6 @@ export async function createGraphs(id) {
     var tempContext = tempCanvas.getContext('2d');
     var humContext = humCanvas.getContext('2d');
     var lightContext = lightCanvas.getContext('2d');
-
-    // create the input 'buttons' where we get the date from
-    // create date input. 
-    var beginDate = document.createElement('input');
-    beginDate.type = 'date';
-    var endDate = document.createElement('input');
-    beginDate.type = 'date';
-
-    // make unique id's and classes
-    beginDate.className = 'dateInput';
-    beginDate.id = 'BeginDate';
-    endDate.className = 'dateInput';
-    endDate.id = 'EndDate';
-
-    // add the input dates to the div.
-    let tempdiv = document.getElementsByClassName('date-container');
-    if(tempdiv)
-    {
-        console.log('found the grid-container div');
-        tempdiv.innerHTML += beginDate;
-        tempdiv.innerHTML += endDate;
-    }
-    else
-    {
-        console.log('cant find grid-container div');
-    }
    
 
     // tempContext.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
