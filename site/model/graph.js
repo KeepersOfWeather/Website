@@ -62,9 +62,9 @@ export async function createGraphs(id) {
 
     // make unique id's and classes
     beginDate.className = 'dateInput';
-    beginDate.id = `${title}BeginDate`;
+    beginDate.id = 'BeginDate';
     endDate.className = 'dateInput';
-    endDate.id = `${title}EndDate`;
+    endDate.id = 'EndDate';
 
     // add the input dates to the div.
     document.getElementsByClassName('grid-container').appendChild(beginDate);
