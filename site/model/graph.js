@@ -24,18 +24,6 @@ async function fillGraph(title, data, timestamps, ctx) {
             }
         });
 
-    // create the input 'buttons' where we get the date from
-    // create date input. 
-    var beginDate = document.createElement('input');
-    beginDate.type = 'date';
-    var endDate = document.createElement('input');
-    beginDate.type = 'date';
-    // make unique id's and classes
-    beginDate.className = 'dateInput';
-    beginDate.id = `${title}BeginDate`;
-    endDate.className = 'dateInput';
-    endDate.id = `${title}EndDate`;
-
 
 }
 
@@ -64,6 +52,23 @@ export async function createGraphs(id) {
     var tempContext = tempCanvas.getContext('2d');
     var humContext = humCanvas.getContext('2d');
     var lightContext = lightCanvas.getContext('2d');
+
+    // create the input 'buttons' where we get the date from
+    // create date input. 
+    var beginDate = document.createElement('input');
+    beginDate.type = 'date';
+    var endDate = document.createElement('input');
+    beginDate.type = 'date';
+
+    // make unique id's and classes
+    beginDate.className = 'dateInput';
+    beginDate.id = `${title}BeginDate`;
+    endDate.className = 'dateInput';
+    endDate.id = `${title}EndDate`;
+
+    // add the input dates to the div.
+    document.getElementsByClassName('grid-container').appendChild(beginDate);
+    document.getElementsByClassName('grid-container').appendChild(endDate);
 
     // tempContext.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
     // humContext.clearRect(0, 0, humCanvas.width, humCanvas.height);
