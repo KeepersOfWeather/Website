@@ -71,10 +71,5 @@ p h3 h4 {
 .grid-child {
     width: .33vh;
 }
-#radar{
-  scrolling: no;
-    width: 256px;
-    height: 256px;
-    border: none;
-}
+
 
