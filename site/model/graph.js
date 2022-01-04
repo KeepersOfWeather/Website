@@ -3,7 +3,11 @@ import { initDevice }  from './device.js';
 
 async function fillGraph(title, data, timestamps, ctx) {
     let oldGraph = Chart.getChart(ctx)
-    oldGraph.destroy();
+    if(oldGraph)
+    {
+        oldGraph.destroy();
+    }
+    
 
     let _ = new Chart(ctx, {
             type: 'line',
