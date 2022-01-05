@@ -107,7 +107,7 @@ async function createDeviceList(devicesCollection) {
 
 async function radar(city) {
     //https://stackoverflow.com/questions/8726455/creating-an-iframe-using-javascript
-    var ifrm = document.getElementById("radar");
+    let ifrm = document.getElementById("radar");
     var radDefault = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.755&lng=5.96528&overname=2&zoom=6&naam=Nederland&size=2&voor=1";
     var radEanske = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.755&lng=5.96528&overname=2&zoom=6&naam=Nederland&size=2&voor=1";
     var radWierden = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.755&lng=5.96528&overname=2&zoom=6&naam=Nederland&size=2&voor=1";
@@ -115,7 +115,7 @@ async function radar(city) {
     switch (city){
         case "Enschede": ifrm.src = radEanske;
             break;
-        case "Wierden": irfm.src = radWierden;
+        case "Wierden": ifrm.src = radWierden;
             break;
         case "Gronau": ifrm.src = radGronau;
             break;
