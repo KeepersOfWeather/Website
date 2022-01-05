@@ -106,13 +106,23 @@ async function createDeviceList(devicesCollection) {
 }
 
 async function radar(city) {
+
     //https://stackoverflow.com/questions/8726455/creating-an-iframe-using-javascript
     let ifrm = document.getElementById("radar");
+
+    if (city === "all"){
+        ifrm.height=406;
+    } else{
+        ifrm.height = 256;
+    }
+var radAll = "https://gadgets.buienradar.nl/gadget/radarfivedays";
     var radDefault = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.755&lng=5.96528&overname=2&zoom=6&naam=Nederland&size=2&voor=1";
     var radEanske = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.21833&lng=6.89583&overname=2&zoom=11&naam=Enschede&size=2&voor=0";
     var radWierden = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.35917&lng=6.59306&overname=2&zoom=13&naam=Wierden&size=2&voor=0";
     var radGronau = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.21099&lng=7.02238&overname=2&zoom=13&naam=Gronau&size=2&voor=0";
     switch (city){
+        case "all": ifrm.src = radAll;
+            break;
         case "Enschede": ifrm.src = radEanske;
             break;
         case "Wierden": ifrm.src = radWierden;
@@ -120,6 +130,7 @@ async function radar(city) {
         case "Gronau": ifrm.src = radGronau;
             break;
         default: ifrm.src = radDefault;
+
     }
 }
 
@@ -147,13 +158,12 @@ export async function createNavBar() {
     let allDevices = await api_query('devices');
 
     allButton.onclick = async function () {
-        var srcRad = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.755&lng=5.96528&overname=2&zoom=6&naam=Nederland&size=2&voor=1";
-        //change the radar position (zoom)
-        document.getElementById("radar").src = srcRad;
+
         removeActiveFromButtons();
         allButton.classList.add("active");
         createDeviceList(allDevices);
         await updateLatestWeatherDiv();
+        await radar(this.id);
     };
 
     allButton.innerHTML = "All"; // Change the name to be the city name

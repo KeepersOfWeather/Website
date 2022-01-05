@@ -374,7 +374,7 @@ async function createNavBar() {
 
         // When 
         newCityButton.onclick = async function () {
-            console.log('click on ${cityName}');
+
             removeActiveFromButtons();
             newCityButton.classList.add("active");
             showDevices(deviceList);
