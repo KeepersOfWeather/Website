@@ -110,7 +110,7 @@ async function radar(city) {
     //https://stackoverflow.com/questions/8726455/creating-an-iframe-using-javascript
     let ifrm = document.getElementById("radar");
 
-    if (city === "all"){
+    if (city === "All"){
         ifrm.height=406;
     } else{
         ifrm.height = 256;
