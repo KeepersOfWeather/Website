@@ -105,33 +105,34 @@ async function createDeviceList(devicesCollection) {
     
 }
 
-async function radar(city) {
+async function buienRadar(city) {
 
     //https://stackoverflow.com/questions/8726455/creating-an-iframe-using-javascript
-    let ifrm = document.getElementById("radar");
-
-    if (city === "All"){
-        ifrm.height=406;
-    } else{
-        ifrm.height = 256;
-    }
+    let ifrmRad = document.getElementById("radar");
+    let ifrmForecast = document.getElementById("forecast")
+        ifrmRad.height = 256;
+        ifrmForecast.width = 300;
+        ifrmForecast.height = 190;
 var radAll = "https://gadgets.buienradar.nl/gadget/radarfivedays";
     var radDefault = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.755&lng=5.96528&overname=2&zoom=6&naam=Nederland&size=2&voor=1";
     var radEanske = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.21833&lng=6.89583&overname=2&zoom=11&naam=Enschede&size=2&voor=0";
     var radWierden = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.35917&lng=6.59306&overname=2&zoom=13&naam=Wierden&size=2&voor=0";
     var radGronau = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.21099&lng=7.02238&overname=2&zoom=13&naam=Gronau&size=2&voor=0";
-    switch (city){
-        case "All": ifrm.src = radAll;
-            break;
-        case "Enschede": ifrm.src = radEanske;
-            break;
-        case "Wierden": ifrm.src = radWierden;
-            break;
-        case "Gronau": ifrm.src = radGronau;
-            break;
-        default: ifrm.src = radDefault;
-
-    }
+    var twente5 = "https://gadgets.buienradar.nl/gadget/forecastandstation/6260"
+    if (city === "All") {
+        ifrmRad.height = 406;
+        ifrmRad.src = radAll;
+        ifrmForecast.width = 0;
+        ifrmForecast.height = 0;
+    } else if(city === "Enschede") {
+        ifrmRad.src = radEanske;
+        ifrmForecast.src = twente5;
+    }else if(city === "Wierden") {
+        ifrmRad.src = radWierden;
+        ifrmForecast.src = twente5;
+    } else if (city === "Gronau") {
+        ifrmRad.src = radGronau;
+    }else ifrmRad.src = radDefault;
 }
 
 export async function createNavBar() {
@@ -163,7 +164,7 @@ export async function createNavBar() {
         allButton.classList.add("active");
         createDeviceList(allDevices);
         await updateLatestWeatherDiv();
-        await radar(this.id);
+        await buienRadar(this.id);
     };
 
     allButton.innerHTML = "All"; // Change the name to be the city name
@@ -185,7 +186,7 @@ export async function createNavBar() {
         // When 
         newCityButton.onclick = async function () {
             //this.id returns the id of the clicked button
-            await radar(this.id);
+            await buienRadar(this.id);
             removeActiveFromButtons();
             newCityButton.classList.add("active");
             createDeviceList(deviceList);
@@ -201,5 +202,5 @@ export async function createNavBar() {
     allButton.classList.add("active");
     createDeviceList(allDevices);
     await updateLatestWeatherDiv();
-    await radar("All");
+    await buienRadar("All");
 }
