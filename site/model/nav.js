@@ -105,6 +105,24 @@ async function createDeviceList(devicesCollection) {
     
 }
 
+async function radar(city) {
+    //https://stackoverflow.com/questions/8726455/creating-an-iframe-using-javascript
+    var ifrm = document.getElementById("radar");
+    var radDefault = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.755&lng=5.96528&overname=2&zoom=6&naam=Nederland&size=2&voor=1";
+    var radEanske = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.755&lng=5.96528&overname=2&zoom=6&naam=Nederland&size=2&voor=1";
+    var radWierden = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.755&lng=5.96528&overname=2&zoom=6&naam=Nederland&size=2&voor=1";
+    var radGronau = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.755&lng=5.96528&overname=2&zoom=6&naam=Nederland&size=2&voor=1";
+    switch (city){
+        case "Enschede": ifrm.src = radEanske;
+            break;
+        case "Wierden": irfm.src = radWierden;
+            break;
+        case "Gronau": ifrm.src = radGronau;
+            break;
+        default: ifrm.src = radDefault;
+    }
+}
+
 export async function createNavBar() {
     // Begin by asking API for all devices sorted by location
     // Generate tabs dynamically: https://www.w3schools.com/howto/howto_js_tabs.asp
@@ -156,7 +174,8 @@ export async function createNavBar() {
 
         // When 
         newCityButton.onclick = async function () {
-            console.log(this.id);
+            //this.id returns the id of the clicked button
+            await radar(this.id);
             removeActiveFromButtons();
             newCityButton.classList.add("active");
             createDeviceList(deviceList);
