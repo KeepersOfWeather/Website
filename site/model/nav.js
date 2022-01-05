@@ -107,19 +107,19 @@ async function createDeviceList(devicesCollection) {
 
 async function radar(city) {
     //https://stackoverflow.com/questions/8726455/creating-an-iframe-using-javascript
-    //let ifrm = document.getElementById("radar");
+    let ifrm = document.getElementById("radar");
     var radDefault = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.755&lng=5.96528&overname=2&zoom=6&naam=Nederland&size=2&voor=1";
-    var radEanske = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.755&lng=5.96528&overname=2&zoom=6&naam=Nederland&size=2&voor=1";
-    var radWierden = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.755&lng=5.96528&overname=2&zoom=6&naam=Nederland&size=2&voor=1";
-    var radGronau = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.755&lng=5.96528&overname=2&zoom=6&naam=Nederland&size=2&voor=1";
+    var radEanske = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.21833&lng=6.89583&overname=2&zoom=11&naam=Enschede&size=2&voor=0";
+    var radWierden = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.35917&lng=6.59306&overname=2&zoom=13&naam=Wierden&size=2&voor=0";
+    var radGronau = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.21099&lng=7.02238&overname=2&zoom=13&naam=Gronau&size=2&voor=0";
     switch (city){
-        case "Enschede": console.log("e")//document.getElementById("radar").src = radEanske;
+        case "Enschede": ifrm.src = radEanske;
             break;
-        case "Wierden": console.log("w")//document.getElementById("radar").src = radWierden;
+        case "Wierden": ifrm.src = radWierden;
             break;
-        case "Gronau": console.log("g")//document.getElementById("radar").src = radGronau;
+        case "Gronau": ifrm.src = radGronau;
             break;
-        default: console.log("d")//document.getElementById("radar").src = radDefault;
+        default: ifrm.src = radDefault;
     }
 }
 
