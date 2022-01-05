@@ -1,4 +1,4 @@
-await function initDateInputFields()
+export async function initDateInputFields()
 {
     var today = new Date();
     var dd = today.getDate();
