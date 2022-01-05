@@ -107,19 +107,19 @@ async function createDeviceList(devicesCollection) {
 
 async function radar(city) {
     //https://stackoverflow.com/questions/8726455/creating-an-iframe-using-javascript
-    let ifrm = document.getElementById("radar");
+    //let ifrm = document.getElementById("radar");
     var radDefault = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.755&lng=5.96528&overname=2&zoom=6&naam=Nederland&size=2&voor=1";
     var radEanske = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.755&lng=5.96528&overname=2&zoom=6&naam=Nederland&size=2&voor=1";
     var radWierden = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.755&lng=5.96528&overname=2&zoom=6&naam=Nederland&size=2&voor=1";
     var radGronau = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.755&lng=5.96528&overname=2&zoom=6&naam=Nederland&size=2&voor=1";
     switch (city){
-        case "Enschede": ifrm.src = radEanske;
+        case "Enschede": document.getElementById("radar").src = radEanske;
             break;
-        case "Wierden": ifrm.src = radWierden;
+        case "Wierden": document.getElementById("radar").src = radWierden;
             break;
-        case "Gronau": ifrm.src = radGronau;
+        case "Gronau": document.getElementById("radar").src = radGronau;
             break;
-        default: ifrm.src = radDefault;
+        default: document.getElementById("radar").src = radDefault;
     }
 }
 
