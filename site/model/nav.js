@@ -153,7 +153,8 @@ export async function createNavBar() {
         newCityButton.id = cityName;
 
         // When 
-        newCityButton.onclick = async function () { 
+        newCityButton.onclick = async function () {
+            console.log(this.id);
             removeActiveFromButtons();
             newCityButton.classList.add("active");
             createDeviceList(deviceList);
