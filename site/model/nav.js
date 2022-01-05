@@ -121,7 +121,7 @@ var radAll = "https://gadgets.buienradar.nl/gadget/radarfivedays";
     var radWierden = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.35917&lng=6.59306&overname=2&zoom=13&naam=Wierden&size=2&voor=0";
     var radGronau = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.21099&lng=7.02238&overname=2&zoom=13&naam=Gronau&size=2&voor=0";
     switch (city){
-        case "all": ifrm.src = radAll;
+        case "All": ifrm.src = radAll;
             break;
         case "Enschede": ifrm.src = radEanske;
             break;
