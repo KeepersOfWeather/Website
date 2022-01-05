@@ -129,6 +129,7 @@ export async function createNavBar() {
     let allDevices = await api_query('devices');
 
     allButton.onclick = async function () {
+        console.log(this.id);
         removeActiveFromButtons();
         allButton.classList.add("active");
         createDeviceList(allDevices);

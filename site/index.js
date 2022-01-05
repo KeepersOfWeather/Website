@@ -129,8 +129,6 @@ async function radar() {
     //ifrmRad.setAttribute("src", srcRad);
     // ifrmRad.scrollBy(0,0);
     //perhaps something for styles.css?
-
-
 }
 
 //--------------------------------------Update Utils----------------------------------------------------
