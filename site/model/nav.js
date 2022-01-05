@@ -201,4 +201,5 @@ export async function createNavBar() {
     allButton.classList.add("active");
     createDeviceList(allDevices);
     await updateLatestWeatherDiv();
+    await radar("All");
 }
