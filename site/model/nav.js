@@ -113,13 +113,13 @@ async function radar(city) {
     var radWierden = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.755&lng=5.96528&overname=2&zoom=6&naam=Nederland&size=2&voor=1";
     var radGronau = "https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.755&lng=5.96528&overname=2&zoom=6&naam=Nederland&size=2&voor=1";
     switch (city){
-        case "Enschede": document.getElementById("radar").src = radEanske;
+        case "Enschede": console.log("e")//document.getElementById("radar").src = radEanske;
             break;
-        case "Wierden": document.getElementById("radar").src = radWierden;
+        case "Wierden": console.log("w")//document.getElementById("radar").src = radWierden;
             break;
-        case "Gronau": document.getElementById("radar").src = radGronau;
+        case "Gronau": console.log("g")//document.getElementById("radar").src = radGronau;
             break;
-        default: document.getElementById("radar").src = radDefault;
+        default: console.log("d")//document.getElementById("radar").src = radDefault;
     }
 }
 
