@@ -11,11 +11,11 @@ p h3 h4 {
     color: black;
 }
 
-.cities-nav {
+body .cities-nav {
     background-color: #121a2b;
     overflow: hidden;
 }
-    .cities-nav button {
+ body .cities-nav button {
         border: 0;
         float: left;
         background-color: #333;
