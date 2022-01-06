@@ -18,18 +18,18 @@ export async function initDateInputFields()
     } 
         
     today = yyyy + '-' + mm + '-' + dd;
-    document.getElementById("beginDate").setAttribute("max", today);
-    document.getElementById("endDate").setAttribute("max", today);
+    document.getElementById("fromDate").setAttribute("max", today);
+    document.getElementById("untillDate").setAttribute("max", today);
     // set standard value of endDate to today as well.
-    document.getElementById("endDate").setAttribute("value", today);
+    document.getElementById("untillDate").setAttribute("value", today);
     // the date value of beginDate is put to one month ago
     if(mm == '01')
     {
-        document.getElementById("beginDate").setAttribute("value", ((yyyy-1) + '-12-01'));
+        document.getElementById("fromDate").setAttribute("value", ((yyyy-1) + '-12-01'));
     }
     else
     {
-        document.getElementById("beginDate").setAttribute("value", (yyyy + '-' + mmMonthAgo + '-01'));
+        document.getElementById("fromDate").setAttribute("value", (yyyy + '-' + mmMonthAgo + '-01'));
     }
 
 }

@@ -1,12 +1,12 @@
-function beginDateOnChange()
+function fromDateOnChange()
 {
-    console.log("Begin Date Changed");
-    var firstdate = document.getElementById("beginDate").value;
-    // document.getElementById("endDate").value = firstdate;
-    document.getElementById("endDate").setAttribute("min",firstdate);
+    console.log("from Date Changed");
+    var newMinDate = document.getElementById("beginDate").value;
+    // document.getElementById("endDate").value = newMinDate;
+    document.getElementById("endDate").setAttribute("min",newMinDate);
 }
 
-function endDateOnChange()
+function untillDateOnChange()
 {
-    console.log("End Date Changed");
+    console.log("untill Date Changed");
 }
