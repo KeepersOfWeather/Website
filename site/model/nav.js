@@ -152,7 +152,7 @@ export async function createNavBar() {
 
     let allButton = document.createElement("button");
         
-    allButton.classList.add("All");
+    allButton.classList.add("city");
     // allButton.classList.add("active");
     allButton.id = "All";
 
