@@ -15,7 +15,7 @@ body .cities-nav {
     background-color: #121a2b;
     overflow: hidden;
 }
- body .cities-nav button {
+ body .cities-nav .city {
         border: 0;
         float: left;
         background-color: #333;
@@ -25,6 +25,7 @@ body .cities-nav {
         padding: 14px 16px;
         text-decoration: none;
         font-size: 17px;
+
     }
     .cities-nav button:hover {
         background-color: #4165ba;
@@ -34,11 +35,6 @@ body .cities-nav {
         background-color: #1445b8;
         color: black;
     }
-
-    .city {
-        font-family: var(--font-body);
-    }
-
 .content{
     background-color: #17181d;
 }
