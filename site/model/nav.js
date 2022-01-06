@@ -4,7 +4,7 @@ import { updateLatestWeatherDiv }  from './latestWeather.js';
 'use strict';
 
 function removeActiveFromButtons() {
-    let citiesClass = document.getElementsByClassName("cities");
+    let citiesClass = document.getElementsByClassName("cities-nav");
 
     if (citiesClass.length === 0)  {
         console.log("Something is broken when finding tabs div...")
@@ -141,7 +141,7 @@ export async function createNavBar() {
     let cities = await api_query('locations');
 
     // Grab cities Div from index.html
-    let citiesDiv = document.getElementsByClassName("cities");
+    let citiesDiv = document.getElementsByClassName("cities-nav");
 
     if (citiesDiv.length !== 0) {
         citiesDiv = citiesDiv[0];
