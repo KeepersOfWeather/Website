@@ -1,9 +1,9 @@
-body {
-    margin: 0;
-}
-
 :root {
     --font-body: Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin: 10;
 }
 
 p h3 h4 {
@@ -11,66 +11,62 @@ p h3 h4 {
     color: black;
 }
 
-.cities {
+.cities-nav {
     background-color: #121a2b;
     overflow: hidden;
 }
-
-.cities-nav button {
-    border: 0;
-    float: left;
-    background-color: #333;
-    font-family: var(--font-body);
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-}
-
+    .cities-nav button {
+        border: 0;
+        float: left;
+        background-color: #333;
+        font-family: var(--font-body);
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    }
     .cities-nav button:hover {
         background-color: #4165ba;
         color: black;
     }
-
     .cities-nav button.active {
         background-color: #1445b8;
         color: black;
     }
 
-.city {
-    font-family: var(--font-body);
-}
+    .city {
+        font-family: var(--font-body);
+    }
 
-.latest-data {
-    margin: 10px;
-    border-style: solid;
-    border-width: 2px;
-    border-color: black;
-    border-radius: 4px;
-    width: 350px;
+.content{
+    background-color: #17181d;
 }
-
-.latest-data th {
-    text-align: left;
-}
-
-.left-column{
-    float: left;
-    width: 20%;
-}
-
-.right-column {
-    float: left;
-    width: 80%;
-    display: grid;
-    grid-template-columns: auto auto auto;
-    gap: 40px;
-}
-
-.canvas-graph {
-    width: 100px;
-    height: 100px;
-}
+    .left-column{
+        float: left;
+        width: 20%;
+    }       
+        .latest-data {
+            margin: 10px;
+            border-style: solid;
+            border-width: 2px;
+            border-color: black;
+            border-radius: 4px;
+            width: 350px;
+        }
+            .latest-data th {
+                text-align: left;
+            }
+    .right-column {
+        float: left;
+        width: 80%;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        gap: 40px;
+    }
+        .canvas-graph {
+            width: 100px;
+            height: 100px;
+        }
 
 
