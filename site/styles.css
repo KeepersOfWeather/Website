@@ -16,7 +16,7 @@ p h3 h4 {
     overflow: hidden;
 }
 
-.cities button {
+.cities-nav button {
     border: 0;
     float: left;
     background-color: #333;
