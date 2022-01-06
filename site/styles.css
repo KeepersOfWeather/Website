@@ -58,17 +58,15 @@ body .cities-nav {
         float: left;
         width: 75%;
         display: grid;
-        gap: 40px;
     }
     .content .right-column .left-graphs {
         float: left;
         width: 50%;
-        display: grid;
     }
     .content .right-column .right-graphs {
         float: right;
         width: 50%;
-        display: grid;
+    
     }
 
         .content .right-column .canvas-graph {
