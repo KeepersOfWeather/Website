@@ -3,7 +3,7 @@
 }
 
 body {
-    margin: 10;
+    background-color: #121a2b; 
 }
 
 p h3 h4 {
@@ -36,6 +36,7 @@ body .cities-nav {
         color: black;
     }
 .content{
+    margin: 10;
     background-color: #17181d;
 }
     .content .left-column{
