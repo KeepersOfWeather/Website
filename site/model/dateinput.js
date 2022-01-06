@@ -20,7 +20,7 @@ export async function initDateInputFields()
     today = yyyy + '-' + mm + '-' + dd;
     document.getElementById("fromDate").setAttribute("max", today);
     document.getElementById("untillDate").setAttribute("max", today);
-    // set standard value of endDate to today as well.
+    // set standard value of endDate to today as well. 
     document.getElementById("untillDate").setAttribute("value", today);
     // the date value of beginDate is put to one month ago
     if(mm == '01')
