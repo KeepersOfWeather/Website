@@ -12,7 +12,7 @@ p h3 h4 {
 }
 
 .cities {
-    background-color: #333;
+    background-color: #121a2b;
     overflow: hidden;
 }
 
@@ -29,12 +29,12 @@ p h3 h4 {
 }
 
     .cities button:hover {
-        background-color: #E6F1FF;
+        background-color: #4165ba;
         color: black;
     }
 
     .cities button.active {
-        background-color: #68ADFF;
+        background-color: #1445b8;
         color: black;
     }
 
