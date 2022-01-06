@@ -62,12 +62,12 @@ body .cities-nav {
     }
     .content .right-column .left-graphs {
         float: left;
-        width: 37.5%;
+        width: 50%;
         display: grid;
     }
     .content .right-column .right-graphs {
         float: left;
-        width: 75%;
+        width: 50%;
         display: grid;
     }
 
