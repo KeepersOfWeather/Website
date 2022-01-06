@@ -42,11 +42,11 @@ p h3 h4 {
 .content{
     background-color: #17181d;
 }
-    .left-column{
+    .content .left-column{
         float: left;
         width: 20%;
     }       
-        .latest-data {
+        .content .left-column .latest-data {
             margin: 10px;
             border-style: solid;
             border-width: 2px;
@@ -54,17 +54,17 @@ p h3 h4 {
             border-radius: 4px;
             width: 350px;
         }
-            .latest-data th {
+            .content .left-column .latest-data th {
                 text-align: left;
             }
-    .right-column {
+    .content .right-column {
         float: left;
         width: 80%;
         display: grid;
         grid-template-columns: auto auto auto;
         gap: 40px;
     }
-        .canvas-graph {
+        .content .right-column .canvas-graph {
             width: 100px;
             height: 100px;
         }
