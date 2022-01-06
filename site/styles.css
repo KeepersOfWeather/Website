@@ -28,12 +28,12 @@ p h3 h4 {
     font-size: 17px;
 }
 
-    .cities button:hover {
+    .cities-nav button:hover {
         background-color: #4165ba;
         color: black;
     }
 
-    .cities button.active {
+    .cities-nav button.active {
         background-color: #1445b8;
         color: black;
     }
@@ -55,12 +55,12 @@ p h3 h4 {
     text-align: left;
 }
 
-.info-class{
+.left-column{
     float: left;
     width: 20%;
 }
 
-.grid-container {
+.right-column {
     float: left;
     width: 80%;
     display: grid;
@@ -68,8 +68,9 @@ p h3 h4 {
     gap: 40px;
 }
 
-.grid-child {
-    width: .33vh;
+.canvas-graph {
+    width: 100px;
+    height: 100px;
 }
 
 
