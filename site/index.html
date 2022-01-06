@@ -15,42 +15,47 @@
 </head>
 <body>
     <script type='module' src='./model/main.js'></script>
-    <!-- This div will hold our tabs with devices -->
-    <div class="cities"></div>
-    <body style="background-color: #17181d; ">
-        <div class="content">
-            <div class="info-class">
-                <h2>Devices:</h2>
+
+    <div class="cities-nav"></div>
+
+    <div class="content" style="background-color: #17181d;">
+        <div class="left-column">
+            <h2>Devices:</h2>
                 <ul class="devices"></ul>
 
-                <h2>Latest weather data:</h2>
-                    <table class="latest-data"></table>
-                <div class="buienradar">
-                    <!--N.B!!!!! : this frame will be dynamicalY RESIZED FROM {w=256, h=265] and {w=265, h=406} -->
-                    <iframe id="radar" src="https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.755&lng=5.96528&overname=2&zoom=6&naam=Nederland&size=2&voor=1"
-                            scrolling=no width=256 height=256 frameborder=no>
-                    </iframe>
-                    <iframe id="forecast" src="" width=0 height=0></iframe>
-                    <div class ="alert">
-                        <div class="alertTag"></div>
-                        <div class="alertBody"></div>
-                    </div>
+            <h2>Latest weather data:</h2>
+                <table class="latest-data"></table>
 
+            <h2>Radar:</h2>
+            <div class="buienradar">
+                <!--N.B!!!!! : this frame will be dynamicalY RESIZED FROM {w=256, h=265] and {w=265, h=406} -->
+                <iframe id="radar" src="https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.755&lng=5.96528&overname=2&zoom=6&naam=Nederland&size=2&voor=1"
+                        scrolling=no width=256 height=256 frameborder=no>
+                </iframe>
+                <iframe id="forecast" src="" width=0 height=0></iframe>
+                <div class ="alert">
+                    <div class="alertTag"></div>
+                    <div class="alertBody"></div>
                 </div>
             </div>
-            <div class="grid-container">
+        </div>
+        <div class="right-column">
+            <div class="leflt-graphs">
                 <canvas id="tempGraph" class="grid-child"></canvas>
                 <canvas id="humGraph" class="grid-child"></canvas>
+                <div class="date-container">
+                    <h3>From:</h3>
+                    <!-- https://stackoverflow.com/questions/32378590/set-date-input-fields-max-date-to-today -->
+                    <input type="date" id="beginDate" name="begin-date" value="2018-07-22" min="2021-10-01" max="2018-12-31">
+                    <h3>Till:</h3>
+                    <!-- https://stackoverflow.com/questions/38950472/second-date-greater-than-first-date-in-javascript -->
+                    <input type="date" id="endDate" name="end-date" value="2018-07-22" min="2021-10-01" max="2018-12-31">
+                </div>
+            </div>
+            <div class="right-graphs">
                 <canvas id="lightGraph" class="grid-child"></canvas>
             </div>
-            <div class="date-container">
-                <!-- https://stackoverflow.com/questions/32378590/set-date-input-fields-max-date-to-today -->
-                <input type="date" id="beginDate" name="begin-date" value="2018-07-22" min="2021-10-01" max="2018-12-31">
-
-                <!-- https://stackoverflow.com/questions/38950472/second-date-greater-than-first-date-in-javascript -->
-                <input type="date" id="endDate" name="end-date" value="2018-07-22" min="2021-10-01" max="2018-12-31">
-            </div>
-        </div>
-    </body>
+        </div>   
+    </div>
 </body>
 </html>
