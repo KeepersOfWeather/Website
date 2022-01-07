@@ -1,5 +1,13 @@
 export function displayTimeInputs() {
     let dateDiv = document.getElementsByClassName("date-container");
+
+    if (dateDiv.length !== 0) {
+        dateDiv = dateDiv[0];
+    } else {
+        console.log("Something is broken when finding tabs div...")
+        return;
+    }
+
     let selectFrom = document.createElement("div");
     let startDate = document.createElement("input");
 

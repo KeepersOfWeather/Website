@@ -26,8 +26,6 @@ async function fillGraph(title, data, timestamps, ctx) {
         });
 }
 
-
-
 export async function createGraphs(id) {
 
     var tempCanvas = document.getElementById('tempGraph');
