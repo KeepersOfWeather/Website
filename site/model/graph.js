@@ -1,4 +1,5 @@
 import { initDevice }  from './device.js';
+import {displayTimeInputs, initTimeInputs} from './dateinput.js';
 'use strict';
 
 async function fillGraph(title, data, timestamps, ctx) {
@@ -23,25 +24,9 @@ async function fillGraph(title, data, timestamps, ctx) {
             ]
             }
         });
-
-
 }
 
 
-// dont graph anything if return -1
-async function checkInput() {
-    let devices = document.getElementById(devices);
-    if (devices === null) return -1;
-
-    let id = 0;
-    for(const [input,lable] of Object.entries(devices)){
-        const box = document.getElementById(lable);
-        const checked = box.checked;
-        if(checked) return id;
-        id++;
-    }
-    return -1;
-}
 
 export async function createGraphs(id) {
 
@@ -76,4 +61,8 @@ export async function createGraphs(id) {
         else fillGraph('Pressure', device.pressure, device.timeStamps, humContext);
         fillGraph('Light', device.light, device.timeStamps, lightContext);
     }
+
+    displayTimeInputs();
+    initTimeInputs();
+   
 }
