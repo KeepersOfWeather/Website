@@ -1,6 +1,6 @@
 export function displayTimeInputs() {
     let dateDiv = document.getElementsByClassName("date-container");
-    let selectFrom = document.createElement("from");
+    let selectFrom = document.createElement("div");
     let startDate = document.createElement("input");
 
     startDate.type = "date";
@@ -22,7 +22,7 @@ export function displayTimeInputs() {
 
     dateDiv.appendChild(selectFrom);
 
-    let selectTill = document.createElement("till");
+    let selectTill = document.createElement("div");
     let endDate = document.createElement("input");
 
     endDate.type = "date";
