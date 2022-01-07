@@ -12,8 +12,8 @@ export function displayTimeInputs() {
     let startDate = document.createElement("input");
 
     startDate.type = "date";
-    startDate.id = "beginDate";
-    startDate.name = "begin-date";
+    startDate.id = "fromDate";
+    startDate.name = "fromDate";
     startDate.value = "2018-07-22";
     startDate.min = "2021-10-01";
     startDate.max = "2018-12-31";
@@ -22,8 +22,8 @@ export function displayTimeInputs() {
     }
 
     let startDateLabel = document.createElement("label");
-    startDateLabel.htmlFor = "beginDate";
-    startDateLabel.innerHTML = "beginDate";
+    startDateLabel.htmlFor = "fromDate";
+    startDateLabel.innerHTML = "fromDate";
 
     selectFrom.appendChild(startDateLabel);
     selectFrom.appendChild(startDate);
@@ -34,8 +34,8 @@ export function displayTimeInputs() {
     let endDate = document.createElement("input");
 
     endDate.type = "date";
-    endDate.id = "endDate";
-    endDate.name = "endDate";
+    endDate.id = "untillDate";
+    endDate.name = "untillDate";
     endDate.value = "2018-07-22";
     endDate.min = "2021-10-01";
     endDate.max = "2018-12-31";
@@ -44,8 +44,8 @@ export function displayTimeInputs() {
     }
 
     let endDateLabel = document.createElement("label");
-    endDateLabel.htmlFor = "endDate";
-    endDateLabel.innerHTML = "endDate";
+    endDateLabel.htmlFor = "untillDate";
+    endDateLabel.innerHTML = "untillDate";
 
     selectTill.appendChild(endDateLabel);
     selectTill.appendChild(endDate);
