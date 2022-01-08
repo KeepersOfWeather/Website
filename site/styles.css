@@ -27,14 +27,14 @@ body .cities-nav {
         font-size: 17px;
 
     }
-    .cities-nav button:hover {
-        background-color: #4165ba;
-        color: black;
-    }
-    .cities-nav button.active {
-        background-color: #1445b8;
-        color: black;
-    }
+.cities-nav button:hover {
+    background-color: #E6F1FF;
+    color: black;
+}
+.cities-nav button.active {
+    background-color: #68ADFF;
+    color: black;
+}
 .content{
     margin: 10;
     background-color: #17181d;

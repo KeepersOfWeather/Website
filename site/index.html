@@ -16,43 +16,41 @@
 </head>
 <body>
     <script type='module' src='./model/main.js'></script>
-    <div style="background-color: #E6F1FF; ">
-        <div class="cities-nav"></div>
+    <body style="background-color: #E6F1FF; ">
+    <div class="cities-nav"></div>
 
-        <div class="content">
-            <div class="left-column">
-                <h2>Devices:</h2>
+    <div class="content">
+        <div class="left-column">
+            <h2>Devices:</h2>
                 <ul class="devices"></ul>
 
-                <h2>Latest weather data:</h2>
+            <h2>Latest weather data:</h2>
                 <table class="latest-data"></table>
 
-                <h2>Radar:</h2>
-                <div class="buienradar">
-                    <!--N.B!!!!! : this frame will be dynamicalY RESIZED FROM {w=256, h=265] and {w=265, h=406} -->
-                    <iframe id="radar" src="https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.755&lng=5.96528&overname=2&zoom=6&naam=Nederland&size=2&voor=1"
-                            scrolling=no width=256 height=256 frameborder=no>
-                    </iframe>
-                    <iframe id="forecast" src="" width=0 height=0></iframe>
-                    <div class="alert">
-                        <div class="alertTag"></div>
-                        <div class="alertBody"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="right-column">
-                <div class="graphs">
-                    <div class="left-graphs">
-                        <canvas id="tempGraph" class="canvas-graph"></canvas>
-                        <canvas id="humGraph" class="canvas-graph"></canvas>
-                        <div class="date-container"></div>
-                    </div>
-                    <div class="right-graphs">
-                        <canvas id="lightGraph" class="canvas-graph"></canvas>
-                    </div>
+            <h2>Radar:</h2>
+            <div class="buienradar">
+                <!--N.B!!!!! : this frame will be dynamicalY RESIZED FROM {w=256, h=265] and {w=265, h=406} -->
+                <iframe id="radar" src="https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.755&lng=5.96528&overname=2&zoom=6&naam=Nederland&size=2&voor=1"
+                        scrolling=no width=256 height=256 frameborder=no>
+                </iframe>
+                <iframe id="forecast" src="" width=0 height=0></iframe>
+                <div class ="alert">
+                    <div class="alertTag"></div>
+                    <div class="alertBody"></div>
                 </div>
             </div>
         </div>
+        <div class="right-column">
+            <div class="graphs">
+            <div class="left-graphs">
+                <canvas id="tempGraph" class="canvas-graph"></canvas>
+                <canvas id="humGraph" class="canvas-graph"></canvas>
+                <div class="date-container"></div></div>
+            <div class="right-graphs">
+                <canvas id="lightGraph" class="canvas-graph"></canvas>
+            </div>
+            </div>
+        </div>   
     </div>
 </body>
 </html>
