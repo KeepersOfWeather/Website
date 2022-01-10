@@ -8,6 +8,7 @@ export function displayTimeInputs() {
         return;
     }
 
+    // if these already exist then they will get deleted to not duplicate
     let check_from_date = document.getElementById("fromDate");
     let check_untill_date = document.getElementById("untillDate");
 
