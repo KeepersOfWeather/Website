@@ -1,5 +1,5 @@
 import { initDevice }  from './device.js';
-import { getTodayString, displayTimeInputs, initTimeInputs } from './dateinput.js';
+import { getTodayString, displayTimeInputs } from './dateinput.js';
 'use strict';
 
 async function fillGraph(title, data, timestamps, ctx) {
