@@ -8,6 +8,15 @@ export function displayTimeInputs() {
         return;
     }
 
+    let check_from_date = document.getElementById("fromDate");
+    let check_untill_date = document.getElementById("untillDate");
+
+    if (check_from_date && check_untill_date)
+    {
+        check_from_date.destroy();
+        check_untill_date.destroy();
+    }
+
     let selectFrom = document.createElement("div");
     let startDate = document.createElement("input");
 
