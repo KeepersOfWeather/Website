@@ -137,25 +137,25 @@ export function displayTimeInputs(currentGraph) {
     dateDiv.appendChild(selectTill);
 }
 
-export function initTimeInputs()
-{
-    let today = getTodayString();
+// export function initTimeInputs()
+// {
+//     let today = getTodayString();
     
-    document.getElementById("fromDate").setAttribute("max", today);
-    document.getElementById("untillDate").setAttribute("max", today);
-    // set standard value of endDate to today as well. 
-    document.getElementById("untillDate").setAttribute("value", today);
-    // the date value of beginDate is put to one month ago
-    if(mm == '01')
-    {
-        document.getElementById("fromDate").setAttribute("value", ((yyyy-1) + '-12-01'));
-    }
-    else
-    {
-        document.getElementById("fromDate").setAttribute("value", (yyyy + '-' + mmMonthAgo + '-01'));
-    }
+//     document.getElementById("fromDate").setAttribute("max", today);
+//     document.getElementById("untillDate").setAttribute("max", today);
+//     // set standard value of endDate to today as well. 
+//     document.getElementById("untillDate").setAttribute("value", today);
+//     // the date value of beginDate is put to one month ago
+//     if(mm == '01')
+//     {
+//         document.getElementById("fromDate").setAttribute("value", ((yyyy-1) + '-12-01'));
+//     }
+//     else
+//     {
+//         document.getElementById("fromDate").setAttribute("value", (yyyy + '-' + mmMonthAgo + '-01'));
+//     }
 
-}
+// }
 
 // await function setEndDateToday()
 // {

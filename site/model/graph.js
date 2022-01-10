@@ -56,5 +56,5 @@ export async function createGraphs(id, startDate, endDate) {
     }
 
     displayTimeInputs(id);
-    initTimeInputs();  
+    //initTimeInputs();  
 }
