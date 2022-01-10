@@ -18,7 +18,10 @@ export function displayTimeInputs() {
     startDate.min = "2021-10-01";
     startDate.max = "2018-12-31";
     startDate.onchange = async function fromDateOnChange() {
-
+        console.log("from Date Changed");
+        var newMinDate = document.getElementById("fromDate").value;
+        // document.getElementById("untillDate").value = newMinDate;
+        document.getElementById("untillDate").setAttribute("min",newMinDate);
     }
 
     let startDateLabel = document.createElement("label");
@@ -36,11 +39,11 @@ export function displayTimeInputs() {
     endDate.type = "date";
     endDate.id = "untillDate";
     endDate.name = "untillDate";
-    endDate.value = "2018-07-22";
+    endDate.value = Date.today;
     endDate.min = "2021-10-01";
     endDate.max = "2018-12-31";
     endDate.onchange = async function untillDateOnChange(){
-
+        console.log("untill Date Changed");
     }
 
     let endDateLabel = document.createElement("label");
