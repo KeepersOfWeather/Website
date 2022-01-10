@@ -13,8 +13,8 @@ export function displayTimeInputs() {
 
     if (check_from_date && check_untill_date)
     {
-        check_from_date.destroy();
-        check_untill_date.destroy();
+        selectFrom.removeChild(check_from_date);
+        selectFrom.removeChild(check_untill_date);
     }
 
     let selectFrom = document.createElement("div");
