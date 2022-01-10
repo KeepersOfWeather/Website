@@ -1,5 +1,6 @@
 import { initDevice }  from './device.js';
-import {displayTimeInputs, initTimeInputs} from './dateinput.js';
+// import {displayTimeInputs, initTimeInputs} from './dateinput.js';
+import {displayTimeInputs} from './dateinput.js';
 'use strict';
 
 async function fillGraph(title, data, timestamps, ctx) {
@@ -61,6 +62,6 @@ export async function createGraphs(id) {
     }
 
     displayTimeInputs();
-    initTimeInputs();
+    // initTimeInputs();
    
 }
