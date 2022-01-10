@@ -95,9 +95,9 @@ export function displayTimeInputs() {
     endDate.max = today;
     endDate.onchange = async function untillDateOnChange(){
         console.log("untill Date Changed");
-        var newMinDate = document.getElementById("untillDate").value;
+        var newMaxDate = document.getElementById("untillDate").value;
         // document.getElementById("untillDate").value = newMinDate;
-        document.getElementById("fromDate").setAttribute("min",newMinDate);
+        document.getElementById("fromDate").setAttribute("max",newMaxDate);
     }
 
     let endDateLabel = document.createElement("label");
