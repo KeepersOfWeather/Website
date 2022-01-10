@@ -76,7 +76,7 @@ export function displayTimeInputs() {
     let startDateLabel = document.createElement("label");
     startDateLabel.id = 'startDateLabel';
     startDateLabel.htmlFor = "fromDate";
-    startDateLabel.innerHTML = "From date";
+    startDateLabel.innerHTML = "From date: ";
 
     selectFrom.appendChild(startDateLabel);
     selectFrom.appendChild(startDate);
@@ -100,7 +100,7 @@ export function displayTimeInputs() {
     let endDateLabel = document.createElement("label");
     endDateLabel.id = 'endDateLabel';
     endDateLabel.htmlFor = "untillDate";
-    endDateLabel.innerHTML = "Untill date";
+    endDateLabel.innerHTML = "Untill date: ";
 
     selectTill.appendChild(endDateLabel);
     selectTill.appendChild(endDate);
