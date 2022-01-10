@@ -20,7 +20,7 @@ body .cities-nav {
         float: left;
         background-color: #333;
         font-family: var(--font-body);
-        color: white;
+        color: black;
         text-align: center;
         padding: 14px 16px;
         text-decoration: none;
