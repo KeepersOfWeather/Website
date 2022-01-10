@@ -1,4 +1,28 @@
-export function displayTimeInputs() {
+import {createGraphs} from './graph.js';
+
+export function getTodayString(day){
+    if(day == null) day = 0;
+    // this code puts the latest date they can request to today.
+    var today = new Date();
+    var dd = today.getDate() - day;
+    var mm = today.getMonth() + 1; //January is 0!
+    var mmMonthAgo = today.getMonth(); //the month of one month ago
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+    dd = '0' + dd;
+    }
+
+    if (mm < 10) {
+    mmMonthAgo = '0' + mmMonthAgo;
+    mm = '0' + mm;
+    } 
+        
+    today = yyyy + '-' + mm + '-' + dd;
+    return today;
+}
+
+export function displayTimeInputs(currentGraph) {
     let dateDiv = document.getElementsByClassName("date-container");
 
     if (dateDiv.length !== 0) {
@@ -71,6 +95,7 @@ export function displayTimeInputs() {
         var newMinDate = document.getElementById("fromDate").value;
         // document.getElementById("untillDate").value = newMinDate;
         document.getElementById("untillDate").setAttribute("min",newMinDate);
+        createGraphs(currentGraph, startDate.toString, endDate.toString);
     }
 
     let startDateLabel = document.createElement("label");
@@ -98,6 +123,7 @@ export function displayTimeInputs() {
         var newMaxDate = document.getElementById("untillDate").value;
         // document.getElementById("untillDate").value = newMinDate;
         document.getElementById("fromDate").setAttribute("max",newMaxDate);
+        createGraphs(currentGraph, startDate.toString, endDate.toString);
     }
 
     let endDateLabel = document.createElement("label");
@@ -111,44 +137,25 @@ export function displayTimeInputs() {
     dateDiv.appendChild(selectTill);
 }
 
-// export function initTimeInputs()
-// {
+export function initTimeInputs()
+{
+    let today = getTodayString();
+    
+    document.getElementById("fromDate").setAttribute("max", today);
+    document.getElementById("untillDate").setAttribute("max", today);
+    // set standard value of endDate to today as well. 
+    document.getElementById("untillDate").setAttribute("value", today);
+    // the date value of beginDate is put to one month ago
+    if(mm == '01')
+    {
+        document.getElementById("fromDate").setAttribute("value", ((yyyy-1) + '-12-01'));
+    }
+    else
+    {
+        document.getElementById("fromDate").setAttribute("value", (yyyy + '-' + mmMonthAgo + '-01'));
+    }
 
-//     // this code puts the latest date they can request to today.
-//     var today = new Date();
-//     var dd = today.getDate();
-//     var mm = today.getMonth() + 1; //January is 0!
-//     var mmMonthAgo = today.getMonth(); //the month of one month ago
-//     var yyyy = today.getFullYear();
-
-//     if (dd < 10) {
-//     dd = '0' + dd;
-//     }
-
-//     if (mm < 10) {
-//     mmMonthAgo = '0' + mmMonthAgo;
-//     mm = '0' + mm;
-//     } 
-        
-//     today = yyyy + '-' + mm + '-' + dd;
-//     //document.getElementById("fromDate").setAttribute("max", today);
-//     //document.getElementById("untillDate").setAttribute("max", today);
-//     //// set standard value of endDate to today as well. 
-//     //document.getElementById("untillDate").setAttribute("value", today);
-//     //// the date value of beginDate is put to one month ago
-//     todayMonthAgo = '';
-//     if(mm == '01')
-//     {
-//         todayMonthAgo = (yyyy-1) + '-12-01';
-//         //document.getElementById("fromDate").setAttribute("value", ((yyyy-1) + '-12-01'));
-//     }
-//     else
-//     {
-//         todayMonthAgo = yyyy + '-' + mmMonthAgo + '-01';
-//         //document.getElementById("fromDate").setAttribute("value", (yyyy + '-' + mmMonthAgo + '-01'));
-//     }
-
-// }
+}
 
 // await function setEndDateToday()
 // {

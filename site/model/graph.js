@@ -1,6 +1,5 @@
 import { initDevice }  from './device.js';
-// import {displayTimeInputs, initTimeInputs} from './dateinput.js';
-import {displayTimeInputs} from './dateinput.js';
+import { getTodayString, displayTimeInputs, initTimeInputs } from './dateinput.js';
 'use strict';
 
 async function fillGraph(title, data, timestamps, ctx) {
@@ -27,7 +26,7 @@ async function fillGraph(title, data, timestamps, ctx) {
         });
 }
 
-export async function createGraphs(id) {
+export async function createGraphs(id, startDate, endDate) {
 
     var tempCanvas = document.getElementById('tempGraph');
     var humCanvas = document.getElementById('humGraph');
@@ -38,13 +37,8 @@ export async function createGraphs(id) {
     var lightContext = lightCanvas.getContext('2d');
    
 
-    // tempContext.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
-    // humContext.clearRect(0, 0, humCanvas.width, humCanvas.height);
-    // lightContext.clearRect(0, 0, lightCanvas.width, lightCanvas.height);
-
-    // tempContext.destroy();
-    // humContext.destroy();
-    // lightContext.destroy();
+    if(endDate == null) endDate = getTodayString();
+    if(startDate == null) startDate = getTodayString(-1);
 
     if (id === -1) {
         let data = new Array;
@@ -54,14 +48,13 @@ export async function createGraphs(id) {
         fillGraph('Light', data, timestamps, lightContext);
     }
     else{
-        let device = await initDevice(id);
+        let device = await initDevice(id, startDate, endDate);
         fillGraph('Temperatures', device.temperature, device.timeStamps, tempContext);
         if(device.pressure[0]===null) fillGraph('Humidity', device.humidity, device.timeStamps, humContext);
         else fillGraph('Pressure', device.pressure, device.timeStamps, humContext);
         fillGraph('Light', device.light, device.timeStamps, lightContext);
     }
 
-    displayTimeInputs();
-    // initTimeInputs();
-   
+    displayTimeInputs(id);
+    initTimeInputs();  
 }
