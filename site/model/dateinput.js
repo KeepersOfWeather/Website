@@ -14,7 +14,9 @@ export function displayTimeInputs() {
     if (check_from_date && check_untill_date)
     {
         document.getElementById('selectFrom').removeChild(check_from_date);
-        document.getElementById('selectTill').selectFrom.removeChild(check_untill_date);
+        document.getElementById('selectFrom').removeChild(document.getElementById('startDateLabel'))
+        document.getElementById('selectTill').removeChild(check_untill_date);
+        document.getElementById('selectTill').removeChild(document.getElementById('endDateLabel'))
     }
 
     let selectFrom = document.createElement("div");
@@ -69,6 +71,7 @@ export function displayTimeInputs() {
     }
 
     let startDateLabel = document.createElement("label");
+    startDateLabel.id = 'startDateLabel';
     startDateLabel.htmlFor = "fromDate";
     startDateLabel.innerHTML = "fromDate";
 
@@ -92,6 +95,7 @@ export function displayTimeInputs() {
     }
 
     let endDateLabel = document.createElement("label");
+    endDateLabel.id = 'endDateLabel';
     endDateLabel.htmlFor = "untillDate";
     endDateLabel.innerHTML = "untillDate";
 
