@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\site"
+    "\\site",
+    "\\site\\model"
   ],
   "SelectedNode": "\\site\\styles.css",
   "PreviewInSolutionExplorer": false
