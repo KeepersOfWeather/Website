@@ -13,10 +13,12 @@ export function displayTimeInputs() {
 
     if (check_from_date && check_untill_date)
     {
-        document.getElementById('selectFrom').removeChild(check_from_date);
-        document.getElementById('selectFrom').removeChild(document.getElementById('startDateLabel'))
-        document.getElementById('selectTill').removeChild(check_untill_date);
-        document.getElementById('selectTill').removeChild(document.getElementById('endDateLabel'))
+        // document.getElementById('selectFrom').removeChild(check_from_date);
+        // document.getElementById('selectFrom').removeChild(document.getElementById('startDateLabel'))
+        // document.getElementById('selectTill').removeChild(check_untill_date);
+        // document.getElementById('selectTill').removeChild(document.getElementById('endDateLabel'))
+        document.getElementById('selectFrom').remove();
+        document.getElementById('selectTill').remove();
     }
 
     let selectFrom = document.createElement("div");
