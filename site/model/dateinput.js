@@ -13,11 +13,12 @@ export function displayTimeInputs() {
 
     if (check_from_date && check_untill_date)
     {
-        selectFrom.removeChild(check_from_date);
-        selectFrom.removeChild(check_untill_date);
+        document.getElementById('selectFrom').removeChild(check_from_date);
+        document.getElementById('selectTill').selectFrom.removeChild(check_untill_date);
     }
 
     let selectFrom = document.createElement("div");
+    selectFrom.id = 'selectFrom';
     let startDate = document.createElement("input");
 
     // this code puts the latest date they can request to today.
@@ -77,6 +78,7 @@ export function displayTimeInputs() {
     dateDiv.appendChild(selectFrom);
 
     let selectTill = document.createElement("div");
+    selectTill.id = 'selectTill';
     let endDate = document.createElement("input");
 
     endDate.type = "date";
