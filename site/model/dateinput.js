@@ -33,7 +33,7 @@ export function displayTimeInputs() {
     //// set standard value of endDate to today as well. 
     //document.getElementById("untillDate").setAttribute("value", today);
     //// the date value of beginDate is put to one month ago
-    todayMonthAgo = today;
+    var todayMonthAgo = today;
     if(mm == '01')
     {
         todayMonthAgo = (yyyy-1) + '-12-01';
