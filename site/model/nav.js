@@ -69,6 +69,11 @@ async function createDeviceList(devicesCollection) {
 
     // Go over each id and name in the passed dictionary
     for (const [deviceId, deviceName] of Object.entries(devicesCollection)) {
+
+        if(deviceName.includes("haaksbergerstraat")){
+            // do nothing 
+        }
+        else{
         // Create a div with a check box and a label
         let newDeviceEntry = document.createElement("div");
 
@@ -130,7 +135,7 @@ async function createDeviceList(devicesCollection) {
         // Add the new entry to our list of devices
         devicesList.appendChild(newDeviceEntry);
     }
-    
+    }
 }
 
 async function buienRadar(city) {
