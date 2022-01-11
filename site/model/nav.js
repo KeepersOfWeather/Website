@@ -76,7 +76,10 @@ async function createDeviceList(devicesCollection) {
             newDeviceCheckBox.type = "checkbox";
             newDeviceCheckBox.id = deviceId;
             newDeviceCheckBox.name = deviceName;
-            let numOfCheckboxesSelected = 0;
+            if (typeof variable === 'undefined')
+            {
+                var numOfCheckboxesSelected = 0;
+            }
             newDeviceCheckBox.onclick = async function () {
                 if(newDeviceCheckBox.checked){
                     createGraphs(newDeviceCheckBox.id);
