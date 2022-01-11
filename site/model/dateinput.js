@@ -108,7 +108,7 @@ export function displayTimeInputs(currentGraph) {
     startDateLabel.innerHTML = "From date: ";
 
     startTime.type = "time";
-    startTimee.id = "fromTime";
+    startTime.id = "fromTime";
     startTime.name = "fromTime";
     startTime.value = "00:00";
     startTime.min = "00:00";
