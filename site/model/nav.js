@@ -94,8 +94,9 @@ async function createDeviceList(devicesCollection) {
                     numOfCheckboxesSelected++;
                     if (numOfCheckboxesSelected == 3)
                     {
-                        console.log('ik kom hier');
+                
                         for (const item of arrayOfCheckboxes) {
+                            console.log('ik kom hier: '+ item.id);
                             if(item.checked == False)
                             {
                                 item.disabled = True;
