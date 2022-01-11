@@ -94,12 +94,12 @@ async function createDeviceList(devicesCollection) {
                     numOfCheckboxesSelected++;
                     if (numOfCheckboxesSelected == 3)
                     {
-                        arrayOfCheckboxes.forEach(function (item, index) {
+                        for (const item of arrayOfCheckboxes) {
                             if(item.checked == False)
                             {
                                 item.disabled = True;
                             }
-                          });
+                          }
                         
                     }
                     
@@ -110,9 +110,9 @@ async function createDeviceList(devicesCollection) {
                     console.log('unchecked');
                     // creat graphs with graphs selected graphs
                     numOfCheckboxesSelected--;
-                    arrayOfCheckboxes.forEach(function (item, index) {
+                    for (const item of arrayOfCheckboxes){
                         item.disabled = False;
-                      });
+                      }
                 }
                 console.log('numOfCheckBoxes: ' + numOfCheckboxesSelected);
                 console.log(deviceName);
