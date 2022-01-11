@@ -74,7 +74,7 @@ async function createDeviceList(devicesCollection) {
 
             let newDeviceCheckBox = document.createElement("input");
             newDeviceCheckBox.type = "checkbox";
-            newDeviceCheckBox.class = 'deviceCheckboxes';
+            newDeviceCheckBox.class = "deviceCheckboxes";
             newDeviceCheckBox.id = deviceId;
             newDeviceCheckBox.name = deviceName;
             if (typeof variable === 'undefined')
@@ -83,7 +83,7 @@ async function createDeviceList(devicesCollection) {
             }
             if (typeof arrayOfCheckboxes === 'undefined')
             {
-                var arrayOfCheckboxes = document.getElementsByClassName('deviceCheckboxes');
+                var arrayOfCheckboxes = document.getElementsByClassName("deviceCheckboxes");
             }
             newDeviceCheckBox.onclick = async function () {
                 arrayOfCheckboxes = document.getElementsByClassName('deviceCheckboxes');
