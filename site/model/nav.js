@@ -98,7 +98,7 @@ async function createDeviceList(devicesCollection) {
                 
                         for (let i = 0; i < arrayOfCheckboxes.length;i++) {
                             console.log('ik kom hier: '+ arrayOfCheckboxes[i].id);
-                            if(arrayOfCheckboxes[i].checked == False)
+                            if(!arrayOfCheckboxes[i].checked)
                             {
                                 arrayOfCheckboxes[i].disabled = True;
                             }
