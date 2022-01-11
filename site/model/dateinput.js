@@ -182,7 +182,7 @@ function AmsterdamTimeToUKTime(timeString)
     else
     {
         hours = hours - 1;
-        if (hours >= 0 || hours < 10)
+        if (hours >= 0 && hours < 10)
         {
             hoursString = '0' + hours.toString();
         }
