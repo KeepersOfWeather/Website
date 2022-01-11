@@ -96,8 +96,6 @@ export function displayTimeInputs(currentGraph) {
     startDate.max = today;
     startDate.onchange = async function fromDateOnChange() {
         console.log("from Date Changed");
-        console.log('Time today is: '+timeToday)
-        console.log('UK today is: '+AmsterdamTimeToUKTime(timeToday))
         var newMinDate = document.getElementById("fromDate").value;
         // document.getElementById("untillDate").value = newMinDate;
         document.getElementById("untillDate").setAttribute("min",newMinDate);
@@ -126,8 +124,6 @@ export function displayTimeInputs(currentGraph) {
     endDate.max = today;
     endDate.onchange = async function untillDateOnChange(){
         console.log("untill Date Changed");
-        console.log('Time today is: '+timeToday)
-        console.log('UK today is: '+AmsterdamTimeToUKTime(timeToday))
         var newMaxDate = document.getElementById("untillDate").value;
         // document.getElementById("untillDate").value = newMinDate;
         document.getElementById("fromDate").setAttribute("max",newMaxDate);

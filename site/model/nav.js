@@ -76,17 +76,24 @@ async function createDeviceList(devicesCollection) {
             newDeviceCheckBox.type = "checkbox";
             newDeviceCheckBox.id = deviceId;
             newDeviceCheckBox.name = deviceName;
-
+            let numOfCheckboxesSelected = 0;
             newDeviceCheckBox.onclick = async function () {
                 if(newDeviceCheckBox.checked){
                     createGraphs(newDeviceCheckBox.id);
                     console.log('checked');
+                    // creat graphs with graphs selected graphs
+                    numOfCheckboxesSelected++;
+                    
+                    
+
                 } 
                 else {
 
                     console.log('unchecked');
+                    // creat graphs with graphs selected graphs
+                    numOfCheckboxesSelected--;
                 }
-
+                console.log('numOfCheckBoxes: ' + numOfCheckboxesSelected);
                 console.log(deviceName);
             }
 
