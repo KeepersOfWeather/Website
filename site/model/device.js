@@ -12,7 +12,7 @@ export async function initDevice(id, startTime, endTime){
     let pressure = new Array;
     let light = new Array;
     for(var i=0; i<await weather.length; i++){
-        timeStamps.push(await weather[i].metadata.utcTimeStamp);
+        timeStamps.push(await UTCtoDate(weather[i].metadata.utcTimeStamp));
 
         temperature.push(await weather[i].sensorData.temperature);
         humidity.push(await weather[i].sensorData.humidity);
@@ -51,3 +51,23 @@ export async function initDevice(id, startTime, endTime){
     return device;
 }
 
+function UTCtoDate(dateStr) {
+    // 2021-12-14T12:37:44
+    
+    dateStr = dateStr.split("T");
+    const dateParts = dateStr[0].split("-");
+    // console.log(dateParts);
+
+    const year = dateParts[0];
+    const month = dateParts[1];
+    const day = dateParts[2];
+
+    const timeParts = dateStr[1].split(":");
+    // console.log(timeParts);
+    const hours = timeParts[0];
+    const minutes = timeParts[1];
+    const seconds = timeParts[2];
+
+    // For some reason it appends one to the year when making a UTC date, so subtract one
+    return new Date(Date.UTC(year - 1, month, day, hours, minutes, seconds)).toLocaleString();    
+}
