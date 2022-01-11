@@ -49,6 +49,7 @@ export function displayTimeInputs(currentGraph) {
     let selectFrom = document.createElement("div");
     selectFrom.id = 'selectFrom';
     let startDate = document.createElement("input");
+    let startTime = document.createElement("input");
 
     // this code puts the latest date they can request to today.
     var today = new Date();
@@ -56,6 +57,9 @@ export function displayTimeInputs(currentGraph) {
     var mm = today.getMonth() + 1; //January is 0!
     var mmMonthAgo = today.getMonth(); //the month of one month ago
     var yyyy = today.getFullYear();
+    var timeToday = new Date().toLocaleTimeString('en-US', { hour12: false, hour: "numeric", minute: "numeric"});
+
+    console.log('Time today is: '+timeToday)
 
     if (dd < 10) {
     dd = '0' + dd;
