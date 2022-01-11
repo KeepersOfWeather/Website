@@ -88,16 +88,13 @@ async function createDeviceList(devicesCollection) {
             newDeviceCheckBox.onclick = async function () {
                 arrayOfCheckboxes = document.getElementsByClassName('deviceCheckboxes');
                 if(newDeviceCheckBox.checked){
-                    createGraphs(newDeviceCheckBox.id);
                     console.log('checked');
+                    createGraphs(newDeviceCheckBox.id);
                     // creat graphs with graphs selected graphs
                     numOfCheckboxesSelected++;
-                    console.log(arrayOfCheckboxes);
                     if (numOfCheckboxesSelected == 3)
                     {
-                
                         for (let i = 0; i < arrayOfCheckboxes.length;i++) {
-                            console.log('ik kom hier: '+ arrayOfCheckboxes[i].id);
                             if(!arrayOfCheckboxes[i].checked)
                             {
                                 arrayOfCheckboxes[i].disabled = true;
