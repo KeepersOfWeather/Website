@@ -95,7 +95,7 @@ async function createDeviceList(devicesCollection) {
                     if (numOfCheckboxesSelected == 3)
                     {
                 
-                        for (const item of arrayOfCheckboxes) {
+                        for (item of arrayOfCheckboxes) {
                             console.log('ik kom hier: '+ item.id);
                             if(item.checked == False)
                             {
@@ -112,7 +112,7 @@ async function createDeviceList(devicesCollection) {
                     console.log('unchecked');
                     // creat graphs with graphs selected graphs
                     numOfCheckboxesSelected--;
-                    for (const item of arrayOfCheckboxes){
+                    for (item of arrayOfCheckboxes){
                         item.disabled = False;
                       }
                 }
