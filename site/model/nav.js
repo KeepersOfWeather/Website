@@ -74,7 +74,7 @@ async function createDeviceList(devicesCollection) {
 
             let newDeviceCheckBox = document.createElement("input");
             newDeviceCheckBox.type = "checkbox";
-            newDeviceCheckBox.class = "deviceCheckboxes";
+            newDeviceCheckBox.classList.add("deviceCheckboxes");
             newDeviceCheckBox.id = deviceId;
             newDeviceCheckBox.name = deviceName;
             if (typeof variable === 'undefined')
