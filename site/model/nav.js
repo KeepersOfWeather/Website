@@ -92,6 +92,7 @@ async function createDeviceList(devicesCollection) {
                     console.log('checked');
                     // creat graphs with graphs selected graphs
                     numOfCheckboxesSelected++;
+                    console.log(arrayOfCheckboxes);
                     if (numOfCheckboxesSelected == 3)
                     {
                 
