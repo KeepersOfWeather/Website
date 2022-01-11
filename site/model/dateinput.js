@@ -115,9 +115,12 @@ export function displayTimeInputs(currentGraph) {
     startTime.max = "23:59";
     startTime.onchange = async function fromTimeOnChange() {
         console.log("from Time Changed");
-        var newMinTime = document.getElementById("fromTime").value;
-        // document.getElementById("untillDate").value = newMinDate;
-        document.getElementById("untillTime").setAttribute("min",newMinTime);
+        if (document.getElementById("fromDate").value === document.getElementById("untillDate").value)
+        {
+            var newMinTime = document.getElementById("fromTime").value;
+            // document.getElementById("untillDate").value = newMinDate;
+            document.getElementById("untillTime").setAttribute("min",newMinTime);
+        }
         //createGraphs(currentGraph, startDate.toString, endDate.toString);
     }
 
@@ -159,9 +162,13 @@ export function displayTimeInputs(currentGraph) {
     endTime.max = "23:59";
     endTime.onchange = async function untillTimeOnChange(){
         console.log("untill Time Changed");
-        var newMaxTime = document.getElementById("untillTime").value;
-        // document.getElementById("untillDate").value = newMinDate;
-        document.getElementById("fromTime").setAttribute("max",newMaxTime);
+        if (document.getElementById("fromDate").value === document.getElementById("untillDate").value)
+        {
+            var newMaxTime = document.getElementById("untillTime").value;
+            // document.getElementById("untillDate").value = newMinDate;
+            document.getElementById("fromTime").setAttribute("max",newMaxTime);
+        }
+        
         //createGraphs(currentGraph, startDate.toString, endDate.toString);
     }
 
