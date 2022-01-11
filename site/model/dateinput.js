@@ -99,7 +99,7 @@ export function displayTimeInputs(currentGraph) {
         var newMinDate = document.getElementById("fromDate").value;
         // document.getElementById("untillDate").value = newMinDate;
         document.getElementById("untillDate").setAttribute("min",newMinDate);
-        createGraphs(currentGraph, startDate.toString, endDate.toString);
+        //createGraphs(currentGraph, startDate.toString, endDate.toString);
     }
 
     let startDateLabel = document.createElement("label");
@@ -107,14 +107,30 @@ export function displayTimeInputs(currentGraph) {
     startDateLabel.htmlFor = "fromDate";
     startDateLabel.innerHTML = "From date: ";
 
+    startTime.type = "time";
+    startTimee.id = "fromTime";
+    startTime.name = "fromTime";
+    startTime.value = "00:00";
+    startTime.min = "00:00";
+    startTime.max = "23:59";
+    startTime.onchange = async function fromTimeOnChange() {
+        console.log("from Time Changed");
+        var newMinTime = document.getElementById("fromTime").value;
+        // document.getElementById("untillDate").value = newMinDate;
+        document.getElementById("untillTime").setAttribute("min",newMinTime);
+        //createGraphs(currentGraph, startDate.toString, endDate.toString);
+    }
+
     selectFrom.appendChild(startDateLabel);
     selectFrom.appendChild(startDate);
+    selectFrom.appendChild(startTime);
 
     dateDiv.appendChild(selectFrom);
 
     let selectTill = document.createElement("div");
     selectTill.id = 'selectTill';
     let endDate = document.createElement("input");
+    let endTime = document.createElement("input");
 
     endDate.type = "date";
     endDate.id = "untillDate";
@@ -127,7 +143,7 @@ export function displayTimeInputs(currentGraph) {
         var newMaxDate = document.getElementById("untillDate").value;
         // document.getElementById("untillDate").value = newMinDate;
         document.getElementById("fromDate").setAttribute("max",newMaxDate);
-        createGraphs(currentGraph, startDate.toString, endDate.toString);
+        //createGraphs(currentGraph, startDate.toString, endDate.toString);
     }
 
     let endDateLabel = document.createElement("label");
@@ -135,8 +151,23 @@ export function displayTimeInputs(currentGraph) {
     endDateLabel.htmlFor = "untillDate";
     endDateLabel.innerHTML = "Untill date: ";
 
+    endTime.type = "time";
+    endTimee.id = "untillTime";
+    endTime.name = "untillTime";
+    endTime.value = timeToday;
+    endTime.min = "00:00";
+    endTime.max = "23:59";
+    endTime.onchange = async function untillTimeOnChange(){
+        console.log("untill Time Changed");
+        var newMaxTime = document.getElementById("untillTime").value;
+        // document.getElementById("untillDate").value = newMinDate;
+        document.getElementById("fromTime").setAttribute("max",newMaxTime);
+        //createGraphs(currentGraph, startDate.toString, endDate.toString);
+    }
+
     selectTill.appendChild(endDateLabel);
     selectTill.appendChild(endDate);
+    selectTill.appendChild(endTime);
 
     dateDiv.appendChild(selectTill);
 }
