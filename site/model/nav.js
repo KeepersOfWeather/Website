@@ -100,7 +100,7 @@ async function createDeviceList(devicesCollection) {
                             console.log('ik kom hier: '+ arrayOfCheckboxes[i].id);
                             if(!arrayOfCheckboxes[i].checked)
                             {
-                                arrayOfCheckboxes[i].disabled = True;
+                                arrayOfCheckboxes[i].disabled = true;
                             }
                           }
                         
@@ -114,7 +114,7 @@ async function createDeviceList(devicesCollection) {
                     // creat graphs with graphs selected graphs
                     numOfCheckboxesSelected--;
                     for (let i = 0; i < arrayOfCheckboxes.length;i++){
-                        arrayOfCheckboxes[i].disabled = False;
+                        arrayOfCheckboxes[i].disabled = false;
                       }
                 }
                 console.log('numOfCheckBoxes: ' + numOfCheckboxesSelected);
