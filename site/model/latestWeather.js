@@ -72,8 +72,25 @@ export async function updateLatestWeatherDiv(forDeviceID) {
     // Check if we are dealing with a py or an lht
     if (latestData[0].sensorData.lightLux !== null) {
         // We have no lightLogscale, use the lightLux parameter instead
-        await addToLatestWeather("Light", (latestData[0].sensorData.lightLux /12415.0)*100.0 + " %");
+        var lightToAdd = (latestData[0].sensorData.lightLux /12415.0)*100.0;
+        if (lightToAdd > 100)
+        {
+            await addToLatestWeather("Light 100 %");
+        }
+        else
+        {
+            await addToLatestWeather("Light", lightToAdd + " %");
+        }
+        
     } else if (latestData[0].sensorData.lightLogscale !== null) {
-        await addToLatestWeather("Light", (latestData[0].sensorData.lightLogscale /217.0)*100.0 + " %");
+        var lightToAdd = (latestData[0].sensorData.lightLogscale /217.0)*100.0;
+        if (lightToAdd > 100)
+        {
+            await addToLatestWeather("Light 100 %");
+        }
+        else
+        {
+            await addToLatestWeather("Light", lightToAdd + " %");
+        }
     }
 }
