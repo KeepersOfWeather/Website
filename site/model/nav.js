@@ -74,19 +74,34 @@ async function createDeviceList(devicesCollection) {
 
             let newDeviceCheckBox = document.createElement("input");
             newDeviceCheckBox.type = "checkbox";
+            newDeviceCheckBox.class = 'deviceCheckboxes';
             newDeviceCheckBox.id = deviceId;
             newDeviceCheckBox.name = deviceName;
             if (typeof variable === 'undefined')
             {
                 var numOfCheckboxesSelected = 0;
             }
+            if (typeof arrayOfCheckboxes === 'undefined')
+            {
+                var arrayOfCheckboxes = document.getElementsByClassName('deviceCheckboxes');
+            }
             newDeviceCheckBox.onclick = async function () {
+                arrayOfCheckboxes = document.getElementsByClassName('deviceCheckboxes');
                 if(newDeviceCheckBox.checked){
                     createGraphs(newDeviceCheckBox.id);
                     console.log('checked');
                     // creat graphs with graphs selected graphs
                     numOfCheckboxesSelected++;
-                    
+                    if (numOfCheckboxesSelected == 3)
+                    {
+                        arrayOfCheckboxes.forEach(function (item, index) {
+                            if(item.checked == False)
+                            {
+                                item.disabled = True;
+                            }
+                          });
+                        
+                    }
                     
 
                 } 
@@ -95,6 +110,9 @@ async function createDeviceList(devicesCollection) {
                     console.log('unchecked');
                     // creat graphs with graphs selected graphs
                     numOfCheckboxesSelected--;
+                    arrayOfCheckboxes.forEach(function (item, index) {
+                        item.disabled = False;
+                      });
                 }
                 console.log('numOfCheckBoxes: ' + numOfCheckboxesSelected);
                 console.log(deviceName);
