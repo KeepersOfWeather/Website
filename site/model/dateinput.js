@@ -152,7 +152,7 @@ export function displayTimeInputs(currentGraph) {
     endDateLabel.innerHTML = "Untill date: ";
 
     endTime.type = "time";
-    endTimee.id = "untillTime";
+    endTime.id = "untillTime";
     endTime.name = "untillTime";
     endTime.value = timeToday;
     endTime.min = "00:00";
