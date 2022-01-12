@@ -190,5 +190,5 @@ export async function createGraphs(ids, redraw, startDate, endDate) {
         }
     }
 
-    if(!redraw) {displayTimeInputs(id);}
+    if(!redraw) {displayTimeInputs(ids);}
 }
