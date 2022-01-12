@@ -40,15 +40,15 @@ async function fillGraph(title, data, timestamps, ctx, title1, data1, title2, da
     //     numberOfGraphs++;
     // }
 
-    if(!(title === null || data === null))
+    if(data.length !== 0)
     {
         numberOfGraphs++;
     }
-    if(!(title1 === null || data1 === null))
+    if(data1.length !== 0)
     {
         numberOfGraphs++;
     }
-    if(!(title2 === null || data2 === null))
+    if(data2.length !== 0)
     {
         numberOfGraphs++;
     }
@@ -165,24 +165,24 @@ export async function createGraphs(ids, redraw, startDate, endDate) {
     else{
         let device;
         if(ids.length == 1) {
-            device = await initDevice(id[0], startDate, endDate);
+            device = await initDevice(ids[0], startDate, endDate);
             fillGraph(device.name, device.temperature, device.timeStamps, tempContext);
             if(device.pressure[0]===null) fillGraph(device.name, device.humidity, device.timeStamps, humContext);
             else fillGraph(device.name, device.pressure, device.timeStamps, humContext);
             fillGraph(device.name, device.light, device.timeStamps, lightContext);
         }
         else if(ids.length == 2){
-            device = await initDevice(id[0], startDate, endDate);
-            let device1 = await initDevice(id[1], startDate, endDate);
+            device = await initDevice(ids[0], startDate, endDate);
+            let device1 = await initDevice(ids[1], startDate, endDate);
             fillGraph(device.name, device.temperature, device.timeStamps, tempContext,device1.name,device1.temperature);
             if(device.pressure[0]===null) fillGraph(device.name, device.humidity, device.timeStamps, humContext,device1.name,device1.humidity);
             else fillGraph(device.name, device.pressure, device.timeStamps, humContext,device1.name,device1.pressure);
             fillGraph(device.name, device.light, device.timeStamps, lightContext,device1.name,device1.light);
         }
         else if(ids.length == 3){
-            device = await initDevice(id[0], startDate, endDate);
-            let device1 = await initDevice(id[1], startDate, endDate);
-            let device2 = await initDevice(id[2], startDate, endDate);
+            device = await initDevice(ids[0], startDate, endDate);
+            let device1 = await initDevice(ids[1], startDate, endDate);
+            let device2 = await initDevice(ids[2], startDate, endDate);
             fillGraph(device.name, device.temperature, device.timeStamps, tempContext,device1.name,device1.temperature,device2.name,device2.temperature);
             if(device.pressure[0]===null) fillGraph(device.name, device.humidity, device.timeStamps, humContext,device1.name,device1.humidity,device2.name,device2.humidity);
             else fillGraph(device.name, device.pressure, device.timeStamps, humContext,device1.name,device1.pressure,device2.name,device2.pressure);
