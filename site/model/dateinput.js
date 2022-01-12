@@ -196,7 +196,7 @@ export function displayTimeInputs(currentGraph) {
 
     dateDiv.appendChild(selectTill);
 
-    SetBackStartTime2HoursAgo;
+    SetBackStartTime2HoursAgo();
 }
 
 // export function initTimeInputs()
