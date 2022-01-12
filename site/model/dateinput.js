@@ -66,9 +66,12 @@ export function displayTimeInputs(currentGraph) {
     }
 
     if (mm < 10) {
-    mmMonthAgo = '0' + mmMonthAgo;
     mm = '0' + mm;
     } 
+
+    if (mmMonthAgo < 10){
+    mmMonthAgo = '0' + mmMonthAgo;
+    }
         
     today = yyyy + '-' + mm + '-' + dd;
     //document.getElementById("fromDate").setAttribute("max", today);
@@ -192,6 +195,8 @@ export function displayTimeInputs(currentGraph) {
     selectTill.appendChild(endTime);
 
     dateDiv.appendChild(selectTill);
+
+    SetBackStartTime2HoursAgo;
 }
 
 // export function initTimeInputs()
@@ -243,3 +248,58 @@ function AmsterdamTimeToUKTime(timeString)
     return hoursString + ':' + newTime[1];
 }
 
+function SetBackStartTime2HoursAgo()
+{
+    var time_now = new Date().toLocaleTimeString('en-US', { hour12: false, hour: "numeric", minute: "numeric"});
+    var split_time_now = time_now.split(':');
+    var hours = parseInt(split_time_now[0]);
+    var hoursString;
+    if (hours == 0 || hours == 1)
+    {
+        hours = hours + 22;
+
+        var today = new Date();
+        var dd = today.getDate() - 1; // we get yesterday
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+        dd = '0' + dd;
+        }
+        
+        if (mm < 10) {
+        mm = '0' + mm;
+        } 
+
+        document.getElementById("fromDate").value = yyyy + '-' + mm + '-' + dd;
+    }
+    else
+    {
+        hours = hours - 2;
+
+        var today = new Date();
+        var dd = today.getDate(); // we get yesterday
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+        dd = '0' + dd;
+        }
+        
+        if (mm < 10) {
+        mm = '0' + mm;
+        } 
+
+        document.getElementById("fromDate").value = yyyy + '-' + mm + '-' + dd;
+
+    }
+
+    if (hours >= 0 && hours < 10)
+    {
+        hoursString = '0' + hours.toString();
+    }
+    else
+    {
+        hoursString = hours.toString();
+    }
+
+    document.getElementById("fromTime").value = hoursString + ':' + newTime[1];
+}
