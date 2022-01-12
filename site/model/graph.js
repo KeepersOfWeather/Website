@@ -11,21 +11,48 @@ async function fillGraph(title, data, timestamps, ctx, title1, data1, title2, da
         oldGraph.destroy();
     }
 
-    if(title === null || data === null)
+    let numberOfGraphs=0;
+    // if(title === null || data === null)
+    // {
+    //     title = new Array;
+    //     data = new Array;
+    // }
+    // else
+    // {
+    //     numberOfGraphs++;
+    // }
+    // if(title1 === null || data1 === null)
+    // {
+    //     title1 = new Array;
+    //     data1 = new Array;
+    // }
+    // else
+    // {
+    //     numberOfGraphs++;
+    // }
+    // if(title2 === null || data2 === null)
+    // {
+    //     title2 = new Array;
+    //     data2 = new Array;
+    // }
+    // else
+    // {
+    //     numberOfGraphs++;
+    // }
+
+    if(!(title === null || data === null))
     {
-        title = new Array;
-        data = new Array;
+        numberOfGraphs++;
     }
-    if(title1 === null || data1 === null)
+    if(!(title1 === null || data1 === null))
     {
-        title1 = new Array;
-        data1 = new Array;
+        numberOfGraphs++;
     }
-    if(title2 === null || data2 === null)
+    if(!(title2 === null || data2 === null))
     {
-        title2 = new Array;
-        data2 = new Array;
+        numberOfGraphs++;
     }
+
     // let _data = {
     //     labels: timestamps,
     //     datasets: [
@@ -47,7 +74,46 @@ async function fillGraph(title, data, timestamps, ctx, title1, data1, title2, da
     //     ]
     // };
 
-    let _ = new Chart(ctx, {
+    if(numberOfGraphs == 1)
+    {
+        let _ = new Chart(ctx, {
+            type: 'line',
+            data : {
+                labels: timestamps,
+                datasets: [
+                    {
+                    label: title,
+                    data: data,
+                    borderColor: 'rgb(255, 99, 132)'
+                }
+            ]
+            }
+        });
+    }
+    else if(numberOfGraphs == 2)
+    {
+        let _ = new Chart(ctx, {
+            type: 'line',
+            data : {
+                labels: timestamps,
+                datasets: [
+                    {
+                    label: title,
+                    data: data,
+                    borderColor: 'rgb(255, 99, 132)'
+                },
+                {
+                    label: title1,
+                    data: data1,
+                    borderColor: 'rgb(102,255,127)'
+                }
+            ]
+            }
+        });
+    }
+    else if(numberOfGraphs == 3)
+    {
+        let _ = new Chart(ctx, {
             type: 'line',
             data : {
                 labels: timestamps,
@@ -70,6 +136,7 @@ async function fillGraph(title, data, timestamps, ctx, title1, data1, title2, da
             ]
             }
         });
+    }
     // let _ = new Chart(ctx).Line(_data);
 }
 
