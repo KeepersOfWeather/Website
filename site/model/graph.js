@@ -2,7 +2,7 @@ import { initDevice }  from './device.js';
 import { getTodayString, displayTimeInputs } from './dateinput.js';
 'use strict';
 
-async function fillGraph(title, data, timestamps, ctx) {
+async function fillGraph(title, data, timestamps, ctx, title1, data1, title2, data2,) {
 
     // if a graph with this context already exists then destroy it to make room for a new graph.
     let oldGraph = Chart.getChart(ctx)
@@ -11,19 +11,56 @@ async function fillGraph(title, data, timestamps, ctx) {
         oldGraph.destroy();
     }
 
-    let _ = new Chart(ctx, {
-            type: 'line',
-            data : {
-                labels: timestamps,
-                datasets: [
-                    {
-                    label: title,
-                    data: data,
-                    borderColor: 'rgb(255, 99, 132)'
-                }
-            ]
+    if(title === null || data === null)
+    {
+        title = new Array;
+        data = new Array;
+    }
+    if(title1 === null || data1 === null)
+    {
+        title1 = new Array;
+        data1 = new Array;
+    }
+    if(title2 === null || data2 === null)
+    {
+        title2 = new Array;
+        data2 = new Array;
+    }
+    let _data = {
+        labels: timestamps,
+        datasets: [
+            {
+                label: title,
+                data: data,
+                borderColor: 'rgb(255, 99, 132)'
+            },
+            {
+                label: title1,
+                data: data1,
+                borderColor: 'rgb(102,255,127)'
+            },
+            {
+                label: title2,
+                data: data2,
+                borderColor: 'rgb(77,77,255)'
             }
-        });
+        ]
+    };
+
+    // let _ = new Chart(ctx, {
+    //         type: 'line',
+    //         data : {
+    //             labels: timestamps,
+    //             datasets: [
+    //                 {
+    //                 label: title,
+    //                 data: data,
+    //                 borderColor: 'rgb(255, 99, 132)'
+    //             }
+    //         ]
+    //         }
+    //     });
+    let _ = new Chart(ctx).Line(_data);
 }
 
 export async function createGraphs(id, redraw, startDate, endDate) {
