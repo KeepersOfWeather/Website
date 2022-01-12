@@ -4,7 +4,9 @@ export async function initDevice(id, startTime, endTime){
     let latest = await api_query(`device/${id}/latest`);
     let location = await api_query(`device/${id}/location`); //TODO:: combine endpoints
 
-    let weather = await api_query(`initDevice/${id}`,'since',startTime,'till',endTime);
+    if(startTime && endTime) let weather = await api_query(`initDevice/${id}`,'since',startTime,'till',endTime);
+    if(startTime) let weather = await api_query(`initDevice/${id}`,'since',startTime);
+    else let weather = await api_query(`initDevice/${id}`);
     
     let timeStamps = new Array;
     let temperature = new Array;
