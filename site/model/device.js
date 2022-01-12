@@ -4,8 +4,14 @@ export async function initDevice(id, startTime, endTime){
     let latest = await api_query(`device/${id}/latest`);
     let location = await api_query(`device/${id}/location`); //TODO:: combine endpoints
 
-    if(startTime === null) {
-        if(endTime === null) let weather = await api_query(`initDevice/${id}`,'since',startTime,'till',endTime);
+    if(startTime) var start = true;
+    else var start = false;
+    if(endTime) var end = true;
+    else var end = false;
+
+
+    if(start) {
+        if(end) let weather = await api_query(`initDevice/${id}`,'since',startTime,'till',endTime);
         else let weather = await api_query(`initDevice/${id}`,'since',startTime);
     }
     else let weather = await api_query(`initDevice/${id}`);
