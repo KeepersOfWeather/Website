@@ -26,7 +26,7 @@ async function fillGraph(title, data, timestamps, ctx) {
         });
 }
 
-export async function createGraphs(id, startDate, endDate, redraw) {
+export async function createGraphs(id, redraw, startDate, endDate) {
 
     var tempCanvas = document.getElementById('tempGraph');
     var humCanvas = document.getElementById('humGraph');

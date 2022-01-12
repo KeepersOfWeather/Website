@@ -94,7 +94,7 @@ async function createDeviceList(devicesCollection) {
                 arrayOfCheckboxes = document.getElementsByClassName('deviceCheckboxes');
                 if(newDeviceCheckBox.checked){
                     console.log('checked');
-                    createGraphs(newDeviceCheckBox.id);
+                    createGraphs(newDeviceCheckBox.id, true);
                     // creat graphs with graphs selected graphs
                     numOfCheckboxesSelected++;
                     if (numOfCheckboxesSelected == 3)
