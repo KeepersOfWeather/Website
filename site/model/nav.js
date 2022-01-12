@@ -97,7 +97,7 @@ async function createDeviceList(devicesCollection) {
                 arrayOfCheckboxes = document.getElementsByClassName('deviceCheckboxes');
                 if(newDeviceCheckBox.checked){
                     console.log('checked');
-                    activeGraphs.add(newDeviceCheckBox.id);
+                    activeGraphs.push(newDeviceCheckBox.id);
                     createGraphs(activeGraphs, true);
                     // creat graphs with graphs selected graphs
                     numOfCheckboxesSelected++;
@@ -114,12 +114,13 @@ async function createDeviceList(devicesCollection) {
                 } 
                 else {
                     console.log('unchecked');
-                    activeGraphs.remove(newDeviceCheckBox.id)
                     // creat graphs with graphs selected graphs
                     numOfCheckboxesSelected--;
                     for (let i = 0; i < arrayOfCheckboxes.length;i++){
                         arrayOfCheckboxes[i].disabled = false;
                       }
+                      activeGraphs.shift()
+                      createGraphs(activeGraphs, true);
                 }
                 console.log('numOfCheckBoxes: ' + numOfCheckboxesSelected);
                 console.log(deviceName);
