@@ -26,7 +26,7 @@ async function fillGraph(title, data, timestamps, ctx) {
         });
 }
 
-export async function createGraphs(id, startDate, endDate) {
+export async function createGraphs(id, startDate, endDate, redraw) {
 
     var tempCanvas = document.getElementById('tempGraph');
     var humCanvas = document.getElementById('humGraph');
@@ -55,6 +55,6 @@ export async function createGraphs(id, startDate, endDate) {
         fillGraph('Light', device.light, device.timeStamps, lightContext);
     }
 
-    displayTimeInputs(id);
+    if(!redraw) {displayTimeInputs(id);}
     //initTimeInputs();  
 }
