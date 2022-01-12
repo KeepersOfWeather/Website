@@ -91,37 +91,51 @@ async function createDeviceList(devicesCollection) {
                 var arrayOfCheckboxes = document.getElementsByClassName("deviceCheckboxes");
             }
 
-            var activeGraphs = new Array;
-
             newDeviceCheckBox.onclick = async function () {
                 arrayOfCheckboxes = document.getElementsByClassName('deviceCheckboxes');
                 if(newDeviceCheckBox.checked){
                     console.log('checked');
-                    activeGraphs.push(newDeviceCheckBox.id);
-                    createGraphs(activeGraphs, true);
                     // creat graphs with graphs selected graphs
                     numOfCheckboxesSelected++;
-                    if (numOfCheckboxesSelected == 3)
-                    {
-                        for (let i = 0; i < arrayOfCheckboxes.length;i++) {
-                            if(!arrayOfCheckboxes[i].checked)
-                            {
-                                arrayOfCheckboxes[i].disabled = true;
-                            }
-                          }
-                        
+                    // if (numOfCheckboxesSelected == 3)
+                    // {
+                    //     for (let i = 0; i < arrayOfCheckboxes.length;i++) {
+                    //         if(!arrayOfCheckboxes[i].checked)
+                    //         {
+                    //             arrayOfCheckboxes[i].disabled = true;
+                    //         }
+                    //       }
+                    // }
+                    if(newDeviceCheckBox.id == 0 || newDeviceCheckBox.id == 1){
+                        arrayOfCheckboxes[2].disabled = true;
+                        arrayOfCheckboxes[3].disabled = true;
+                    }
+                    else{
+                        arrayOfCheckboxes[0].disabled = true;
+                        arrayOfCheckboxes[1].disabled = true;
                     }
                 } 
                 else {
                     console.log('unchecked');
                     // creat graphs with graphs selected graphs
                     numOfCheckboxesSelected--;
-                    for (let i = 0; i < arrayOfCheckboxes.length;i++){
-                        arrayOfCheckboxes[i].disabled = false;
-                      }
-                      activeGraphs.shift()
-                      createGraphs(activeGraphs, true);
+                    // for (let i = 0; i < arrayOfCheckboxes.length;i++){
+                    //     arrayOfCheckboxes[i].disabled = false;
+                    //   }
+                    if(newDeviceCheckBox.id == 0 && !newDeviceCheckBox[1].checked || newDeviceCheckBox.id == 1 && !newDeviceCheckBox[0].checked){
+                        arrayOfCheckboxes[2].disabled = false;
+                        arrayOfCheckboxes[3].disabled = false;
+                    }
+                    else if(newDeviceCheckBox.id == 2 && !newDeviceCheckBox[3].checked || newDeviceCheckBox.id == 3 && !newDeviceCheckBox[2].checked){
+                        arrayOfCheckboxes[0].disabled = false;
+                        arrayOfCheckboxes[1].disabled = false;
+                    }
                 }
+                let activeGraphs = new Array;
+                for(let i=0; i<arrayOfCheckboxes.length; i++){
+                    activeGraphs.push(arrayOfCheckboxes[i].id);
+                }
+                createGraphs(activeGraphs, true);
                 console.log('numOfCheckBoxes: ' + numOfCheckboxesSelected);
                 console.log(deviceName);
             }
