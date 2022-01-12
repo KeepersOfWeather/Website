@@ -4,7 +4,7 @@ export async function initDevice(id, startTime, endTime){
     let latest = await api_query(`device/${id}/latest`);
     let location = await api_query(`device/${id}/location`); //TODO:: combine endpoints
 
-    let weather = await api_query(`initDevice/${id}`);
+    let weather = await api_query(`initDevice/${id}`,startTime,endTime);
     
     let timeStamps = new Array;
     let temperature = new Array;
@@ -26,7 +26,7 @@ export async function initDevice(id, startTime, endTime){
         id : id,
         name : await latest[0].metadata.deviceID,
         lastRecieved : await latest[0].metadata.utcTimeStamp,
-        connection : await latest[0].transmissionalData.snr,
+        connection : await latest[0].transmissionalData.rssi,
         location :  Object.entries(await location)[0][1],
         timeStamps : timeStamps, 
         temperature : temperature, 

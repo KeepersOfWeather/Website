@@ -37,8 +37,8 @@ export async function createGraphs(id, startDate, endDate) {
     var lightContext = lightCanvas.getContext('2d');
    
 
-    if(endDate == null) endDate = getTodayString();
-    if(startDate == null) startDate = getTodayString(-1);
+    // if(endDate == null) endDate = getTodayString();
+    // if(startDate == null) startDate = getTodayString(-1);
 
     if (id === -1) {
         let data = new Array;

@@ -107,11 +107,8 @@ async function createDeviceList(devicesCollection) {
                           }
                         
                     }
-                    
-
                 } 
                 else {
-
                     console.log('unchecked');
                     // creat graphs with graphs selected graphs
                     numOfCheckboxesSelected--;
