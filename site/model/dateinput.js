@@ -127,8 +127,8 @@ export function displayTimeInputs(currentGraph) {
 
         //createGraphs(currentGraph, startDate.toString, endDate.toString);
 
-        console.log(startTime.toString());
-        console.log(startDate.toString + ' ' + startTime.toString());
+        console.log(startTime);
+        console.log(startDate + ' ' + startTime);
     }
 
     selectFrom.appendChild(startDateLabel);
