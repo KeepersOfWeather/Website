@@ -108,6 +108,7 @@ async function createDeviceList(devicesCollection) {
                     //       }
                     // }
                     if(city.id === "All"){
+                        console.log("ALL CITY active");
                         if(newDeviceCheckBox.id == 0 || newDeviceCheckBox.id == 1){
                             arrayOfCheckboxes[2].disabled = true;
                             arrayOfCheckboxes[3].disabled = true;
@@ -118,6 +119,7 @@ async function createDeviceList(devicesCollection) {
                         }
                     }
                     else if(city.id === "Wierden"){
+                        console.log("Wierden CITY active");
                         if(newDeviceCheckBox.id == arrayOfCheckboxes[0]){
                             arrayOfCheckboxes[1].disabled = true;
                         }
