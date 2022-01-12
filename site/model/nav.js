@@ -122,11 +122,11 @@ async function createDeviceList(devicesCollection) {
                     // for (let i = 0; i < arrayOfCheckboxes.length;i++){
                     //     arrayOfCheckboxes[i].disabled = false;
                     //   }
-                    if(newDeviceCheckBox.id == 0 && !newDeviceCheckBox[1].checked || newDeviceCheckBox.id == 1 && !newDeviceCheckBox[0].checked){
+                    if(newDeviceCheckBox.id == 0 && !arrayOfCheckboxes[1].checked || newDeviceCheckBox.id == 1 && !arrayOfCheckboxes[0].checked){
                         arrayOfCheckboxes[2].disabled = false;
                         arrayOfCheckboxes[3].disabled = false;
                     }
-                    else if(newDeviceCheckBox.id == 2 && !newDeviceCheckBox[3].checked || newDeviceCheckBox.id == 3 && !newDeviceCheckBox[2].checked){
+                    else if(newDeviceCheckBox.id == 2 && !arrayOfCheckboxes[3].checked || newDeviceCheckBox.id == 3 && !arrayOfCheckboxes[2].checked){
                         arrayOfCheckboxes[0].disabled = false;
                         arrayOfCheckboxes[1].disabled = false;
                     }
