@@ -122,19 +122,18 @@ async function createDeviceList(devicesCollection) {
                     // for (let i = 0; i < arrayOfCheckboxes.length;i++){
                     //     arrayOfCheckboxes[i].disabled = false;
                     //   }
-                    if(newDeviceCheckBox.id == 0 && !arrayOfCheckboxes[1].checked || newDeviceCheckBox.id == 1 && !arrayOfCheckboxes[0].checked){
-                        arrayOfCheckboxes[2].disabled = false;
-                        arrayOfCheckboxes[3].disabled = false;
-                    }
-                    else if(newDeviceCheckBox.id == 2 && !arrayOfCheckboxes[3].checked || newDeviceCheckBox.id == 3 && !arrayOfCheckboxes[2].checked){
+                    if(numOfCheckboxesSelected == 0){
                         arrayOfCheckboxes[0].disabled = false;
                         arrayOfCheckboxes[1].disabled = false;
+                        arrayOfCheckboxes[2].disabled = false;
+                        arrayOfCheckboxes[3].disabled = false;
                     }
                 }
                 let activeGraphs = new Array;
                 for(let i=0; i<arrayOfCheckboxes.length; i++){
                     activeGraphs.push(arrayOfCheckboxes[i].id);
                 }
+                console.log(activeGraphs);
                 createGraphs(activeGraphs, true);
                 console.log('numOfCheckBoxes: ' + numOfCheckboxesSelected);
                 console.log(deviceName);
