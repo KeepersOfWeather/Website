@@ -120,11 +120,11 @@ async function createDeviceList(devicesCollection) {
                     }
                     else if(city[0].id =="Wierden"){
                         console.log("Wierden CITY active");
-                        if(newDeviceCheckBox.id == arrayOfCheckboxes[0]){
-                            arrayOfCheckboxes[0].disabled = true;
+                        if(newDeviceCheckBox.id == 0){
+                            arrayOfCheckboxes[1].disabled = true;
                         }
                         else{
-                            arrayOfCheckboxes[1].disabled = true;
+                            arrayOfCheckboxes[0].disabled = true;
                         }
                     }
                 } 
@@ -136,10 +136,10 @@ async function createDeviceList(devicesCollection) {
                     //     arrayOfCheckboxes[i].disabled = false;
                     //   }
                     if(numOfCheckboxesSelected == 0){
-                        arrayOfCheckboxes[0].disabled = false;
-                        arrayOfCheckboxes[1].disabled = false;
-                        arrayOfCheckboxes[2].disabled = false;
-                        arrayOfCheckboxes[3].disabled = false;
+                        if(arrayOfCheckboxes.length == 1) arrayOfCheckboxes[0].disabled = false;
+                        if(arrayOfCheckboxes.length == 2) arrayOfCheckboxes[1].disabled = false;
+                        if(arrayOfCheckboxes.length == 3) arrayOfCheckboxes[2].disabled = false;
+                        if(arrayOfCheckboxes.length == 4) arrayOfCheckboxes[3].disabled = false;
                     }
                 }
                 let activeGraphs = new Array;
