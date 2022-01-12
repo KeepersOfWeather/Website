@@ -40,15 +40,15 @@ async function fillGraph(title, data, timestamps, ctx, title1, data1, title2, da
     //     numberOfGraphs++;
     // }
 
-    if(data.length !== 0)
+    if(data !== undefined && data.length !== 0)
     {
         numberOfGraphs++;
     }
-    if(data1.length !== 0)
+    if(data1 !== undefined && data1.length !== 0)
     {
         numberOfGraphs++;
     }
-    if(data2.length !== 0)
+    if(data2 !== undefined && data2.length !== 0)
     {
         numberOfGraphs++;
     }
