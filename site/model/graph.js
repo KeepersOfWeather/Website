@@ -53,6 +53,7 @@ async function fillGraph(title, data, timestamps, ctx, title1, data1, title2, da
         numberOfGraphs++;
     }
 
+    console.log("The numberOfGraphs is: "+numberOfGraphs);
     // let _data = {
     //     labels: timestamps,
     //     datasets: [
