@@ -101,8 +101,8 @@ export function displayTimeInputs(currentGraph) {
         document.getElementById("untillDate").setAttribute("min",newMinDate);
         //createGraphs(currentGraph, startDate.toString, endDate.toString);
 
-        console.log(startDate.toString());
-        console.log(startDate.toString + ' ' + startTime.toString());
+        console.log(startDate.value);
+        console.log(startDate.value + ' ' + startTime.value);
     }
 
     let startDateLabel = document.createElement("label");
@@ -127,8 +127,8 @@ export function displayTimeInputs(currentGraph) {
 
         //createGraphs(currentGraph, startDate.toString, endDate.toString);
 
-        console.log(startTime);
-        console.log(startDate + ' ' + startTime);
+        console.log(startTime.value);
+        console.log(startDate.value + ' ' + startTime.value);
     }
 
     selectFrom.appendChild(startDateLabel);
@@ -180,8 +180,8 @@ export function displayTimeInputs(currentGraph) {
             document.getElementById("fromTime").setAttribute("max",newMaxTime);
         }
 
-        console.log(endTime.toString());
-        console.log(endDate.toString + ' ' + endTime.toString());
+        console.log(endTime.value);
+        console.log(endDate.value + ' ' + endTime.value);
         
         //createGraphs(currentGraph, startDate.toString, endDate.toString);
     }
