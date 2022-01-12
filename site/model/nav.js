@@ -82,7 +82,7 @@ async function createDeviceList(devicesCollection) {
             newDeviceCheckBox.classList.add("deviceCheckboxes");
             newDeviceCheckBox.id = deviceId;
             newDeviceCheckBox.name = deviceName;
-            if (typeof numOfCheckboxesSelected === 'undefined')
+            if (typeof variable === 'undefined')
             {
                 var numOfCheckboxesSelected = 0;
             }
