@@ -121,10 +121,10 @@ async function createDeviceList(devicesCollection) {
                     else if(city[0].id =="Wierden"){
                         console.log("Wierden CITY active");
                         if(newDeviceCheckBox.id == arrayOfCheckboxes[0]){
-                            arrayOfCheckboxes[1].disabled = true;
+                            arrayOfCheckboxes[0].disabled = true;
                         }
                         else{
-                            arrayOfCheckboxes[0].disabled = true;
+                            arrayOfCheckboxes[1].disabled = true;
                         }
                     }
                 } 
