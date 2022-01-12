@@ -9,12 +9,13 @@ export async function initDevice(id, startTime, endTime){
     if(endTime) var end = true;
     else var end = false;
 
+    let weather;
 
     if(start) {
-        if(end) {let weather = await api_query(`initDevice/${id}`,'since',startTime,'till',endTime);}
-        else {let weather = await api_query(`initDevice/${id}`,'since',startTime);}
+        if(end) {weather = await api_query(`initDevice/${id}`,'since',startTime,'till',endTime);}
+        else {weather = await api_query(`initDevice/${id}`,'since',startTime);}
     }
-    else {let weather = await api_query(`initDevice/${id}`);}
+    else {weather = await api_query(`initDevice/${id}`);}
     
     let timeStamps = new Array;
     let temperature = new Array;
