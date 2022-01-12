@@ -107,7 +107,7 @@ async function createDeviceList(devicesCollection) {
                     //         }
                     //       }
                     // }
-                    console.log(city.id);
+                    console.log(city);
                     if(city == "All"){
                         console.log("ALL CITY active");
                         if(newDeviceCheckBox.id == 0 || newDeviceCheckBox.id == 1){
