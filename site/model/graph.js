@@ -50,7 +50,7 @@ async function fillGraph(title, data, timestamps, ctx, title1, data1, title2, da
     let _ = new Chart(ctx, {
             type: 'line',
             data : {
-                labels: timestamps,
+                labels: [timestamps,timestamps,timestamps],
                 datasets: [
                     {
                     label: title,
