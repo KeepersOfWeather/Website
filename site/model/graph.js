@@ -26,41 +26,51 @@ async function fillGraph(title, data, timestamps, ctx, title1, data1, title2, da
         title2 = new Array;
         data2 = new Array;
     }
-    let _data = {
-        labels: timestamps,
-        datasets: [
-            {
-                label: title,
-                data: data,
-                borderColor: 'rgb(255, 99, 132)'
-            },
-            {
-                label: title1,
-                data: data1,
-                borderColor: 'rgb(102,255,127)'
-            },
-            {
-                label: title2,
-                data: data2,
-                borderColor: 'rgb(77,77,255)'
-            }
-        ]
-    };
-
-    // let _ = new Chart(ctx, {
-    //         type: 'line',
-    //         data : {
-    //             labels: timestamps,
-    //             datasets: [
-    //                 {
-    //                 label: title,
-    //                 data: data,
-    //                 borderColor: 'rgb(255, 99, 132)'
-    //             }
-    //         ]
+    // let _data = {
+    //     labels: timestamps,
+    //     datasets: [
+    //         {
+    //             label: title,
+    //             data: data,
+    //             borderColor: 'rgb(255, 99, 132)'
+    //         },
+    //         {
+    //             label: title1,
+    //             data: data1,
+    //             borderColor: 'rgb(102,255,127)'
+    //         },
+    //         {
+    //             label: title2,
+    //             data: data2,
+    //             borderColor: 'rgb(77,77,255)'
     //         }
-    //     });
-    let _ = new Chart(ctx).Line(_data);
+    //     ]
+    // };
+
+    let _ = new Chart(ctx, {
+            type: 'line',
+            data : {
+                labels: timestamps,
+                datasets: [
+                    {
+                    label: title,
+                    data: data,
+                    borderColor: 'rgb(255, 99, 132)'
+                },
+                {
+                    label: title1,
+                    data: data1,
+                    borderColor: 'rgb(102,255,127)'
+                },
+                {
+                    label: title2,
+                    data: data2,
+                    borderColor: 'rgb(77,77,255)'
+                }
+            ]
+            }
+        });
+    // let _ = new Chart(ctx).Line(_data);
 }
 
 export async function createGraphs(id, redraw, startDate, endDate) {
