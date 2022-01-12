@@ -131,7 +131,7 @@ async function createDeviceList(devicesCollection) {
                 }
                 let activeGraphs = new Array;
                 for(let i=0; i<arrayOfCheckboxes.length; i++){
-                    activeGraphs.push(arrayOfCheckboxes[i].id);
+                    if(arrayOfCheckboxes[i].checked) activeGraphs.push(arrayOfCheckboxes[i].id);
                 }
                 console.log(activeGraphs);
                 createGraphs(activeGraphs, true);
