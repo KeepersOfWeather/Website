@@ -1,5 +1,5 @@
 import { api_query }  from './api.js';
-import {createGraphs} from './graph.js';
+import {createGraphs, resetGraphs} from './graph.js';
 import { updateLatestWeatherDiv }  from './latestWeather.js';
 'use strict';
 
@@ -93,6 +93,7 @@ async function createDeviceList(devicesCollection) {
 
             newDeviceCheckBox.onclick = async function () {
                 arrayOfCheckboxes = document.getElementsByClassName('deviceCheckboxes');
+                let city = document.getElementsByClassName("city active");
                 if(newDeviceCheckBox.checked){
                     console.log('checked');
                     // creat graphs with graphs selected graphs
@@ -106,13 +107,23 @@ async function createDeviceList(devicesCollection) {
                     //         }
                     //       }
                     // }
-                    if(newDeviceCheckBox.id == 0 || newDeviceCheckBox.id == 1){
-                        arrayOfCheckboxes[2].disabled = true;
-                        arrayOfCheckboxes[3].disabled = true;
+                    if(city.id == "All"){
+                        if(newDeviceCheckBox.id == 0 || newDeviceCheckBox.id == 1){
+                            arrayOfCheckboxes[2].disabled = true;
+                            arrayOfCheckboxes[3].disabled = true;
+                        }
+                        else{
+                            arrayOfCheckboxes[0].disabled = true;
+                            arrayOfCheckboxes[1].disabled = true;
+                        }
                     }
-                    else{
-                        arrayOfCheckboxes[0].disabled = true;
-                        arrayOfCheckboxes[1].disabled = true;
+                    else if(city.id == "Wierden"){
+                        if(newDeviceCheckBox.id == arrayOfCheckboxes[0]){
+                            arrayOfCheckboxes[1].disabled = true;
+                        }
+                        else{
+                            arrayOfCheckboxes[0].disabled = true;
+                        }
                     }
                 } 
                 else {
@@ -241,6 +252,7 @@ export async function createNavBar() {
             createDeviceList(deviceList);
             let latestDataFromLocation = await getLatestForLocation(deviceList); //double query?
             await updateLatestWeatherDiv(latestDataFromLocation.fromDeviceId);
+            resetGraphs();
         };
 
         newCityButton.innerHTML = cityName; // rename the button

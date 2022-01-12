@@ -192,3 +192,8 @@ export async function createGraphs(ids, redraw, startDate, endDate) {
 
     if(!redraw) {displayTimeInputs(ids);}
 }
+
+export async function resetGraphs(){
+    let ids = new Array();
+    await createGraphs(ids);
+}
