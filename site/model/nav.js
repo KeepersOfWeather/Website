@@ -141,7 +141,11 @@ async function createDeviceList(devicesCollection) {
                         }
                     }
                 }
-                createGraphs(false);
+                if(!checkIfDateMoreThan2Days())
+                {
+                    createGraphs(false);
+                }
+                
                 console.log('numOfCheckBoxes: ' + numOfCheckboxesSelected);
                 console.log(deviceName);
             }
@@ -260,4 +264,30 @@ export async function createNavBar() {
     createDeviceList(allDevices);
     await updateLatestWeatherDiv();
     await buienRadar("All");
+}
+
+function checkIfDateMoreThan2Days()
+{
+    var _fromDate = document.getElementById("fromDate").value;
+    var _untillDate = document.getElementById("untillDate").value;
+    var _fromDateSplit = _fromDate.split('-');      // 0 = yyyy, 1 = mm, 2 = dd
+    var _untillDateSplit = _untillDate.split('-');  // 0 = yyyy, 1 = mm, 2 = dd
+
+    var date1From = new Date(_fromDateSplit[1] + '/' + _fromDateSplit[2] + '/' + _fromDateSplit[0]); // this needs to be in mm/dd/yyyy
+    var date2Untill = new Date(_untillDateSplit[1] + '/' + _untillDateSplit[2] + '/' + _untillDateSplit[0]);
+
+    var Difference_In_Time = date2Untill.getTime() - date1From.getTime();
+
+    var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
+    if (Difference_In_Days > 1)
+    {
+        document.getElementById('warningText').style.visibility = 'visible';
+        return true;
+    }
+    else
+    {
+        document.getElementById('warningText').style.visibility = 'hidden';
+        return false;
+    }
 }
