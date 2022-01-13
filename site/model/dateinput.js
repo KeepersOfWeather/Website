@@ -196,7 +196,7 @@ export function displayTimeInputs(currentGraph) {
 
     dateDiv.appendChild(selectTill);
     var warningText = document.createElement("p");
-    warningText.innerHTML = 'Dataset too large.'
+    warningText.innerHTML = 'Dataset too large. Choose something thats within 2 days.'
     warningText.style.visibility = "hidden";
     dateDiv.appendChild(warningText);
 
