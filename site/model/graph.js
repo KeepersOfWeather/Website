@@ -151,7 +151,7 @@ export async function createGraphs(ids, redraw) {
     var humContext = humCanvas.getContext('2d');
     var lightContext = lightCanvas.getContext('2d');
 
-    
+    if(!redraw) {displayTimeInputs(ids);}
     let fromDate = document.getElementById("fromDate");
     console.log(fromDate);
     let fromTime = document.getElementById("fromTime");
@@ -194,8 +194,6 @@ export async function createGraphs(ids, redraw) {
             fillGraph(device.name, device.light, device.timeStamps, lightContext,device1.name,device1.light,device2.name,device2.light);
         }
     }
-
-    if(!redraw) {displayTimeInputs(ids);}
 }
 
 export async function resetGraphs(){
