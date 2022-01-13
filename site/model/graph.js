@@ -180,7 +180,7 @@ export async function createGraphs(fresh) {
             if(device.pressure[0]===null) fillGraph(device.name, device.humidity, device.timeStamps, humContext);
             else fillGraph(device.name, device.pressure, device.timeStamps, humContext);
             fillGraph(device.name, device.light, device.timeStamps, lightContext);
-            displayMetadata(device.name,device.rssi,device.battery);
+            displayMetadata(device.name,device.rssi,device.battery,true);
         }
         else if(ids.length == 2){
             device = await initDevice(ids[0], startDate, endDate);
@@ -189,8 +189,8 @@ export async function createGraphs(fresh) {
             if(device.pressure[0]===null) fillGraph(device.name, device.humidity, device.timeStamps, humContext,device1.name,device1.humidity);
             else fillGraph(device.name, device.pressure, device.timeStamps, humContext,device1.name,device1.pressure);
             fillGraph(device.name, device.light, device.timeStamps, lightContext,device1.name,device1.light);
-            displayMetadata(device.name,device.rssi,device.battery);
-            displayMetadata(device1.name,device1.rssi,device1.battery);
+            displayMetadata(device.name,device.rssi,device.battery,true);
+            displayMetadata(device1.name,device1.rssi,device1.battery,false);
         }
         else if(ids.length == 3){
             device = await initDevice(ids[0], startDate, endDate);
@@ -200,9 +200,9 @@ export async function createGraphs(fresh) {
             if(device.pressure[0]===null) fillGraph(device.name, device.humidity, device.timeStamps, humContext,device1.name,device1.humidity,device2.name,device2.humidity);
             else fillGraph(device.name, device.pressure, device.timeStamps, humContext,device1.name,device1.pressure,device2.name,device2.pressure);
             fillGraph(device.name, device.light, device.timeStamps, lightContext,device1.name,device1.light,device2.name,device2.light);
-            displayMetadata(device.name,device.rssi,device.battery);
-            displayMetadata(device1.name,device1.rssi,device1.battery);
-            displayMetadata(device2.name,device2.rssi,device2.battery);
+            displayMetadata(device.name,device.rssi,device.battery,true);
+            displayMetadata(device1.name,device1.rssi,device1.battery,false);
+            displayMetadata(device2.name,device2.rssi,device2.battery,false);
         }
     }
 }
@@ -211,7 +211,7 @@ export async function resetGraphs(){
     await createGraphs(true);
 }
 
-function displayMetadata(name,rssi,battery){
+function displayMetadata(name,rssi,battery,fresh){
     let div = document.getElementsByClassName("metadata");
     if (div.length !== 0) {
         div = div[0];
@@ -219,7 +219,7 @@ function displayMetadata(name,rssi,battery){
         console.log("Something is broken when finding tabs div...")
         return;
     }
-    div.innerHTML = "";
+    if(fresh)div.innerHTML = "";
 
     const conn_header0 = document.createTextNode("Connection: ");
     const conn_header1 = document.createTextNode(name);
