@@ -195,6 +195,9 @@ export function displayTimeInputs(currentGraph) {
     selectTill.appendChild(endTime);
 
     dateDiv.appendChild(selectTill);
+    var warningText = document.createElement("p");
+    warningText.innerHTML = 'WARNING, THE TIME DIFFERENCE SHOULD BE NO BIGGER THAN 2 HOURS!!!'
+    dateDiv.appendChild(warningText);
 
     SetBackStartTime2HoursAgo();
 }
