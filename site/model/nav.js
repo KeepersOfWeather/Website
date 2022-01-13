@@ -141,12 +141,7 @@ async function createDeviceList(devicesCollection) {
                         }
                     }
                 }
-                let activeGraphs = new Array;
-                for(let i=0; i<arrayOfCheckboxes.length; i++){
-                    if(arrayOfCheckboxes[i].checked) activeGraphs.push(arrayOfCheckboxes[i].id);
-                }
-                console.log(activeGraphs);
-                createGraphs(activeGraphs, true);
+                createGraphs(false);
                 console.log('numOfCheckBoxes: ' + numOfCheckboxesSelected);
                 console.log(deviceName);
             }

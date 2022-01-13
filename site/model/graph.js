@@ -141,7 +141,7 @@ async function fillGraph(title, data, timestamps, ctx, title1, data1, title2, da
     // let _ = new Chart(ctx).Line(_data);
 }
 
-export async function createGraphs(ids, redraw) {
+export async function createGraphs(fresh) {
 
     var tempCanvas = document.getElementById('tempGraph');
     var humCanvas = document.getElementById('humGraph');
@@ -151,14 +151,19 @@ export async function createGraphs(ids, redraw) {
     var humContext = humCanvas.getContext('2d');
     var lightContext = lightCanvas.getContext('2d');
 
-    if(!redraw) {displayTimeInputs(ids);}
+    if(fresh) {displayTimeInputs();}
     let fromDate = document.getElementById("fromDate");
-    console.log(fromDate);
     let fromTime = document.getElementById("fromTime");
     let tillDate = document.getElementById("untillDate");
     let tillTime = document.getElementById("untillTime");
     let startDate = fromDate.value + ' ' + fromTime.value;
     let endDate = tillDate.value + ' ' + tillTime.value;
+
+    let arrayOfCheckboxes = document.getElementsByClassName('deviceCheckboxes');
+    let ids = new Array;
+    for(let i=0; i<arrayOfCheckboxes.length; i++){
+        if(arrayOfCheckboxes[i].checked) ids.push(arrayOfCheckboxes[i].id);
+    }
     
     if (ids === undefined || ids.length == 0) {
         let data = new Array;
@@ -197,6 +202,5 @@ export async function createGraphs(ids, redraw) {
 }
 
 export async function resetGraphs(){
-    let ids = new Array();
-    await createGraphs(ids);
+    await createGraphs(true);
 }
