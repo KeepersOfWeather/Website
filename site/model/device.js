@@ -43,7 +43,8 @@ export async function initDevice(id, startTime, endTime){
         temperature : temperature, 
         humidity : humidity, 
         pressure : pressure, 
-        light : light
+        light : light,
+        battery : await latest[0].sensorData.batteryVoltage
     };
 
     console.log('Device created: ');
@@ -57,6 +58,7 @@ export async function initDevice(id, startTime, endTime){
     console.log(device.humidity);
     console.log(device.pressure);
     console.log(device.light);
+    console.log(device.battery);
     console.log();
 
     return device;

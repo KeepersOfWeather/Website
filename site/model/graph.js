@@ -225,11 +225,11 @@ function displayMetadata(name,rssi,battery,fresh){
     const conn_header1 = document.createTextNode(name);
     let connection;
     console.log(rssi);
-    if(rssi<=-90) connection = document.createTextNode(" => weak.\n");// extremely weak
-    else if(rssi<-64) connection = document.createTextNode(" => alright.\n");// ehh
+    if(rssi<=-90) connection = document.createTextNode(" => unstable.\n");// extremely weak
+    else if(rssi<-64) connection = document.createTextNode(" => weak.\n");// ehh
     else if(rssi<-55) connection = document.createTextNode(" => good.\n");// ok
-    else if(rssi<-33) connection = document.createTextNode(" => stable.\n");// very strong
-    else connection = document.createTextNode(" => strong.\n");// extremely strong
+    else if(rssi<-33) connection = document.createTextNode(" => strong.\n");// strong
+    else connection = document.createTextNode(" => very strong.\n");// extremely strong
 
     div.appendChild(conn_header0);
     div.appendChild(conn_header1);
