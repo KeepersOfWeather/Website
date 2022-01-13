@@ -22,7 +22,7 @@ export function getTodayString(day){
     return today;
 }
 
-export function displayTimeInputs(currentGraph) {
+export function displayTimeInputs() {
     let dateDiv = document.getElementsByClassName("date-container");
 
     if (dateDiv.length !== 0) {
