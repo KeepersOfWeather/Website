@@ -189,6 +189,8 @@ export async function createGraphs(fresh) {
             if(device.pressure[0]===null) fillGraph(device.name, device.humidity, device.timeStamps, humContext,device1.name,device1.humidity);
             else fillGraph(device.name, device.pressure, device.timeStamps, humContext,device1.name,device1.pressure);
             fillGraph(device.name, device.light, device.timeStamps, lightContext,device1.name,device1.light);
+            displayMetadata(device.name,device.rssi,device.battery);
+            displayMetadata(device1.name,device1.rssi,device1.battery);
         }
         else if(ids.length == 3){
             device = await initDevice(ids[0], startDate, endDate);
@@ -198,6 +200,9 @@ export async function createGraphs(fresh) {
             if(device.pressure[0]===null) fillGraph(device.name, device.humidity, device.timeStamps, humContext,device1.name,device1.humidity,device2.name,device2.humidity);
             else fillGraph(device.name, device.pressure, device.timeStamps, humContext,device1.name,device1.pressure,device2.name,device2.pressure);
             fillGraph(device.name, device.light, device.timeStamps, lightContext,device1.name,device1.light,device2.name,device2.light);
+            displayMetadata(device.name,device.rssi,device.battery);
+            displayMetadata(device1.name,device1.rssi,device1.battery);
+            displayMetadata(device2.name,device2.rssi,device2.battery);
         }
     }
 }
@@ -214,23 +219,31 @@ function displayMetadata(name,rssi,battery){
         console.log("Something is broken when finding tabs div...")
         return;
     }
+    div.innerHTML = "";
 
-    const header = document.createTextNode(name);
-
+    const conn_header0 = document.createTextNode("Connection: ");
+    const conn_header1 = document.createTextNode(name);
     let connection;
-    if(rssi<-90) connection = document.createTextNode("weak");// extremely weak
-    else if(rssi<-64) connection = document.createTextNode("alright");// ehh
-    else if(rssi<-55) connection = document.createTextNode("good");// ok
-    else if(rssi<-33) connection = document.createTextNode("stable");// very strong
-    else connection = document.createTextNode("strong");// extremely strong
+    if(rssi<-90) connection = document.createTextNode(" => weak.\n");// extremely weak
+    else if(rssi<-64) connection = document.createTextNode(" => alright.\n");// ehh
+    else if(rssi<-55) connection = document.createTextNode(" => good.\n");// ok
+    else if(rssi<-33) connection = document.createTextNode(" => stable.\n");// very strong
+    else connection = document.createTextNode(" => strong.\n");// extremely strong
 
-    div.appendChild(header);
+    div.appendChild(conn_header0);
+    div.appendChild(conn_header1);
     div.appendChild(connection);
 
-    // if(battery !== undefined){
+    if(battery !== undefined){
+        const bat_header0 = document.createTextNode("Battery: ");
+        const bat_header1 = document.createTextNode(name);
+        let battery;
+        if(battery>3) battery = document.createTextNode(" => full.\n");//full
+        else if(battery>2.5) battery = document.createTextNode(" => medium.\n");//medium
+        else battery = document.createTextNode(" => low.\n");//low
 
-    //     if(battery>3) //full
-    //     else if(battery>2.5) //medium
-    //     else //low
-    // }
+        div.appendChild(bat_header0);
+        div.appendChild(bat_header1);
+        div.appendChild(battery);
+    }
 }
