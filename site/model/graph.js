@@ -180,7 +180,7 @@ export async function createGraphs(fresh) {
             if(device.pressure[0]===null) fillGraph(device.name, device.humidity, device.timeStamps, humContext);
             else fillGraph(device.name, device.pressure, device.timeStamps, humContext);
             fillGraph(device.name, device.light, device.timeStamps, lightContext);
-            displayMetadata(device.name,device.rssi,device.battery,true);
+            displayMetadata(device.name,device.connection,device.battery,true);
         }
         else if(ids.length == 2){
             device = await initDevice(ids[0], startDate, endDate);
@@ -189,8 +189,8 @@ export async function createGraphs(fresh) {
             if(device.pressure[0]===null) fillGraph(device.name, device.humidity, device.timeStamps, humContext,device1.name,device1.humidity);
             else fillGraph(device.name, device.pressure, device.timeStamps, humContext,device1.name,device1.pressure);
             fillGraph(device.name, device.light, device.timeStamps, lightContext,device1.name,device1.light);
-            displayMetadata(device.name,device.rssi,device.battery,true);
-            displayMetadata(device1.name,device1.rssi,device1.battery,false);
+            displayMetadata(device.name,device.connection,device.battery,true);
+            displayMetadata(device1.name,device1.connection,device1.battery,false);
         }
         else if(ids.length == 3){
             device = await initDevice(ids[0], startDate, endDate);
@@ -200,9 +200,9 @@ export async function createGraphs(fresh) {
             if(device.pressure[0]===null) fillGraph(device.name, device.humidity, device.timeStamps, humContext,device1.name,device1.humidity,device2.name,device2.humidity);
             else fillGraph(device.name, device.pressure, device.timeStamps, humContext,device1.name,device1.pressure,device2.name,device2.pressure);
             fillGraph(device.name, device.light, device.timeStamps, lightContext,device1.name,device1.light,device2.name,device2.light);
-            displayMetadata(device.name,device.rssi,device.battery,true);
-            displayMetadata(device1.name,device1.rssi,device1.battery,false);
-            displayMetadata(device2.name,device2.rssi,device2.battery,false);
+            displayMetadata(device.name,device.connection,device.battery,true);
+            displayMetadata(device1.name,device1.connection,device1.battery,false);
+            displayMetadata(device2.name,device2.connection,device2.battery,false);
         }
     }
 }
