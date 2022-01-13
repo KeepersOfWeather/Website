@@ -98,13 +98,17 @@ export function displayTimeInputs() {
     startDate.min = "2021-10-01";
     startDate.max = today;
     startDate.onchange = async function fromDateOnChange() {
-        var testBool = checkIfDateMoreThan2Days();
+        //var testBool = checkIfDateMoreThan2Days();
         console.log("from Date Changed");
         var newMinDate = document.getElementById("fromDate").value;
         // document.getElementById("untillDate").value = newMinDate;
         document.getElementById("untillDate").setAttribute("min",newMinDate);
 
-        createGraphs(false);
+        if(!checkIfDateMoreThan2Days())
+        {
+            createGraphs(false);
+        }
+        
 
         console.log(startDate.value);
         console.log(startDate.value + ' ' + startTime.value);
@@ -130,7 +134,10 @@ export function displayTimeInputs() {
             document.getElementById("untillTime").setAttribute("min",newMinTime);
         }
 
-        createGraphs(false);
+        if(!checkIfDateMoreThan2Days())
+        {
+            createGraphs(false);
+        }
 
         console.log(startTime.value);
         console.log(startDate.value + ' ' + startTime.value);
@@ -163,7 +170,10 @@ export function displayTimeInputs() {
         console.log(endDate.toString());
         console.log(endDate.toString + ' ' + endTime.toString());
 
-        createGraphs(false);
+        if(!checkIfDateMoreThan2Days())
+        {
+            createGraphs(false);
+        }
     }
 
     let endDateLabel = document.createElement("label");
@@ -189,7 +199,10 @@ export function displayTimeInputs() {
         console.log(endTime.value);
         console.log(endDate.value + ' ' + endTime.value);
         
-        createGraphs(false);
+        if(!checkIfDateMoreThan2Days())
+        {
+            createGraphs(false);
+        }
     }
 
     selectTill.appendChild(endDateLabel);
