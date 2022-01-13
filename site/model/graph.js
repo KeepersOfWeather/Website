@@ -153,10 +153,10 @@ export async function createGraphs(ids, redraw) {
 
     let fromDate = document.getElementById("fromDate");
     let fromTime = document.getElementById("fromTime");
-    let tillDate = document.getElementById("tillDate");
-    let tillTime = document.getElementById("tillTime");
-    let startDate = fromDate + ' ' + fromTime;
-    let endDate = tillDate + ' ' + tillTime;
+    let tillDate = document.getElementById("untillDate");
+    let tillTime = document.getElementById("untillTime");
+    let startDate = fromDate.value + ' ' + fromTime.value;
+    let endDate = tillDate.value + ' ' + tillTime.value;
     
     if (ids === undefined || ids.length == 0) {
         let data = new Array;
