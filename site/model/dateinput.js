@@ -325,7 +325,7 @@ function checkIfDateMoreThan2Days()
 
     var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
 
-    if (Difference_In_Days > 2)
+    if (Difference_In_Days > 1)
     {
         document.getElementById('warningText').style.visibility = 'visible';
         return true;
