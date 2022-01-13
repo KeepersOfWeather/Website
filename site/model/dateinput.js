@@ -196,7 +196,8 @@ export function displayTimeInputs(currentGraph) {
 
     dateDiv.appendChild(selectTill);
     var warningText = document.createElement("p");
-    warningText.innerHTML = 'WARNING, THE TIME DIFFERENCE SHOULD BE NO BIGGER THAN 2 HOURS!!!'
+    warningText.innerHTML = 'Dataset too large.'
+    warningText.style.visibility = "hidden";
     dateDiv.appendChild(warningText);
 
     SetBackStartTime2HoursAgo();
