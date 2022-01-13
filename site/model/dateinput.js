@@ -301,5 +301,5 @@ function SetBackStartTime2HoursAgo()
         hoursString = hours.toString();
     }
 
-    document.getElementById("fromTime").value = hoursString + ':' + newTime[1];
+    document.getElementById("fromTime").value = hoursString + ':' + split_time_now[1];
 }
