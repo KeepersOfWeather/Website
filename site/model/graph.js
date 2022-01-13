@@ -224,7 +224,8 @@ function displayMetadata(name,rssi,battery,fresh){
     const conn_header0 = document.createTextNode("Connection: ");
     const conn_header1 = document.createTextNode(name);
     let connection;
-    if(rssi<-90) connection = document.createTextNode(" => weak.\n");// extremely weak
+    console.log(rssi);
+    if(rssi<=-90) connection = document.createTextNode(" => weak.\n");// extremely weak
     else if(rssi<-64) connection = document.createTextNode(" => alright.\n");// ehh
     else if(rssi<-55) connection = document.createTextNode(" => good.\n");// ok
     else if(rssi<-33) connection = document.createTextNode(" => stable.\n");// very strong
@@ -233,7 +234,7 @@ function displayMetadata(name,rssi,battery,fresh){
     div.appendChild(conn_header0);
     div.appendChild(conn_header1);
     div.appendChild(connection);
-
+    console.log(battery);
     if(battery !== undefined){
         const bat_header0 = document.createTextNode("Battery: ");
         const bat_header1 = document.createTextNode(name);
