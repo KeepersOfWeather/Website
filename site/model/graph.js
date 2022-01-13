@@ -141,7 +141,7 @@ async function fillGraph(title, data, timestamps, ctx, title1, data1, title2, da
     // let _ = new Chart(ctx).Line(_data);
 }
 
-export async function createGraphs(ids, redraw, startDate, endDate) {
+export async function createGraphs(ids, redraw) {
 
     var tempCanvas = document.getElementById('tempGraph');
     var humCanvas = document.getElementById('humGraph');
@@ -150,11 +150,14 @@ export async function createGraphs(ids, redraw, startDate, endDate) {
     var tempContext = tempCanvas.getContext('2d');
     var humContext = humCanvas.getContext('2d');
     var lightContext = lightCanvas.getContext('2d');
-   
 
-    // if(endDate == null) endDate = getTodayString();
-    // if(startDate == null) startDate = getTodayString(-1);
-
+    let fromDate = document.getElementById("fromDate");
+    let fromTime = document.getElementById("fromTime");
+    let tillDate = document.getElementById("tillDate");
+    let tillTime = document.getElementById("tillTime");
+    let startDate = fromDate + ' ' + fromTime;
+    let endDate = tillDate + ' ' + tillTime;
+    
     if (ids === undefined || ids.length == 0) {
         let data = new Array;
         let timestamps = new Array;

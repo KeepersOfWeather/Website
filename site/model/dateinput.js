@@ -103,7 +103,7 @@ export function displayTimeInputs(currentGraph) {
         // document.getElementById("untillDate").value = newMinDate;
         document.getElementById("untillDate").setAttribute("min",newMinDate);
 
-        createGraphs(currentGraph, true, startDate.value + ' ' + startTime.value, endDate.value + ' ' + endTime.value);
+        createGraphs(currentGraph, true);
 
         console.log(startDate.value);
         console.log(startDate.value + ' ' + startTime.value);
@@ -129,7 +129,7 @@ export function displayTimeInputs(currentGraph) {
             document.getElementById("untillTime").setAttribute("min",newMinTime);
         }
 
-        createGraphs(currentGraph, true, startDate.value + ' ' + startTime.value, endDate.value + ' ' + endTime.value);
+        createGraphs(currentGraph, true);
 
         console.log(startTime.value);
         console.log(startDate.value + ' ' + startTime.value);
@@ -161,7 +161,7 @@ export function displayTimeInputs(currentGraph) {
         console.log(endDate.toString());
         console.log(endDate.toString + ' ' + endTime.toString());
 
-        createGraphs(currentGraph, true, startDate.value + ' ' + startTime.value, endDate.value + ' ' + endTime.value);
+        createGraphs(currentGraph, true);
     }
 
     let endDateLabel = document.createElement("label");
@@ -187,7 +187,7 @@ export function displayTimeInputs(currentGraph) {
         console.log(endTime.value);
         console.log(endDate.value + ' ' + endTime.value);
         
-        createGraphs(currentGraph, true, startDate.value + ' ' + startTime.value, endDate.value + ' ' + endTime.value);
+        createGraphs(currentGraph, true);
     }
 
     selectTill.appendChild(endDateLabel);
