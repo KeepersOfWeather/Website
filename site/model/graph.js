@@ -239,8 +239,8 @@ function displayMetadata(name,rssi,battery,fresh){
         const bat_header0 = document.createTextNode("Battery: ");
         const bat_header1 = document.createTextNode(name);
         let battery;
-        if(battery>3) battery = document.createTextNode(" => full.\n");//full
-        else if(battery>2.5) battery = document.createTextNode(" => medium.\n");//medium
+        if(battery>=3.0) battery = document.createTextNode(" => full.\n");//full
+        else if(battery>=2.5) battery = document.createTextNode(" => medium.\n");//medium
         else battery = document.createTextNode(" => low.\n");//low
 
         div.appendChild(bat_header0);
