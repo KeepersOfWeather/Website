@@ -212,7 +212,7 @@ export function displayTimeInputs() {
     dateDiv.appendChild(selectTill);
     var warningText = document.createElement("p");
     warningText.id = 'warningText';
-    warningText.innerHTML = 'Dataset too large. Choose something thats within 2 days.'
+    warningText.innerHTML = 'Dataset too large. Choose something thats within 7 days.'
     warningText.style.visibility = "hidden";
     dateDiv.appendChild(warningText);
 
@@ -338,7 +338,7 @@ function checkIfDateMoreThan2Days()
 
     var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
 
-    if (Difference_In_Days > 1)
+    if (Difference_In_Days > 6)
     {
         document.getElementById('warningText').style.visibility = 'visible';
         return true;
