@@ -151,7 +151,9 @@ export async function createGraphs(ids, redraw) {
     var humContext = humCanvas.getContext('2d');
     var lightContext = lightCanvas.getContext('2d');
 
+    
     let fromDate = document.getElementById("fromDate");
+    console.log(fromDate);
     let fromTime = document.getElementById("fromTime");
     let tillDate = document.getElementById("untillDate");
     let tillTime = document.getElementById("untillTime");
