@@ -208,6 +208,13 @@ export async function resetGraphs(){
 
 function displayMetadata(name,rssi,battery){
     let div = document.getElementsByClassName("metadata");
+    if (div.length !== 0) {
+        div = div[0];
+    } else {
+        console.log("Something is broken when finding tabs div...")
+        return;
+    }
+
     const header = document.createTextNode(name);
 
     let connection;
