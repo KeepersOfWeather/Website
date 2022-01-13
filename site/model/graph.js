@@ -180,6 +180,7 @@ export async function createGraphs(fresh) {
             if(device.pressure[0]===null) fillGraph(device.name, device.humidity, device.timeStamps, humContext);
             else fillGraph(device.name, device.pressure, device.timeStamps, humContext);
             fillGraph(device.name, device.light, device.timeStamps, lightContext);
+            displayMetadata(device.name,device.rssi,device.battery);
         }
         else if(ids.length == 2){
             device = await initDevice(ids[0], startDate, endDate);
@@ -203,4 +204,26 @@ export async function createGraphs(fresh) {
 
 export async function resetGraphs(){
     await createGraphs(true);
+}
+
+function displayMetadata(name,rssi,battery){
+    let div = document.getElementsByClassName("metadata");
+    const header = document.createTextNode(name);
+
+    let connection;
+    if(rssi<-90) connection = document.createTextNode("weak");// extremely weak
+    else if(rssi<-64) connection = document.createTextNode("alright");// ehh
+    else if(rssi<-55) connection = document.createTextNode("good");// ok
+    else if(rssi<-33) connection = document.createTextNode("stable");// very strong
+    else connection = document.createTextNode("strong");// extremely strong
+
+    div.appendChild(header);
+    div.appendChild(connection);
+
+    // if(battery !== undefined){
+
+    //     if(battery>3) //full
+    //     else if(battery>2.5) //medium
+    //     else //low
+    // }
 }
