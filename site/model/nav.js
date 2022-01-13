@@ -1,5 +1,5 @@
 import { api_query }  from './api.js';
-import {createGraphs} from './graph.js';
+import {createGraphs, resetGraphs} from './graph.js';
 import { updateLatestWeatherDiv }  from './latestWeather.js';
 'use strict';
 
@@ -69,24 +69,84 @@ async function createDeviceList(devicesCollection) {
 
     // Go over each id and name in the passed dictionary
     for (const [deviceId, deviceName] of Object.entries(devicesCollection)) {
+
+        if(deviceName.includes("haaksbergerstraat")){
+            // do nothing 
+        }
+        else{
         // Create a div with a check box and a label
         let newDeviceEntry = document.createElement("div");
 
             let newDeviceCheckBox = document.createElement("input");
             newDeviceCheckBox.type = "checkbox";
+            newDeviceCheckBox.classList.add("deviceCheckboxes");
             newDeviceCheckBox.id = deviceId;
             newDeviceCheckBox.name = deviceName;
+            if (typeof variable === 'undefined')
+            {
+                var numOfCheckboxesSelected = 0;
+            }
+            if (typeof arrayOfCheckboxes === 'undefined')
+            {
+                var arrayOfCheckboxes = document.getElementsByClassName("deviceCheckboxes");
+            }
 
             newDeviceCheckBox.onclick = async function () {
+                arrayOfCheckboxes = document.getElementsByClassName('deviceCheckboxes');
+                let city = document.getElementsByClassName("city active");
                 if(newDeviceCheckBox.checked){
-                    createGraphs(newDeviceCheckBox.id);
                     console.log('checked');
+                    // creat graphs with graphs selected graphs
+                    numOfCheckboxesSelected++;
+                    // if (numOfCheckboxesSelected == 3)
+                    // {
+                    //     for (let i = 0; i < arrayOfCheckboxes.length;i++) {
+                    //         if(!arrayOfCheckboxes[i].checked)
+                    //         {
+                    //             arrayOfCheckboxes[i].disabled = true;
+                    //         }
+                    //       }
+                    // }
+                    if(city[0].id == "All"){
+                        console.log("ALL CITY active");
+                        if(newDeviceCheckBox.id == 0 || newDeviceCheckBox.id == 1){
+                            arrayOfCheckboxes[2].disabled = true;
+                            arrayOfCheckboxes[3].disabled = true;
+                        }
+                        else{
+                            arrayOfCheckboxes[0].disabled = true;
+                            arrayOfCheckboxes[1].disabled = true;
+                        }
+                    }
+                    else if(city[0].id =="Wierden"){
+                        console.log("Wierden CITY active");
+                        if(newDeviceCheckBox.id == 0){
+                            arrayOfCheckboxes[1].disabled = true;
+                        }
+                        else{
+                            arrayOfCheckboxes[0].disabled = true;
+                        }
+                    }
                 } 
                 else {
-
                     console.log('unchecked');
+                    // creat graphs with graphs selected graphs
+                    numOfCheckboxesSelected--;
+                    // for (let i = 0; i < arrayOfCheckboxes.length;i++){
+                    //     arrayOfCheckboxes[i].disabled = false;
+                    //   }
+                    if(numOfCheckboxesSelected == 0){
+                        for(let i=0; i<arrayOfCheckboxes.length; i++){
+                            arrayOfCheckboxes[i].disabled = false;
+                        }
+                    }
                 }
-
+                if(!checkIfDateMoreThan2Days())
+                {
+                    createGraphs(false);
+                }
+                
+                console.log('numOfCheckBoxes: ' + numOfCheckboxesSelected);
                 console.log(deviceName);
             }
 
@@ -102,7 +162,7 @@ async function createDeviceList(devicesCollection) {
         // Add the new entry to our list of devices
         devicesList.appendChild(newDeviceEntry);
     }
-    
+    }
 }
 
 async function buienRadar(city) {
@@ -192,6 +252,7 @@ export async function createNavBar() {
             createDeviceList(deviceList);
             let latestDataFromLocation = await getLatestForLocation(deviceList); //double query?
             await updateLatestWeatherDiv(latestDataFromLocation.fromDeviceId);
+            resetGraphs();
         };
 
         newCityButton.innerHTML = cityName; // rename the button
@@ -203,4 +264,30 @@ export async function createNavBar() {
     createDeviceList(allDevices);
     await updateLatestWeatherDiv();
     await buienRadar("All");
+}
+
+function checkIfDateMoreThan2Days()
+{
+    var _fromDate = document.getElementById("fromDate").value;
+    var _untillDate = document.getElementById("untillDate").value;
+    var _fromDateSplit = _fromDate.split('-');      // 0 = yyyy, 1 = mm, 2 = dd
+    var _untillDateSplit = _untillDate.split('-');  // 0 = yyyy, 1 = mm, 2 = dd
+
+    var date1From = new Date(_fromDateSplit[1] + '/' + _fromDateSplit[2] + '/' + _fromDateSplit[0]); // this needs to be in mm/dd/yyyy
+    var date2Untill = new Date(_untillDateSplit[1] + '/' + _untillDateSplit[2] + '/' + _untillDateSplit[0]);
+
+    var Difference_In_Time = date2Untill.getTime() - date1From.getTime();
+
+    var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
+    if (Difference_In_Days > 6)
+    {
+        document.getElementById('warningText').style.visibility = 'visible';
+        return true;
+    }
+    else
+    {
+        document.getElementById('warningText').style.visibility = 'hidden';
+        return false;
+    }
 }

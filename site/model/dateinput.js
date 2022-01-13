@@ -22,7 +22,7 @@ export function getTodayString(day){
     return today;
 }
 
-export function displayTimeInputs(currentGraph) {
+export function displayTimeInputs() {
     let dateDiv = document.getElementsByClassName("date-container");
 
     if (dateDiv.length !== 0) {
@@ -66,9 +66,12 @@ export function displayTimeInputs(currentGraph) {
     }
 
     if (mm < 10) {
-    mmMonthAgo = '0' + mmMonthAgo;
     mm = '0' + mm;
     } 
+
+    if (mmMonthAgo < 10){
+    mmMonthAgo = '0' + mmMonthAgo;
+    }
         
     today = yyyy + '-' + mm + '-' + dd;
     //document.getElementById("fromDate").setAttribute("max", today);
@@ -95,12 +98,20 @@ export function displayTimeInputs(currentGraph) {
     startDate.min = "2021-10-01";
     startDate.max = today;
     startDate.onchange = async function fromDateOnChange() {
+        //var testBool = checkIfDateMoreThan2Days();
         console.log("from Date Changed");
-        console.log('Time today is: '+timeToday)
         var newMinDate = document.getElementById("fromDate").value;
         // document.getElementById("untillDate").value = newMinDate;
         document.getElementById("untillDate").setAttribute("min",newMinDate);
-        createGraphs(currentGraph, startDate.toString, endDate.toString);
+
+        if(!checkIfDateMoreThan2Days())
+        {
+            createGraphs(false);
+        }
+        
+
+        console.log(startDate.value);
+        console.log(startDate.value + ' ' + startTime.value);
     }
 
     let startDateLabel = document.createElement("label");
@@ -108,14 +119,40 @@ export function displayTimeInputs(currentGraph) {
     startDateLabel.htmlFor = "fromDate";
     startDateLabel.innerHTML = "From date: ";
 
+    startTime.type = "time";
+    startTime.id = "fromTime";
+    startTime.name = "fromTime";
+    startTime.value = "00:00";
+    startTime.min = "00:00";
+    startTime.max = "23:59";
+    startTime.onchange = async function fromTimeOnChange() {
+        console.log("from Time Changed");
+        if (document.getElementById("fromDate").value === document.getElementById("untillDate").value)
+        {
+            var newMinTime = document.getElementById("fromTime").value;
+            // document.getElementById("untillDate").value = newMinDate;
+            document.getElementById("untillTime").setAttribute("min",newMinTime);
+        }
+
+        if(!checkIfDateMoreThan2Days())
+        {
+            createGraphs(false);
+        }
+
+        console.log(startTime.value);
+        console.log(startDate.value + ' ' + startTime.value);
+    }
+
     selectFrom.appendChild(startDateLabel);
     selectFrom.appendChild(startDate);
+    selectFrom.appendChild(startTime);
 
     dateDiv.appendChild(selectFrom);
 
     let selectTill = document.createElement("div");
     selectTill.id = 'selectTill';
     let endDate = document.createElement("input");
+    let endTime = document.createElement("input");
 
     endDate.type = "date";
     endDate.id = "untillDate";
@@ -124,12 +161,19 @@ export function displayTimeInputs(currentGraph) {
     endDate.min = todayMonthAgo;
     endDate.max = today;
     endDate.onchange = async function untillDateOnChange(){
+        var testBool = checkIfDateMoreThan2Days();
         console.log("untill Date Changed");
-        console.log('Time today is: '+timeToday)
         var newMaxDate = document.getElementById("untillDate").value;
         // document.getElementById("untillDate").value = newMinDate;
         document.getElementById("fromDate").setAttribute("max",newMaxDate);
-        createGraphs(currentGraph, startDate.toString, endDate.toString);
+
+        console.log(endDate.toString());
+        console.log(endDate.toString + ' ' + endTime.toString());
+
+        if(!checkIfDateMoreThan2Days())
+        {
+            createGraphs(false);
+        }
     }
 
     let endDateLabel = document.createElement("label");
@@ -137,10 +181,42 @@ export function displayTimeInputs(currentGraph) {
     endDateLabel.htmlFor = "untillDate";
     endDateLabel.innerHTML = "Untill date: ";
 
+    endTime.type = "time";
+    endTime.id = "untillTime";
+    endTime.name = "untillTime";
+    endTime.value = timeToday;
+    endTime.min = "00:00";
+    endTime.max = "23:59";
+    endTime.onchange = async function untillTimeOnChange(){
+        console.log("untill Time Changed");
+        if (document.getElementById("fromDate").value === document.getElementById("untillDate").value)
+        {
+            var newMaxTime = document.getElementById("untillTime").value;
+            // document.getElementById("untillDate").value = newMinDate;
+            document.getElementById("fromTime").setAttribute("max",newMaxTime);
+        }
+
+        console.log(endTime.value);
+        console.log(endDate.value + ' ' + endTime.value);
+        
+        if(!checkIfDateMoreThan2Days())
+        {
+            createGraphs(false);
+        }
+    }
+
     selectTill.appendChild(endDateLabel);
     selectTill.appendChild(endDate);
+    selectTill.appendChild(endTime);
 
     dateDiv.appendChild(selectTill);
+    var warningText = document.createElement("p");
+    warningText.id = 'warningText';
+    warningText.innerHTML = 'Dataset too large. Choose something thats within 7 days.'
+    warningText.style.visibility = "hidden";
+    dateDiv.appendChild(warningText);
+
+    SetBackStartTime2HoursAgo();
 }
 
 // export function initTimeInputs()
@@ -168,3 +244,108 @@ export function displayTimeInputs(currentGraph) {
 
 // }
 
+function AmsterdamTimeToUKTime(timeString)
+{
+    var newTime = timeString.split(':');
+    var hours = parseInt(newTime[0]);
+    var hoursString;
+    if (hours == 0)
+    {
+        hoursString = '23'
+    }
+    else
+    {
+        hours = hours - 1;
+        if (hours >= 0 && hours < 10)
+        {
+            hoursString = '0' + hours.toString();
+        }
+        else
+        {
+            hoursString = hours.toString();
+        }
+    }
+    return hoursString + ':' + newTime[1];
+}
+
+function SetBackStartTime2HoursAgo()
+{
+    var time_now = new Date().toLocaleTimeString('en-US', { hour12: false, hour: "numeric", minute: "numeric"});
+    var split_time_now = time_now.split(':');
+    var hours = parseInt(split_time_now[0]);
+    var hoursString;
+    if (hours == 0 || hours == 1)
+    {
+        hours = hours + 22;
+
+        var today = new Date();
+        var dd = today.getDate() - 1; // we get yesterday
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+        dd = '0' + dd;
+        }
+        
+        if (mm < 10) {
+        mm = '0' + mm;
+        } 
+
+        document.getElementById("fromDate").value = yyyy + '-' + mm + '-' + dd;
+    }
+    else
+    {
+        hours = hours - 2;
+
+        var today = new Date();
+        var dd = today.getDate(); // we get yesterday
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+        dd = '0' + dd;
+        }
+        
+        if (mm < 10) {
+        mm = '0' + mm;
+        } 
+
+        document.getElementById("fromDate").value = yyyy + '-' + mm + '-' + dd;
+
+    }
+
+    if (hours >= 0 && hours < 10)
+    {
+        hoursString = '0' + hours.toString();
+    }
+    else
+    {
+        hoursString = hours.toString();
+    }
+
+    document.getElementById("fromTime").value = hoursString + ':' + split_time_now[1];
+}
+
+function checkIfDateMoreThan2Days()
+{
+    var _fromDate = document.getElementById("fromDate").value;
+    var _untillDate = document.getElementById("untillDate").value;
+    var _fromDateSplit = _fromDate.split('-');      // 0 = yyyy, 1 = mm, 2 = dd
+    var _untillDateSplit = _untillDate.split('-');  // 0 = yyyy, 1 = mm, 2 = dd
+
+    var date1From = new Date(_fromDateSplit[1] + '/' + _fromDateSplit[2] + '/' + _fromDateSplit[0]); // this needs to be in mm/dd/yyyy
+    var date2Untill = new Date(_untillDateSplit[1] + '/' + _untillDateSplit[2] + '/' + _untillDateSplit[0]);
+
+    var Difference_In_Time = date2Untill.getTime() - date1From.getTime();
+
+    var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
+    if (Difference_In_Days > 6)
+    {
+        document.getElementById('warningText').style.visibility = 'visible';
+        return true;
+    }
+    else
+    {
+        document.getElementById('warningText').style.visibility = 'hidden';
+        return false;
+    }
+}
